@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Link from 'next/link';
 
 const Header = () => {
@@ -10,8 +10,8 @@ const Header = () => {
     };
 
     return (
-        <header className=''>
-            <Navbar bg="" expand="lg" style={styles.navColor} className='p-3 shadow bg-transparent'>
+        <header className='sticky-top'>
+            <Navbar bg="white" expand="lg" style={styles.navColor} className='p-3 shadow'>
                 <Navbar.Brand style={styles.brand} className='mx-3'>
                     <Link href="/">
                         <img
@@ -25,49 +25,49 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleNav} />
                 <Navbar.Collapse id="responsive-navbar-nav" className={`${showNav ? 'show' : ''}`}>
                     <Nav className="me-auto mx-5">
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="/">
                                 Inicio
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="#">
-                                Acerca de
+                                Acerca de nosotros
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="#">
                                 Productos
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="#">
                                 Precios
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="#">
                                 Blog
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="#">
                                 Careers
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2'>
+                        <Nav.Item className='m-3'>
                             <Link href="#">
                                 Multimedia
                             </Link>
                         </Nav.Item>
                     </Nav>
                     <Nav className="align-items-center mx-3">
-                        <Nav.Item className='m-2 fw-bold'>
+                        <Nav.Item className='m-3 fw-bold'>
                             <Link href="#">
                                 Iniciar sesión
                             </Link>
                         </Nav.Item>
-                        <Nav.Item className='m-2 fw-bold'>
+                        <Nav.Item className='m-3 fw-bold'>
                             <Link href="#">
                                 Registrarse
                             </Link>
@@ -84,7 +84,11 @@ const styles = {
         fontWeight: 'bold',
         fontSize: '1.5rem',
         cursor: 'pointer',
-    }
+    },
+    navColor: {
+        backgroundColor: '#fff',
+        opacity: '0.9',
+    },
 };
 
 export default Header;

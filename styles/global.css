@@ -1,3 +1,13 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
 a {
     color: #000 !important;
     text-decoration: none !important;
@@ -8,20 +18,96 @@ a {
 }
 
 .navbar-nav a {
-    position: relative!important;
+    position: relative !important;
+}
+
+.navbar-nav a:hover {
+    color: #000 !important;
 }
 
 .navbar-nav a:after {
     content: '';
-    position: absolute!important;
-    bottom: -3px!important;
-    left: 0!important;
-    width: 0%!important;
-    height: 2px!important;
-    background-color: #000!important;
-    transition: width 0.5s!important;
+    position: absolute !important;
+    bottom: -3px !important;
+    left: 0 !important;
+    width: 0% !important;
+    height: 2px !important;
+    background-color: #000 !important;
+    transition: width 0.5s !important;
 }
 
 .navbar-nav a:hover:after {
-    width: 100%!important;
+    width: 100% !important;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #222222;
+    padding: 20px;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+footer ul li {
+    margin-bottom: 5px;
+    text-decoration: none !important;
+    list-style: none !important;
+    color: #fff !important;
+}
+
+footer ul li a {
+    color: #fff !important;
+}
+
+.footer-upper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    flex-basis: 30%;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section ul ul li {
+    margin-left: 15px;
+}
+
+.footer-lower {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-right a {
+    margin-right: 10px;
+    color: #fff !important;
+    font-size: 20px;
+}
+
+.footer-upper a {
+    color: #fff !important;
+}
+
+.footer-lower {
+    border-top: #ccc solid 1px;
 }

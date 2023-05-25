@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Header from './components/Header'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Footer from './components/Footer'
 
 
 export default function index() {
@@ -18,6 +19,8 @@ export default function index() {
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
             </Head>
             <Header />
+
+            <Footer />
         </>
     )
 }

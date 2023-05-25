@@ -1,0 +1,108 @@
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faFacebook,
+    faTwitter,
+    faLinkedin,
+    faInstagram,
+} from '@fortawesome/free-brands-svg-icons';
+import Link from 'next/link';
+
+const Footer = () => {
+    return (
+        <footer className="bg-dark p-5">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <h4>Legal</h4>
+                        <ul className='text-decoration-none'>
+                            <li>
+                                <Link href="/privacy">Política de privacidad</Link>
+                            </li>
+                            <li>
+                                <Link href="/terms">Términos y condiciones</Link>
+                            </li>
+                            <li>
+                                <ul className='text-decoration-none'>
+                                    <li>
+                                        <Link href="/use-policy">Política de uso</Link>
+                                    </li>
+                                    <li>
+                                        <Link href="/legal-notice">Aviso legal</Link>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <h4>Company</h4>
+                        <ul className='text-decoration-none'>
+                            <li>
+                                <Link href="#about">About Us</Link>
+                            </li>
+                            <li>
+                                <Link href="#team">Our Team</Link>
+                            </li>
+                            <li>
+                                <Link href="/careers">Careers</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li>Email</li>
+                            <li>Phone</li>
+                            <li>Address</li>
+                        </ul>
+                    </div>
+                    <div className="col-lg-3 col-md-6 mb-4">
+                        <h4>Wait List:</h4>
+                        <form>
+                            <div className="input-group mb-3">
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    placeholder="example@domain.com"
+                                    aria-describedby="button-addon2"
+                                />
+                                <button
+                                    className="btn btn-secondary"
+                                    type="button"
+                                    id="button-addon2"
+                                >
+                                    Join
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div className="footer-lower">
+                <div className="container">
+                    <div className="row mt-3">
+                        <div className="col-lg-6 col-md-6">
+                            &copy; 2000 TERP S.A de C.V., Todos los derechos reservados
+                        </div>
+                        <div className="col-lg-6 col-md-6 text-end">
+                            <Link href="#" className='mx-2'>
+                                <FontAwesomeIcon color="#fff" icon={faFacebook} />
+                            </Link>
+                            <Link href="#" className='mx-2'>
+                                <FontAwesomeIcon color="#fff" icon={faTwitter} />
+                            </Link>
+                            <Link href="#" className='mx-2'>
+                                <FontAwesomeIcon color="#fff" icon={faLinkedin} />
+                            </Link>
+                            <Link href="#" className='mx-2'>
+                                <FontAwesomeIcon color="#fff" icon={faInstagram} />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;
