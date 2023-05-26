@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Header from './components/Header'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from './components/Footer'
+import { Container } from 'react-bootstrap'
 
 
 export default function index() {
@@ -19,8 +20,17 @@ export default function index() {
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
             </Head>
             <Header />
-
+            <Container style={styles.container}>
+            </Container>
             <Footer />
         </>
     )
+}
+
+const styles = {
+    container: {
+        backgroundColor: '#fff',
+        with: '100%',
+        height: '100vh',
+    },
 }

@@ -78,25 +78,35 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="footer-lower">
+            <div className="footer-lower d-flex justify-content-center">
                 <div className="container">
                     <div className="row mt-3">
-                        <div className="col-lg-6 col-md-6">
-                            &copy; 2000 TERP S.A de C.V., Todos los derechos reservados
+                        <div className="col-lg-6 col-md-6 mt-3">
+                            &copy; XXXX TERP S.A de C.V., Todos los derechos reservados
                         </div>
-                        <div className="col-lg-6 col-md-6 text-end">
-                            <Link href="#" className='mx-2'>
-                                <FontAwesomeIcon color="#fff" icon={faFacebook} />
-                            </Link>
-                            <Link href="#" className='mx-2'>
-                                <FontAwesomeIcon color="#fff" icon={faTwitter} />
-                            </Link>
-                            <Link href="#" className='mx-2'>
-                                <FontAwesomeIcon color="#fff" icon={faLinkedin} />
-                            </Link>
-                            <Link href="#" className='mx-2'>
-                                <FontAwesomeIcon color="#fff" icon={faInstagram} />
-                            </Link>
+                        <div className="col-lg-6 col-md-6 text-center mt-3">
+                            <div className='align-items-center d-flex justify-content-end' id='social-media'>
+                                <div className='circle-icon' id='facebook'>
+                                    <Link href="#" className='mx-2'>
+                                        <FontAwesomeIcon color="#fff" icon={faFacebook} />
+                                    </Link>
+                                </div>
+                                <div className='circle-icon' id='twitter'>
+                                    <Link href="#" className='mx-2'>
+                                        <FontAwesomeIcon color="#fff" icon={faTwitter} />
+                                    </Link>
+                                </div>
+                                <div className='circle-icon' id='linkedin'>
+                                    <Link href="#" className='mx-2'>
+                                        <FontAwesomeIcon color="#fff" icon={faLinkedin} />
+                                    </Link>
+                                </div>
+                                <div className='circle-icon' id='instagram'>
+                                    <Link href="#" className='mx-2'>
+                                        <FontAwesomeIcon color="#fff" icon={faInstagram} />
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

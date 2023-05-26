@@ -15,7 +15,7 @@ const Header = () => {
                 <Navbar.Brand style={styles.brand} className='mx-3'>
                     <Link href="/">
                         <img
-                            src="./vercel.svg" // Reemplaza con la ruta de tu logo
+                            src="./vercel.svg"
                             height="30"
                             className="d-inline-block align-top"
                             alt="Tersoft"

@@ -111,3 +111,36 @@ footer ul li a {
 .footer-lower {
     border-top: #ccc solid 1px;
 }
+
+.circle-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    border: rgba(216, 216, 216, 0.9) solid 1px;
+}
+
+.circle-icon#facebook:hover {
+    background-color: #3b5998;
+}
+
+.circle-icon#twitter:hover {
+    background-color: #1da1f2;
+}
+
+.circle-icon#instagram:hover {
+    background: linear-gradient(300deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+}
+
+.circle-icon#linkedin:hover {
+    background-color: #0077b5;
+}
+
+@media (max-width: 768px) {
+    #social-media{
+        justify-content: center !important;
+    }
+}
