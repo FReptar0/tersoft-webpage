@@ -4,7 +4,7 @@ import Header from './components/Header'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from './components/Footer'
 import { Container } from 'react-bootstrap'
-
+import Hero from './components/Hero'
 
 export default function index() {
     return (
@@ -21,6 +21,24 @@ export default function index() {
             </Head>
             <Header />
             <Container style={styles.container}>
+                <section id='about'>
+                    <Hero />
+                </section>
+                <section id='info'>
+                    
+                </section>
+                <section id='testimonials'>
+                    
+                </section>
+                <section id='cta'>
+                    
+                </section>
+                <section id='clients'>
+                    
+                </section>
+                <section id='team'>
+                    
+                </section>
             </Container>
             <Footer />
         </>
@@ -29,8 +47,6 @@ export default function index() {
 
 const styles = {
     container: {
-        backgroundColor: '#fff',
-        with: '100%',
-        height: '100vh',
-    },
+        marginTop: '10vh'
+    }
 }
