@@ -9,6 +9,7 @@ import {
 import Link from 'next/link';
 
 const Footer = () => {
+    const currentYear = new Date().getFullYear();
     return (
         <footer className="bg-dark p-5">
             <div className="container">
@@ -82,7 +83,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="row mt-3">
                         <div className="col-lg-6 col-md-6 mt-3" id='copy'>
-                            &copy; XXXX TERP S.A de C.V. Todos los derechos reservados.
+                            &copy; {currentYear} TERP S.A de C.V. Todos los derechos reservados.
                         </div>
                         <div className="col-lg-6 col-md-6 text-center mt-3">
                             <div className='align-items-center d-flex justify-content-end' id='social-media'>

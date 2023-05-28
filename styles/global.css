@@ -74,6 +74,12 @@ footer ul li a {
     color: #fff !important;
 }
 
+
+footer #social-media a {
+    color: #fff !important;
+}
+
+
 .footer-upper {
     display: flex;
     justify-content: space-between;

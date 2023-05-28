@@ -1,12 +1,50 @@
-import React from 'react'
-import Head from 'next/head'
-import Header from './components/Header'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Footer from './components/Footer'
-import { Container } from 'react-bootstrap'
-import Hero from './components/Hero'
+import React, { useRef, useEffect, useState } from 'react';
+import Head from 'next/head';
+import Header from './components/Header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from 'react-bootstrap';
+import Hero from './components/Hero';
+import Footer from './components/Footer';
 
-export default function index() {
+export default function Index() {
+    const [infoVisible, setInfoVisible] = useState(false);
+    const [testimonialsVisible, setTestimonialsVisible] = useState(false);
+    const [ctaVisible, setCtaVisible] = useState(false);
+    const [clientsVisible, setClientsVisible] = useState(false);
+    const [teamVisible, setTeamVisible] = useState(false);
+
+    const about = useRef(null);
+    const info = useRef(null);
+    const testimonials = useRef(null);
+    const cta = useRef(null);
+    const clients = useRef(null);
+    const team = useRef(null);
+
+    const handleScroll = () => {
+        const infoDistance = info.current.getBoundingClientRect().top;
+        setInfoVisible(infoDistance <= window.innerHeight);
+
+        const testimonialsDistance = testimonials.current.getBoundingClientRect().top;
+        setTestimonialsVisible(testimonialsDistance <= window.innerHeight);
+
+        const ctaDistance = cta.current.getBoundingClientRect().top;
+        setCtaVisible(ctaDistance <= window.innerHeight);
+
+        const clientsDistance = clients.current.getBoundingClientRect().top;
+        setClientsVisible(clientsDistance <= window.innerHeight);
+
+        const teamDistance = team.current.getBoundingClientRect().top;
+        setTeamVisible(teamDistance <= window.innerHeight);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <>
             <Head>
@@ -21,32 +59,32 @@ export default function index() {
             </Head>
             <Header />
             <Container style={styles.container}>
-                <section id='about'>
+                <section ref={about} className='pt-5' id='about'>
                     <Hero />
                 </section>
-                <section id='info'>
-                    
+                <section ref={info} id='info'>
+                    {infoVisible && <Hero />}
                 </section>
-                <section id='testimonials'>
-                    
+                <section ref={testimonials} id='testimonials'>
+                    {testimonialsVisible && <div>Testimonials Section</div>}
                 </section>
-                <section id='cta'>
-                    
+                <section ref={cta} id='cta'>
+                    {ctaVisible && <div>CTA Section</div>}
                 </section>
-                <section id='clients'>
-                    
+                <section ref={clients} id='clients'>
+                    {clientsVisible && <div>Clients Section</div>}
                 </section>
-                <section id='team'>
-                    
+                <section ref={team} id='team'>
+                    {teamVisible && <div>Team Section</div>}
                 </section>
             </Container>
             <Footer />
         </>
-    )
+    );
 }
 
 const styles = {
     container: {
-        marginTop: '10vh'
-    }
-}
+        marginTop: '10vh',
+    },
+};
