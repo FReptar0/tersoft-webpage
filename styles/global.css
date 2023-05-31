@@ -166,6 +166,26 @@ footer #social-media a {
         justify-content: center !important;
         text-align: center;
     }
+
+    #news-form {
+        justify-content: center !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    /*     #news-form input::placeholder {
+        color: #fff !important;
+    }
+
+    #email-wait-list::placeholder{
+        color: #fff !important;
+    } */
+
+    .email-wait{
+        width: 100%!important;
+        margin: 0 auto;
+    }
+
 }
 
 #hero-image {
@@ -243,4 +263,39 @@ section * {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+section * {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+section.show * {
+    transition: all 1s ease-in-out;
+    opacity: 1;
+    transform: translateX(0px);
+}
+
+#circle-wait-list {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #5bc157;
+    border: #5bc157 solid 1px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#card-cta {
+    border: #46a742 solid 1px !important;
+    background-color: #46a742;
+}
+
+.email-wait{
+    width: 50%;
+    margin: 0 auto;
 }

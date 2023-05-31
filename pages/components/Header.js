@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from 'next/image';
 
 const Header = () => {
     const [showNav, setShowNav] = useState(false);
@@ -11,7 +12,7 @@ const Header = () => {
     };
 
     return (
-        <header className='position-fixed mb-5' style={{ width: '100vw' }}>
+        <header className='position-fixed' style={{ width: '100vw' }}>
             <Navbar
                 bg="white"
                 expand="lg"
@@ -21,16 +22,18 @@ const Header = () => {
                 style={{ opacity: '0.9' }}
             >
                 <div className="container">
-                    <Link className='m-3' href="/">
+                    <a className='m-3' href="/" aria-label='Tersoft Company'>
                         <Navbar.Brand>
-                            <img
-                                src="./logo.png"
-                                height="40"
+                            <Image
+                                src="/logo.png"
+                                width={100}
+                                height={40}
                                 className="d-inline-block align-top"
                                 alt="Tersoft"
+                                priority
                             />
                         </Navbar.Brand>
-                    </Link>
+                    </a>
                     <Navbar.Toggle
                         aria-controls="responsive-navbar-nav"
                         aria-expanded={showNav ? 'true' : 'false'}
@@ -42,27 +45,31 @@ const Header = () => {
                         className={`${showNav ? 'show' : ''}`}
                     >
                         <Nav className="me-auto mx-5">
-                            <Nav.Item >
-                                <Link className='m-3' href="/">Inicio</Link>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir al inicio' href="/">Inicio</Link>
                             </Nav.Item>
-                            <Nav.Item >
-                                <Link className='m-3' href="#about">Acerca de nosotros</Link>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir a la información de tersoft' href="#about">Acerca de nosotros</Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <Link className='m-3' href="#products">Productos</Link>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir a nuestros productos' href="#products">Productos</Link>
                             </Nav.Item>
-                            <Nav.Item>
-                                <Link className='m-3' href="/blog">Blog</Link>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir al blog' href="/blog">Blog</Link>
                             </Nav.Item>
-                            <Nav.Item><Link className='m-3' href="/careers">Careers</Link></Nav.Item>
-                            <Nav.Item ><Link className='m-3' href="/media">Multimedia</Link></Nav.Item>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir a Careers' href="/careers">Careers</Link>
+                            </Nav.Item>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir a multimedia' href="/media">Multimedia</Link>
+                            </Nav.Item>
                         </Nav>
                         <Nav className="align-items-center mx-3">
-                            <Nav.Item className="fw-bold">
-                                <Link className='m-3' href="/login">Iniciar sesión</Link>
+                            <Nav.Item className="fw-bold mb-2">
+                                <Link className='m-3' aria-label='Iniciar Sesión' href="/login">Iniciar sesión</Link>
                             </Nav.Item>
-                            <Nav.Item className="fw-bold">
-                                <Link className='m-3' href="/login?sign-up">Registrarse</Link>
+                            <Nav.Item className="fw-bold mb-2">
+                                <Link className='m-3' aria-label='Registrarse' href="/login?sign-up">Registrarse</Link>
                             </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
