@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import CTA from './components/CTA';
+import Info from './components/Info';
 
 export default function Index() {
     const aboutRef = useRef(null);
@@ -72,7 +73,7 @@ export default function Index() {
                     <Hero />
                 </section>
                 <section ref={infoRef} className='p-3 section' id='info'>
-                    <Hero />
+                    <Info />
                 </section>
                 <section ref={testimonialsRef} className='p-3 section' id='testimonials'>
                     <Hero />
