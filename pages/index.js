@@ -1,12 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Header from './components/Header';
+import Header from '../components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
-import Hero from './components/Hero';
-import Footer from './components/Footer';
-import CTA from './components/CTA';
-import Info from './components/Info';
+import Hero from '../components/Hero';
+import Footer from '../components/Footer';
+import CTA from '../components/CTA';
+import Info from '../components/Info';
+import WithSpeechBubbles from '@/components/extras/tags';
+import CallToActionWithAnnotation from '@/components/extras';
+import CallToActionWithVideo from '@/components/extras/hero';
+import GridListWith from '@/components/extras/stadistics';
+import GridListWithCTA from '@/components/extras/cta';
 
 export default function Index() {
     const aboutRef = useRef(null);
@@ -15,6 +20,7 @@ export default function Index() {
     const ctaRef = useRef(null);
     const clientsRef = useRef(null);
     const teamRef = useRef(null);
+    const contactRef = useRef(null);
 
     useEffect(() => {
         const sections = [
@@ -23,7 +29,8 @@ export default function Index() {
             { ref: testimonialsRef, id: 'testimonials' },
             { ref: ctaRef, id: 'cta' },
             { ref: clientsRef, id: 'clients' },
-            { ref: teamRef, id: 'team' }
+            { ref: teamRef, id: 'team' },
+            { ref: contactRef, id: 'contact' }
         ];
 
         const handleIntersect = (entries) => {
@@ -68,26 +75,28 @@ export default function Index() {
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
             </Head>
             <Header />
-            <Container style={styles.container}>
-                <section ref={aboutRef} className='pt-5 p-3 section' id='about'>
-                    <Hero />
-                </section>
-                <section ref={infoRef} className='p-3 section' id='info'>
-                    <Info />
-                </section>
-                <section ref={testimonialsRef} className='p-3 section' id='testimonials'>
-                    <Hero />
-                </section>
-                <section ref={ctaRef} className='p-3 section' id='cta'>
-                    <CTA />
-                </section>
-                <section ref={clientsRef} className='p-3 section' id='clients'>
-                    <Hero />
-                </section>
-                <section ref={teamRef} className='p-3 section' id='team'>
-                    <Hero />
-                </section>
-            </Container>
+            <section ref={aboutRef} className='mt-5 section' id='about'>
+                <CallToActionWithAnnotation />
+            </section>
+            <section ref={infoRef} className='section' id='info'>
+                <CallToActionWithVideo />
+            </section>
+            <section ref={testimonialsRef} className='section' id='testimonials'>
+                <GridListWith />
+            </section>
+            <section ref={ctaRef} className='section p-3' id='cta'>
+                <GridListWithCTA />
+            </section>
+            <section ref={clientsRef} className='section p-3' id='clients'>
+                <GridListWith />
+            </section>
+            <section ref={teamRef} className='section p-3' id='team'>
+                <GridListWithCTA />
+            </section>
+            <section ref={contactRef} className='section p-3' id='contact'>
+                <GridListWith />
+            </section>
+            <WithSpeechBubbles />
             <Footer />
         </>
     );

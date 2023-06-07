@@ -13,8 +13,14 @@ const Hero = () => {
                         </div>
                     </Col>
                     <Col xs={12} md={6} className="hero-image image-wrapper mt-5">
-                        <Image src='/edificio.png' priority id='hero-image' alt="Edificio" className='mt-5' width={813} height={562}
-                        sizes='(max-width: 813px) 100vw' />
+                        <Image
+                            src='/edificio.png' priority
+                            id='hero-image'
+                            alt="Edificio"
+                            className='mt-5'
+                            width={813}
+                            height={562}
+                            sizes='(max-width: 813px) 100vw' />
                     </Col>
                 </Row>
             </Container>

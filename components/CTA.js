@@ -7,7 +7,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 function CTA() {
     return (
         <>
-            <Card className='shadow-lg' id='card-cta'>
+            <Card className='shadow' id='card-cta'>
                 <Card.Body>
                     <Row>
                         <Col xs={12} md={6} className="hero-content">

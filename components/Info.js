@@ -1,9 +1,10 @@
 import React from 'react';
+import Image from 'next/image';
 import { Card, Row, Col } from 'react-bootstrap';
 
 const Info = () => {
     return (
-        <Card>
+        <Card className='shadow'>
             <Card.Body>
                 <Row>
                     <Col md={4} className="d-flex align-items-center justify-content-center">
@@ -16,7 +17,7 @@ const Info = () => {
                         <Row>
                             <Col xs={6} className='my-3'>
                                 <div className="d-flex align-items-center flex-column">
-                                    <img src="/correo.png" width={50} height={50} alt="Icono 1" />
+                                    <Image src="/correo.png" width={50} height={50} alt="Icono 1" />
                                     <div className='mt-3'>
                                         <h5 className="text-center fs-5">Título de la imagen 1</h5>
                                         <p className="text-center fs-6">Texto descriptivo 1</p>
@@ -25,7 +26,7 @@ const Info = () => {
                             </Col>
                             <Col xs={6} className='my-3'>
                                 <div className="d-flex align-items-center flex-column">
-                                    <img src="/correo.png" width={50} height={50} alt="Icono 2" />
+                                    <Image src="/correo.png" width={50} height={50} alt="Icono 2" />
                                     <div className='mt-3'>
                                         <h5 className="text-center fs-5">Título de la imagen 2</h5>
                                         <p className="text-center fs-6">Texto descriptivo 2</p>
@@ -34,7 +35,7 @@ const Info = () => {
                             </Col>
                             <Col xs={6} className='my-3'>
                                 <div className="d-flex align-items-center flex-column">
-                                    <img src="/correo.png" width={50} height={50} alt="Icono 3" />
+                                    <Image src="/correo.png" width={50} height={50} alt="Icono 3" />
                                     <div className='mt-3'>
                                         <h5 className="text-center fs-5">Título de la imagen 3</h5>
                                         <p className="text-center fs-6">Texto descriptivo 3</p>
@@ -43,7 +44,7 @@ const Info = () => {
                             </Col>
                             <Col xs={6} className='my-3'>
                                 <div className="d-flex align-items-center flex-column">
-                                    <img src="/correo.png" width={50} height={50} alt="Icono 4" />
+                                    <Image src="/correo.png" width={50} height={50} alt="Icono 4" />
                                     <div className='mt-3'>
                                         <h5 className="text-center fs-5">Título de la imagen 4</h5>
                                         <p className="text-center fs-6">Texto descriptivo 4</p>

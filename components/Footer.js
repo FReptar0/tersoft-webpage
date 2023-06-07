@@ -50,17 +50,17 @@ const Footer = () => {
                     <div className="col-lg-3 col-md-6 mb-4">
                         <h3>Contáctanos</h3>
                         <ul>
-                            <li>
+                            <li className='mb-2'>
                                 <Link aria-label='Enviar correo a tersoft' href="mailto:contacto@tersoft.mx">
                                     <FontAwesomeIcon icon={faEnvelope} />&nbsp;&nbsp;&nbsp;contacto@tersoft.mx
                                 </Link>
                             </li>
-                            <li>
+                            <li className='mb-2'>
                                 <Link aria-label='Llama a tersoft' href="tel:+525519106389" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon icon={faPhone} />&nbsp;&nbsp;&nbsp;+52 55 1910 6389
                                 </Link>
                             </li>
-                            <li>
+                            <li className='mb-2'>
                                 <Link aria-label='Enviar un mensaje por WhatsApp' href="https://api.whatsapp.com/send?phone=525519106389&text=%C2%A1Hola!%20Me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios.%20%C2%BFPodr%C3%ADan%20proporcionarme%20detalles%20adicionales,%20por%20favor?" target="_blank" rel="noopener noreferrer">
                                     <FontAwesomeIcon icon={faWhatsapp} />&nbsp;&nbsp;&nbsp;+52 55 1910 6389
                                 </Link>
