@@ -7,7 +7,7 @@ import {
     faInstagram,
     faWhatsapp
 } from '@fortawesome/free-brands-svg-icons';
-import { faPaperPlane, faEnvelope, faPhone, faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
 const Footer = () => {

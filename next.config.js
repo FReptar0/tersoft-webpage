@@ -4,7 +4,10 @@ const nextConfig = {
     i18n: {
         locales: ['en', 'es'],
         defaultLocale: 'es',
-    }
+    },
+    images: {
+        domains: ['images.unsplash.com'],
+    },
 }
 
 module.exports = nextConfig

@@ -37,7 +37,7 @@ function Card({ heading, description, icon, href }) {
     );
 }
 
-export default function GridListWith() {
+export default function GridList() {
     return (
         <Box p={4}>
             <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>

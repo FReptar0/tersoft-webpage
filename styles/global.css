@@ -186,6 +186,10 @@ footer #social-media a {
         margin: 0 auto;
     }
 
+    .package-tier {
+        margin: 0 auto !important;
+    }
+
 }
 
 #hero-image {

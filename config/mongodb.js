@@ -1,7 +1,7 @@
 // utils/mongodb.js
 import { MongoClient } from 'mongodb';
 
-const uri = 'mongodb+srv://fer:dvAG7i98hoHRmpL3@simapi.r0fu4dr.mongodb.net'; // Cambia esto con tu URL de conexión MongoDB
+const uri = process.env.URI;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -16,7 +16,7 @@ async function connectToDatabase() {
             client = new MongoClient(uri, options);
             await client.connect();
             console.log('Conexión exitosa a la base de datos');
-            db = client.db('simapi'); // Cambia 'simapi' por el nombre de tu base de datos
+            db = client.db('simapi');
         } catch (error) {
             console.log('Error al conectar a la base de datos:', error);
         }

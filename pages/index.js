@@ -1,17 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import Head from 'next/head';
-import Header from '../components/Header';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import CarruselTestimonial from '@/components/Testimonials';
+import CallToActionWithVideo from '@/components/Hero';
+import GridList from '@/components/OurWork';
+import WaitingList from '@/components/CTA';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
-import Hero from '../components/Hero';
-import Footer from '../components/Footer';
-import CTA from '../components/CTA';
-import Info from '../components/Info';
-import WithSpeechBubbles from '@/components/extras/tags';
-import CallToActionWithAnnotation from '@/components/extras';
-import CallToActionWithVideo from '@/components/extras/hero';
-import GridListWith from '@/components/extras/stadistics';
-import GridListWithCTA from '@/components/extras/cta';
+import TableProducts from '@/components/Products';
 
 export default function Index() {
     const aboutRef = useRef(null);
@@ -76,27 +72,27 @@ export default function Index() {
             </Head>
             <Header />
             <section ref={aboutRef} className='mt-5 section' id='about'>
-                <CallToActionWithAnnotation />
-            </section>
-            <section ref={infoRef} className='section' id='info'>
                 <CallToActionWithVideo />
             </section>
-            <section ref={testimonialsRef} className='section' id='testimonials'>
-                <GridListWith />
+            <section ref={infoRef} className='section' id='info'>
+                <GridList />
+            </section>
+            <section ref={testimonialsRef} className='section p-5' id='testimonials'>
+                <TableProducts />
             </section>
             <section ref={ctaRef} className='section p-3' id='cta'>
-                <GridListWithCTA />
+                <GridList />
             </section>
             <section ref={clientsRef} className='section p-3' id='clients'>
-                <GridListWith />
+                <WaitingList />
             </section>
             <section ref={teamRef} className='section p-3' id='team'>
-                <GridListWithCTA />
+                <GridList />
             </section>
             <section ref={contactRef} className='section p-3' id='contact'>
-                <GridListWith />
+                <WaitingList />
             </section>
-            <WithSpeechBubbles />
+            <CarruselTestimonial />
             <Footer />
         </>
     );
