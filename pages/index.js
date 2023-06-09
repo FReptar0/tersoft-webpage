@@ -45,7 +45,7 @@ export default function Index() {
 
         const observer = new IntersectionObserver(handleIntersect, {
             root: null,
-            rootMargin: '0px',
+            rootMargin: '150px',
             threshold: 0.5
         });
 
@@ -81,10 +81,10 @@ export default function Index() {
                 <TableProducts />
             </section>
             <section ref={ctaRef} className='section p-3' id='cta'>
-                <GridList />
+                <WaitingList />
             </section>
             <section ref={clientsRef} className='section p-3' id='clients'>
-                <WaitingList />
+                <CallToActionWithVideo />
             </section>
             <section ref={teamRef} className='section p-3' id='team'>
                 <GridList />

@@ -49,7 +49,7 @@ const PackageTier = ({ title, subtitle, options }) => {
             </List>
             <Stack>
                 <Button size="md" bgColor={'green.400'} color={'white'}>
-                    Get Started
+                    Solicita una demo
                 </Button>
             </Stack>
         </Stack>
@@ -80,7 +80,7 @@ const TableProducts = () => {
                         textAlign={'center'}
                     >
                         <Heading size={'lg'}>
-                            The Right Plan for <Text color="green.600">Your Business</Text>
+                            El plan perfecto para <Text color="green.600">tu negocio</Text>
                         </Heading>
                     </Stack>
                     <Stack
@@ -95,13 +95,13 @@ const TableProducts = () => {
                     </Stack>
                 </Stack>
                 <Divider />
-                <PackageTier title={'Starter'} subtitle={'Definitive'} options={options} />
+                <PackageTier title={'Sage 300'} subtitle={'Compra definitiva'} options={options} />
                 <Divider />
-                <PackageTier title={'Lorem Plus'} subtitle={'Definitive'} options={options} />
+                <PackageTier title={'Sage 300 Cloud'} subtitle={'Suscripción'} options={options} />
                 <Divider />
-                <PackageTier title={'Lorem Pro'} subtitle={'Definitive'} options={options} />
+                <PackageTier title={'CRM'} subtitle={'Suscripción'} options={options} />
                 <Divider />
-                <PackageTier title={'Lorem Enterprise'} subtitle={'Definitive'} options={options} />
+                <PackageTier title={'Desarrollos personalizados'} subtitle={'Compra definitiva'} options={options} />
                 <Divider />
             </Stack>
         </Box>
