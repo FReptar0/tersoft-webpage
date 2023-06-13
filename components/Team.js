@@ -25,7 +25,7 @@ const TeamMember = ({ src, name, role }) => {
                 overflow="hidden"
                 boxShadow="lg"
             >
-                <Image src={src} alt={name} width={300} height={350} />
+                <Image src={src} alt={name} width={250} height={350} />
                 <Box p="6">
                     <Stack spacing={0} align="center">
                         <Text fontWeight={600} fontSize={'2xl'}>{name}</Text>
@@ -90,7 +90,7 @@ const Team = () => {
         dots: true,
         infinite: true,
         speed: 1500,
-        slidesToShow: 3,
+        slidesToShow: 3.66,
         slidesToScroll: 1,
         responsive: [
             {
@@ -106,7 +106,7 @@ const Team = () => {
         <Box>
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
-                    <Heading>Conoce nuestro Equipo</Heading>
+                    <Heading>Conoce nuestro equipo</Heading>
                     <Text>Hemos estado trabajando con clientes de todo el mundo</Text>
                 </Stack>
                 <Slider {...settings}>

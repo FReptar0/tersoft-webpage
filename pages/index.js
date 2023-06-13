@@ -89,8 +89,8 @@ export default function Index() {
                 <Team />
             </section>
             <section ref={teamRef} className='section p-3' id='team'>
-                <WaitingList />
-            </section>
+{/*                 <WaitingList />
+ */}            </section>
             <section ref={contactRef} className='section mt-3 mb-5' id='contact'>
                 <ContactForm />
             </section>
