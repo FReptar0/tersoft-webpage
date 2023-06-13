@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, HStack, InputGroup, Input, Button, chakra, Container, Card } from '@chakra-ui/react';
+import { Box, HStack, chakra, Container, Card } from '@chakra-ui/react';
 import { FcInvite } from 'react-icons/fc';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
