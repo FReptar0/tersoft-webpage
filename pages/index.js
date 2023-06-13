@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Header from '@/components/Header';
@@ -6,8 +7,9 @@ import CarruselTestimonial from '@/components/Testimonials';
 import CallToActionWithVideo from '@/components/Hero';
 import GridList from '@/components/OurWork';
 import WaitingList from '@/components/CTA';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import TableProducts from '@/components/Products';
+import ContactForm from '@/components/Contact';
+import Team from '@/components/Team';
 
 export default function Index() {
     const aboutRef = useRef(null);
@@ -80,17 +82,17 @@ export default function Index() {
             <section ref={testimonialsRef} className='section p-5' id='testimonials'>
                 <TableProducts />
             </section>
-            <section ref={ctaRef} className='section p-3' id='cta'>
+            <section ref={ctaRef} className='section' id='cta'>
                 <WaitingList />
             </section>
-            <section ref={clientsRef} className='section p-3' id='clients'>
-                <CallToActionWithVideo />
+            <section ref={clientsRef} className='section p-3' style={styles.section} id='clients'>
+                <Team />
             </section>
             <section ref={teamRef} className='section p-3' id='team'>
-                <GridList />
-            </section>
-            <section ref={contactRef} className='section p-3' id='contact'>
                 <WaitingList />
+            </section>
+            <section ref={contactRef} className='section mt-3 mb-5' id='contact'>
+                <ContactForm />
             </section>
             <CarruselTestimonial />
             <Footer />
@@ -99,7 +101,7 @@ export default function Index() {
 }
 
 const styles = {
-    container: {
-        marginTop: '10vh',
-    },
+    section: {
+        padding: '0!important'
+    }
 };
