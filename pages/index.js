@@ -10,6 +10,7 @@ import WaitingList from '@/components/CTA';
 import TableProducts from '@/components/Products';
 import ContactForm from '@/components/Contact';
 import Team from '@/components/Team';
+import ClientsCard from '@/components/Clients';
 
 export default function Index() {
     const aboutRef = useRef(null);
@@ -79,22 +80,22 @@ export default function Index() {
             <section ref={infoRef} className='section' id='info'>
                 <GridList />
             </section>
-            <section ref={testimonialsRef} className='section p-5' id='testimonials'>
+            <CarruselTestimonial />
+            <section ref={testimonialsRef} className='section p-5' id='products'>
                 <TableProducts />
             </section>
             <section ref={ctaRef} className='section' id='cta'>
                 <WaitingList />
             </section>
-            <section ref={clientsRef} className='section p-3' style={styles.section} id='clients'>
+            <section ref={teamRef} className='section p-3' style={styles.section} id='team'>
                 <Team />
             </section>
-            <section ref={teamRef} className='section p-3' id='team'>
-{/*                 <WaitingList />
- */}            </section>
+            <section ref={clientsRef} className='section p-3' id='clients'>
+                <ClientsCard />
+            </section>
             <section ref={contactRef} className='section mt-3 mb-5' id='contact'>
                 <ContactForm />
             </section>
-            <CarruselTestimonial />
             <Footer />
         </>
     );
