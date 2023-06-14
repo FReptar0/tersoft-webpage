@@ -20,12 +20,14 @@ export default function Index() {
     const clientsRef = useRef(null);
     const teamRef = useRef(null);
     const contactRef = useRef(null);
+    const productsRef = useRef(null);
 
     useEffect(() => {
         const sections = [
             { ref: aboutRef, id: 'about' },
             { ref: infoRef, id: 'info' },
             { ref: testimonialsRef, id: 'testimonials' },
+            { ref: productsRef, id: 'products' },
             { ref: ctaRef, id: 'cta' },
             { ref: clientsRef, id: 'clients' },
             { ref: teamRef, id: 'team' },
@@ -48,7 +50,7 @@ export default function Index() {
 
         const observer = new IntersectionObserver(handleIntersect, {
             root: null,
-            rootMargin: '150px',
+            rootMargin: '100px',
             threshold: 0.5
         });
 
@@ -77,11 +79,13 @@ export default function Index() {
             <section ref={aboutRef} className='mt-5 section' id='about'>
                 <CallToActionWithVideo />
             </section>
-            <section ref={infoRef} className='section' id='info'>
+            <section ref={infoRef} className='section mb-5' id='info'>
                 <GridList />
             </section>
-            <CarruselTestimonial />
-            <section ref={testimonialsRef} className='section p-5' id='products'>
+            <section ref={testimonialsRef} className='section' id='testimonials'>
+                <CarruselTestimonial />
+            </section>
+            <section ref={productsRef} className='section p-5' id='products'>
                 <TableProducts />
             </section>
             <section ref={ctaRef} className='section' id='cta'>
@@ -93,7 +97,7 @@ export default function Index() {
             <section ref={clientsRef} className='section p-3' id='clients'>
                 <ClientsCard />
             </section>
-            <section ref={contactRef} className='section mt-3 mb-5' id='contact'>
+            <section ref={contactRef} className='section mt-5 mb-5' id='contact'>
                 <ContactForm />
             </section>
             <Footer />
