@@ -46,25 +46,19 @@ const Header = () => {
                     >
                         <Nav className="me-auto mx-5">
                             <Nav.Item className='mb-2'>
-                                <Link className='m-3' aria-label='Ir al inicio' href="/">Inicio</Link>
-                            </Nav.Item>
-                            <Nav.Item className='mb-2'>
-                                <Link className='m-3' aria-label='Ir a la información de tersoft' href="#info">Acerca de nosotros</Link>
-                            </Nav.Item>
-                            <Nav.Item className='mb-2'>
-                                <Link className='m-3' aria-label='Ir a la información de tersoft' href="#contact">Contáctanos</Link>
-                            </Nav.Item>
-                            <Nav.Item className='mb-2'>
                                 <Link className='m-3' aria-label='Ir a nuestros productos' href="#products">Productos</Link>
                             </Nav.Item>
                             <Nav.Item className='mb-2'>
                                 <Link className='m-3' aria-label='Ir al blog' href="/blog">Blog</Link>
                             </Nav.Item>
                             <Nav.Item className='mb-2'>
-                                <Link className='m-3' aria-label='Ir a Careers' href="/careers">Careers</Link>
+                                <Link className='m-3' aria-label='Ir al blog' href="#">Recursos</Link>
                             </Nav.Item>
                             <Nav.Item className='mb-2'>
-                                <Link className='m-3' aria-label='Ir a multimedia' href="/media">Multimedia</Link>
+                                <Link className='m-3' aria-label='Ir a la información de tersoft' href="#info">Acerca de nosotros</Link>
+                            </Nav.Item>
+                            <Nav.Item className='mb-2'>
+                                <Link className='m-3' aria-label='Ir a la información de tersoft' href="#contact">Contáctanos</Link>
                             </Nav.Item>
                         </Nav>
                         <Nav className="align-items-center mx-3">
