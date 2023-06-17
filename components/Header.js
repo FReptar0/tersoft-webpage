@@ -65,9 +65,6 @@ const Header = () => {
                             <Nav.Item className="fw-bold mb-2">
                                 <Link className='m-3' aria-label='Iniciar Sesión' href="/login">Iniciar sesión</Link>
                             </Nav.Item>
-                            <Nav.Item className="fw-bold mb-2">
-                                <Link className='m-3' aria-label='Registrarse' href="/login?sign-up">Registrarse</Link>
-                            </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
                 </div>
