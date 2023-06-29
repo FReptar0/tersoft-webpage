@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const BlogIndex = () => {
     const router = useRouter();
@@ -122,6 +123,19 @@ const BlogIndex = () => {
             authorAvatarSrc:
                 'https://avatars0.githubusercontent.com/u/1164541?v=4',
         },
+        {
+            id: 9,
+            title: 'Boost your conversion rate',
+            description:
+                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
+            author: 'Achim Rolle',
+            date: 'Feb 08, 2021',
+            readTime: '6min read',
+            imageSrc:
+                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+            authorAvatarSrc:
+                'https://avatars0.githubusercontent.com/u/1164541?v=4',
+        },
         // Agrega más objetos de blogPosts según sea necesario
     ];
 
@@ -212,6 +226,7 @@ const BlogIndex = () => {
                     </Stack>
                 </Box>
             </Container>
+            <Footer />
         </React.Fragment>
     );
 };
