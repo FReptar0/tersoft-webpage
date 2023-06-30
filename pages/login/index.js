@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const signupValidationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required'),
@@ -249,6 +250,7 @@ export default function AuthCard() {
                     </Box>
                 </Stack>
             </Flex>
+            <Footer />
         </React.Fragment>
     );
 }
