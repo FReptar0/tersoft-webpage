@@ -5,7 +5,7 @@ export default async (req, res) => {
     // y devolverlos en un arreglo
     const getAdministradores = async () => {
         const db = await connectToDatabase();
-        const data = await db.collection("historial").find({}).toArray();
+        const data = await db.collection("blog").find({}).toArray();
         await closeConnection();
         return data;
     };

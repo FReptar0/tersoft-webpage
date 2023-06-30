@@ -16,7 +16,7 @@ async function connectToDatabase() {
             client = new MongoClient(uri, options);
             await client.connect();
             console.log('Conexión exitosa a la base de datos');
-            db = client.db('simapi');
+            db = client.db('tersoft');
         } catch (error) {
             console.log('Error al conectar a la base de datos:', error);
         }

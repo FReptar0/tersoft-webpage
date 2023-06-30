@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Navbar, Nav } from 'react-bootstrap';
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,10 +7,14 @@ import Image from 'next/image';
 
 const Header = () => {
     const [showNav, setShowNav] = useState(false);
+    const router = useRouter();
+    const { pathname } = router;
 
     const toggleNav = () => {
         setShowNav(!showNav);
     };
+
+    const isLoginPage = pathname === '/login';
 
     return (
         <header className='position-fixed' style={{ width: '100vw' }}>
@@ -61,11 +66,13 @@ const Header = () => {
                                 <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#contact">Contáctanos</Link>
                             </Nav.Item>
                         </Nav>
-                        <Nav className="align-items-center mx-3">
-                            <Nav.Item className="fw-bold mb-2">
-                                <Link className='m-3' aria-label='Iniciar Sesión' href="/login">Iniciar sesión</Link>
-                            </Nav.Item>
-                        </Nav>
+                        {!isLoginPage && (
+                            <Nav className="align-items-center mx-3">
+                                <Nav.Item className="fw-bold mb-2">
+                                    <Link className='m-3' aria-label='Iniciar Sesión' href="/login">Iniciar sesión</Link>
+                                </Nav.Item>
+                            </Nav>
+                        )}
                     </Navbar.Collapse>
                 </div>
             </Navbar>
