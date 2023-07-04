@@ -13,131 +13,17 @@ import {
 import { useRouter } from 'next/router';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { connectToDatabase, closeConnection } from '@/config/mongodb';
+import { LRUCache } from 'lru-cache';
 
-const BlogIndex = () => {
+const cache = new LRUCache({
+    max: 100,
+    maxAge: 1000 * 60 * 10,
+});
+
+
+const BlogIndex = ({ blogPosts }) => {
     const router = useRouter();
-
-    // Datos de ejemplo para las tarjetas
-    const blogPosts = [
-        {
-            id: 1,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 2,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 3,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 4,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 5,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 6,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 7,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 8,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        {
-            id: 9,
-            title: 'Boost your conversion rate',
-            description:
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy...',
-            author: 'Achim Rolle',
-            date: 'Feb 08, 2021',
-            readTime: '6min read',
-            imageSrc:
-                'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-            authorAvatarSrc:
-                'https://avatars0.githubusercontent.com/u/1164541?v=4',
-        },
-        // Agrega más objetos de blogPosts según sea necesario
-    ];
 
     const handleCardClick = (id) => {
         router.push(`/blog/${id}`);
@@ -165,7 +51,7 @@ const BlogIndex = () => {
                             >
                                 {blogPosts.map((post) => (
                                     <Box
-                                        key={post.id}
+                                        key={post._id}
                                         maxW={'445px'}
                                         w={'full'}
                                         bg={useColorModeValue('white', 'gray.900')}
@@ -174,7 +60,7 @@ const BlogIndex = () => {
                                         p={6}
                                         overflow={'hidden'}
                                         cursor="pointer"
-                                        onClick={() => handleCardClick(post.id)}
+                                        onClick={() => handleCardClick(post._id)}
                                     >
                                         <Box
                                             h={'210px'}
@@ -205,12 +91,7 @@ const BlogIndex = () => {
                                             </Heading>
                                             <Text color={'gray.500'}>{post.description}</Text>
                                         </Stack>
-                                        <Stack
-                                            mt={6}
-                                            direction={'row'}
-                                            spacing={4}
-                                            align={'center'}
-                                        >
+                                        <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
                                             <Avatar src={post.authorAvatarSrc} alt={'Author'} />
                                             <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                                                 <Text fontWeight={600}>{post.author}</Text>
@@ -232,3 +113,38 @@ const BlogIndex = () => {
 };
 
 export default BlogIndex;
+
+export async function getServerSideProps() {
+    const getBlogPosts = async () => {
+        const cachedData = cache.get('blogPosts');
+        if (cachedData) {
+            return cachedData;
+        }
+
+        const db = await connectToDatabase();
+        const data = await db.collection('blog').find({}).toArray();
+        cache.set('blogPosts', data); // Almacenar en caché los resultados de la consulta
+
+        await closeConnection();
+        return data;
+    };
+
+    try {
+        const blogPosts = await getBlogPosts();
+        return {
+            props: {
+                blogPosts: JSON.parse(JSON.stringify(blogPosts)),
+            },
+        };
+    } catch (error) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+            props: {
+                error: 500,
+            },
+        };
+    }
+}

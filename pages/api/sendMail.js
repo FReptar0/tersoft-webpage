@@ -7,6 +7,10 @@ export default async function handler(req, res) {
 
     const { nombre, apellido, telefono, correo, empresa, comentario, sitioWeb } = req.body;
 
+    if (!nombre || !apellido || !telefono || !correo || !empresa) {
+        return res.status(400).json({ error: "Faltan campos por llenar" });
+    }
+
     try {
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",

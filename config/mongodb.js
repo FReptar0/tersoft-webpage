@@ -1,34 +1,38 @@
-// utils/mongodb.js
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.URI;
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    maxPoolSize: 10, // Establece el tamaño máximo del pool de conexiones
 };
 
-let client;
-let db;
+let cachedClient = null;
+let cachedDb = null;
 
-async function connectToDatabase() {
-    if (!db) {
-        try {
-            client = new MongoClient(uri, options);
-            await client.connect();
-            console.log('Conexión exitosa a la base de datos');
-            db = client.db('tersoft');
-        } catch (error) {
-            console.log('Error al conectar a la base de datos:', error);
-        }
+export async function connectToDatabase() {
+    if (cachedClient && cachedDb) {
+        return cachedDb;
     }
-    return db;
+
+    try {
+        const client = await MongoClient.connect(uri, options);
+        const db = client.db('tersoft');
+        cachedClient = client;
+        cachedDb = db;
+        console.log('Conexión exitosa a la base de datos');
+        return db;
+    } catch (error) {
+        console.log('Error al conectar a la base de datos:', error);
+        throw error;
+    }
 }
 
-async function closeConnection() {
-    if (client) {
-        await client.close();
+export async function closeConnection() {
+    if (cachedClient) {
+        await cachedClient.close();
+        cachedClient = null;
+        cachedDb = null;
         console.log('Conexión cerrada');
     }
 }
-
-export { connectToDatabase, closeConnection };

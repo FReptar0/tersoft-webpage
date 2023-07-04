@@ -26,13 +26,13 @@ const ContactForm = () => {
     const handleSubmit = async (values, { resetForm }) => {
         const { nombre, apellido, telefono, correo, empresa, comentario, sitioWeb } = values;
         const data = {
-            nombre,
-            apellido,
-            telefono,
-            correo,
-            empresa,
-            comentario,
-            sitioWeb,
+            "nombre": nombre,
+            "apellido": apellido,
+            "telefono": telefono,
+            "correo": correo,
+            "empresa": empresa,
+            "comentario": comentario ? comentario : 'No hay comentarios',
+            "sitioWeb": sitioWeb ? sitioWeb : 'No hay sitio web',
         };
 
         try {
@@ -165,10 +165,10 @@ const ContactForm = () => {
                             </Field>
                         </Grid>
                         <Field name="comentario">
-                            {({ field }) => (
+                            {({ field }) => (/* TODO: Hacer obligatorio */
                                 <FormControl marginTop="4">
-                                    <FormLabel>Comentario</FormLabel>
-                                    <Textarea {...field} placeholder="Escribe tu comentario" />
+                                    <FormLabel>¿Cómo podemos ayudarte?</FormLabel>
+                                    <Textarea {...field} placeholder="Me gustaría saber más de ..." />
                                     <ErrorMessage name="comentario" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                 </FormControl>
                             )}

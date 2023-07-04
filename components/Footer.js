@@ -9,9 +9,63 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faPaperPlane, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import Swal from 'sweetalert2';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
+
+    const validationSchema = Yup.object().shape({
+        email: Yup.string().email('Ingresa un correo electrónico válido').required('Campo requerido'),
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+        },
+        validationSchema,
+        onSubmit: async (values) => {
+            // validate email
+            const { email } = values;
+            const data = {
+                'email': email,
+                'type': 'newsletter'
+            }
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            const responseData = await response.json();
+
+            if (responseData.status === 200) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Felicidades!',
+                    text: 'Te has suscrito a nuestro newsletter',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    toast: true,
+                    position: 'bottom-end',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Ups!',
+                    text: 'Ha ocurrido un error, por favor intenta nuevamente',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    toast: true,
+                    position: 'bottom-end',
+                });
+            }
+        },
+    });
+
     return (
         <footer className="bg-dark p-5">
             <div className="container">
@@ -69,27 +123,31 @@ const Footer = () => {
                     </div>
                     <div className="col-lg-3 col-md-6 mb-4">
                         <h3 className='mb-3'>Noticias:</h3>
-                        <form>
+                        <form onSubmit={formik.handleSubmit}>
                             <div className="input-group mb-3">
                                 <input
                                     type="email"
-                                    className="form-control"
+                                    className={`form-control ${formik.touched.email && formik.errors.email ? 'is-invalid' : ''}`}
                                     placeholder="example@domain.com"
                                     aria-describedby="button-addon2"
                                     name='email'
                                     id='email'
                                     autoComplete='off'
                                     required
+                                    {...formik.getFieldProps('email')}
                                 />
                                 <button
                                     className="btn btn-secondary"
-                                    type="button"
+                                    type="submit"
                                     id="button-addon-wait-list"
                                     aria-label='Suscribirse al boletín'
                                 >
                                     <FontAwesomeIcon icon={faPaperPlane} />
                                 </button>
                             </div>
+                            {formik.touched.email && formik.errors.email && (
+                                <div className="invalid-feedback">{formik.errors.email}</div>
+                            )}
                         </form>
                     </div>
                 </div>

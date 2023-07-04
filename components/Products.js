@@ -48,7 +48,12 @@ const PackageTier = ({ title, subtitle, options }) => {
                 ))}
             </List>
             <Stack>
-                <Button size="md" bgColor={'green.400'} color={'white'}>
+                <Button
+                    size="md"
+                    bgColor={'green.400'}
+                    color={'white'}
+                    _hover={{ bgColor: 'green.500' }}
+                >
                     Solicita una demo
                 </Button>
             </Stack>

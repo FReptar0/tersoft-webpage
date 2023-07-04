@@ -6,7 +6,9 @@ export default async (req, res) => {
     const getAdministradores = async () => {
         const db = await connectToDatabase();
         const data = await db.collection("blog").find({}).toArray();
-        await closeConnection();
+        // buscar blog con id 1
+        const data1 = await db.collection("blog").findOne({ _id: 1 });
+        console.log("data1:", data1);
         return data;
     };
 
