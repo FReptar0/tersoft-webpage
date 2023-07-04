@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-export default async function handler(req, res) {
+export default async function mailsender(req, res) {
     if (req.method !== "POST") {
         return res.status(405).json({ error: "Method Not Allowed" });
     }
@@ -40,7 +40,7 @@ Comentario: ${comentario}
 Sitio web: ${sitioWeb}`
         };
 
-        const result = await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
 
         return res.status(200).json({ message: "Correo electrónico enviado" });
     } catch (error) {

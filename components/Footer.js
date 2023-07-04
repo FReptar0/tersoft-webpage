@@ -17,7 +17,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email('Ingresa un correo electrónico válido').required('Campo requerido'),
+        email: Yup.string().matches(/\S+@\S+\.\S+/, 'Correo invalido').required('Campo requerido'),
     });
 
     const formik = useFormik({

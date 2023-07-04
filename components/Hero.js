@@ -1,5 +1,6 @@
 import { Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
+import Router from 'next/router';
 
 export default function CallToActionWithVideo() {
     return (
@@ -19,7 +20,11 @@ export default function CallToActionWithVideo() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
                     </Text>
                     <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
-                        <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }}>
+                        <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }} onClick={
+                            () => {
+                                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }>
                             Obtener más información
                         </Button>
                         <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }}>

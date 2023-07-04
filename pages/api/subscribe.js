@@ -12,6 +12,18 @@ export default async function subscriber(req, res) {
         return res.status(400).json({ error: "Faltan campos por llenar" });
     }
 
+    // Check if email is valid
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ error: "Correo electrónico inválido" });
+    }
+
+    const subscriber = await findSubscriber(email);
+
+    if (subscriber) {
+        return res.status(400).json({ error: "Ya existe una suscripción con este correo electrónico" });
+    }
+
     if (type !== "waiting-list" && type !== "newsletter") {
         return res.status(400).json({ error: "Tipo de suscripción inválido" });
     }
@@ -53,3 +65,15 @@ const insertSubscriber = async (data) => {
         return error;
     }
 };
+
+const findSubscriber = async (email) => {
+    try {
+        const db = await connectToDatabase();
+        const response = await db.collection("emails").findOne({ email });
+        await closeConnection();
+        return response;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}

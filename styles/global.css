@@ -11,13 +11,13 @@ html {
 
 header {
     top: 0 !important;
-    z-index: 9999;
+    z-index: 900;
 }
 
 .navbar-nav {
     position: sticky !important;
     top: 0 !important;
-    z-index: 999;
+    z-index: 900;
 }
 
 a {

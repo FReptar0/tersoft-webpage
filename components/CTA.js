@@ -13,7 +13,7 @@ const WaitingList = () => {
     };
 
     const validationSchema = Yup.object({
-        email: Yup.string().email('Ingresa un correo electrónico válido').required('El correo electrónico es requerido'),
+        email: Yup.string().matches(/\S+@\S+\.\S+/, 'Correo invalido').required('El correo electrónico es requerido'),
     });
 
     const onSubmit = async (values) => {
@@ -120,7 +120,7 @@ const WaitingList = () => {
                         <div className="input-group mb-3">
                             <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${formik.touched.email && formik.errors.email ? 'is-invalid' : ''}`}
                                 placeholder="example@domain.com"
                                 aria-describedby="button-addon2"
                                 name="email"
