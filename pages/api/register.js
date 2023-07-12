@@ -1,40 +1,75 @@
 import { hashPassword } from "@/utils/PasswordUtils";
 import { connectToDatabase, closeConnection } from "@/config/mongodb";
 import { generateUUID } from "@/utils/UUIDGenerator";
+import CustomResponse from "@/utils/CustomeResponse";
 
 export default async function register(req, res) {
+    const customResponse = new CustomResponse();
     if (req.method !== "POST") {
-        return res.status(405).json({ status: 405, error: "Method Not Allowed" });
+        customResponse.status = 405;
+        customResponse.message = "Method Not Allowed";
+        customResponse.errors = "Method Not Allowed";
+        customResponse.data = {};
+        return res.status(405).json(customResponse);
     }
 
     const { name, lastname, email, company, password } = req.body;
 
     if (!name || !lastname || !email || !company || !password) {
-        return res.status(400).json({ status: 400, error: "Faltan campos por llenar" });
+        customResponse.status = 400;
+        customResponse.message = "Faltan campos por llenar";
+        customResponse.errors = "Faltan campos por llenar";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
     }
 
     // Check if email is valid
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-        return res.status(400).json({ status: 400, error: "Correo electrónico inválido" });
+        customResponse.status = 400;
+        customResponse.message = "Correo electrónico inválido";
+        customResponse.errors = "Correo electrónico inválido";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
     }
 
     // Check if password is valid
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (!passwordRegex.test(password)) {
-        return res.status(400).json({ status: 400, error: "La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número" });
+        customResponse.status = 400;
+        customResponse.message = "La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número";
+        customResponse.errors = "La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
     }
 
     const response = await findUser(email);
 
+    // verificar si mando error
+    if (response.error) {
+        customResponse.status = 500;
+        customResponse.message = "Error al registrar al usuario";
+        customResponse.errors = "Error al registrar al usuario, intente más tarde";
+        customResponse.data = {};
+        return res.status(500).json(customResponse);
+    }
+
     if (response) {
-        return res.status(400).json({ status: 400, error: "Ya existe un usuario con este correo electrónico" });
+        customResponse.status = 400;
+        customResponse.message = "Ya existe un usuario con este correo electrónico";
+        customResponse.errors = "Ya existe un usuario con este correo electrónico";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
     }
 
     const hashedPassword = await hashPassword(password);
 
     if (!hashedPassword) {
-        return res.status(500).json({ status: 500, error: "Error al registrar al usuario" });
+        customResponse.status = 500;
+        customResponse.message = "Error al registrar al usuario";
+        customResponse.errors = "Error al registrar al usuario";
+        customResponse.data = {};
+        return res.status(500).json(customResponse);
     }
 
     const date = new Date().toLocaleDateString("es-MX", { timeZone: "America/Mexico_City", hour12: false, hour: "numeric", minute: "numeric", second: "numeric" });
@@ -59,12 +94,24 @@ export default async function register(req, res) {
         const response = await db.collection("users").insertOne(user);
 
         if (response.acknowledged) {
-            return res.status(200).json({ status: 200, message: "Usuario registrado correctamente" });
+            customResponse.status = 200;
+            customResponse.message = "Usuario registrado correctamente";
+            customResponse.errors = {};
+            customResponse.data = {};
+            return res.status(200).json(customResponse);
         } else {
-            return res.status(500).json({ status: 500, error: "Error al registrar al usuario" });
+            customResponse.status = 500;
+            customResponse.message = "Error al registrar al usuario";
+            customResponse.errors = "Error al registrar al usuario";
+            customResponse.data = {};
+            return res.status(500).json(customResponse);
         }
     } catch (error) {
-        return res.status(500).json({ status: 500, error: "Error al registrar al usuario" });
+        customResponse.status = 500;
+        customResponse.message = "Error al registrar al usuario";
+        customResponse.errors = "Error al registrar al usuario";
+        customResponse.data = {};
+        return res.status(500).json(customResponse);
     }
 }
 

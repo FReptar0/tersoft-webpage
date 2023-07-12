@@ -48,8 +48,8 @@ const loginValidationSchema = Yup.object().shape({
 });
 
 export default function AuthCard() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isSignup, setIsSignup] = useState(true);
+    const [showPassword, setShowPassword] = useState(true);
+    const [isSignup, setIsSignup] = useState(false);
 
     const toggleCard = () => {
         setIsSignup(!isSignup);
@@ -88,7 +88,7 @@ export default function AuthCard() {
                     toast: true,
                     position: 'bottom-end',
                 }).then(() => {
-                    router.push('/login');
+                    Router.push('/login');
                 });
             } else {
                 Swal.fire({

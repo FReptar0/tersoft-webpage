@@ -2,9 +2,9 @@ import React from 'react';
 import { Box, Heading, Text, VStack, Image, Flex, Avatar } from '@chakra-ui/react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { connectToDatabase } from '@/config/mongodb';
+import { connectToDatabase, closeConnection } from '@/config/mongodb';
 import { LRUCache } from 'lru-cache';
-import NotFound from '../404';
+import NotFound from '@/pages/404';
 
 const cache = new LRUCache({
     max: 100,
@@ -17,6 +17,7 @@ const getBlogPostById = async (id) => {
         const blogCollection = db.collection('blog');
         const blogPost = await blogCollection.findOne({ _id: parseInt(id) });
         cache.set(id, blogPost);
+        await closeConnection();
         return blogPost;
     } catch (error) {
         console.log('Error al obtener el artículo del blog:', error);

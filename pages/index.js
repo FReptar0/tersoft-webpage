@@ -54,6 +54,8 @@ export default function Index() {
             threshold: 0.5
         });
 
+        window.onload = function () { CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" }); };
+
         sections.forEach((section) => {
             observer.observe(section.ref.current);
         });
@@ -74,6 +76,7 @@ export default function Index() {
                 <meta name='author' content='GitHub: FReptar0 | Linkedin: /in/fernando-rm' />
                 <meta name='robots' content='index, follow' />
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
+                <script src="https://cdn.customgpt.ai/js/chat.js"></script>
             </Head>
             <Header />
             <section ref={aboutRef} className='mt-5 section' id='about'>

@@ -15,6 +15,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { connectToDatabase, closeConnection } from '@/config/mongodb';
 import { LRUCache } from 'lru-cache';
+import Loader from '@/components/Loader';
 
 const cache = new LRUCache({
     max: 100,
@@ -24,14 +25,19 @@ const cache = new LRUCache({
 
 const BlogIndex = ({ blogPosts }) => {
     const router = useRouter();
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const handleCardClick = (id) => {
+        setIsLoading(true);
         router.push(`/blog/${id}`);
     };
 
     return (
         <React.Fragment>
-            <Header />
+            {isLoading && <Loader />}
+
+            {!isLoading && (<Header/>)}
+            
             <Container maxW={'9xl'} mt={10} p="12">
                 <Box mt={8} ml={8}>
                     <Stack spacing={6}>

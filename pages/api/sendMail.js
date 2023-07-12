@@ -1,14 +1,24 @@
 import nodemailer from "nodemailer";
+import CustomResponse from "@/utils/CustomeResponse";
 
 export default async function mailsender(req, res) {
+    const customResponse = new CustomResponse();
     if (req.method !== "POST") {
-        return res.status(405).json({ error: "Method Not Allowed" });
+        customResponse.status = 405;
+        customResponse.message = "Method Not Allowed";
+        customResponse.errors = "Method Not Allowed";
+        customResponse.data = {};
+        return res.status(405).json(customResponse);
     }
 
     const { nombre, apellido, telefono, correo, empresa, comentario, sitioWeb } = req.body;
 
     if (!nombre || !apellido || !telefono || !correo || !empresa) {
-        return res.status(400).json({ error: "Faltan campos por llenar" });
+        customResponse.status = 400;
+        customResponse.message = "Faltan campos por llenar";
+        customResponse.errors = "Faltan campos por llenar";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
     }
 
     try {
@@ -42,9 +52,16 @@ Sitio web: ${sitioWeb}`
 
         await transporter.sendMail(mailOptions);
 
-        return res.status(200).json({ message: "Correo electrónico enviado" });
+        customResponse.status = 200;
+        customResponse.message = "Correo electrónico enviado";
+        customResponse.errors = null;
+        customResponse.data = {};
+        return res.status(200).json(customResponse);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: "Error al enviar el correo electrónico" });
+        customResponse.status = 500;
+        customResponse.message = "Error al enviar el correo electrónico";
+        customResponse.errors = error;
+        customResponse.data = {};
+        return res.status(500).json(customResponse);
     }
 }
