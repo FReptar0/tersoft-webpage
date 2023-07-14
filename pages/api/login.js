@@ -1,7 +1,7 @@
 import { comparePassword } from "@/utils/PasswordUtils";
 import { connectToDatabase, closeConnection } from "@/config/mongodb";
-import Jwt from "jsonwebtoken";
 import CustomResponse from "@/utils/CustomeResponse";
+import { generateToken } from "@/utils/TokenGeneration";
 
 export default async function login(req, res) {
     const customResponse = new CustomResponse();
@@ -35,20 +35,26 @@ export default async function login(req, res) {
 
     const response = await findEmail(email);
 
-    // verificar si mando error
-
-    if (response.error) {
-        customResponse.status = 500;
-        customResponse.message = "Error al iniciar sesión";
-        customResponse.errors = "Error al iniciar sesión";
-        customResponse.data = {};
-        return res.status(500).json(customResponse);
-    }
-
     if (!response) {
         customResponse.status = 400;
         customResponse.message = "No existe un usuario con este correo electrónico";
         customResponse.errors = "No existe un usuario con este correo electrónico";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
+    }
+
+    if (!response.isApproved) {
+        customResponse.status = 400;
+        customResponse.message = "Usuario no aprobado";
+        customResponse.errors = "Usuario no aprobado";
+        customResponse.data = {};
+        return res.status(400).json(customResponse);
+    }
+
+    if (response.isBlocked) {
+        customResponse.status = 400;
+        customResponse.message = "Tu usuario ha sido bloqueado, contacta al administrador";
+        customResponse.errors = "Usuario bloqueado";
         customResponse.data = {};
         return res.status(400).json(customResponse);
     }
@@ -82,19 +88,3 @@ const findEmail = async (email) => {
         return error;
     }
 };
-
-export const generateToken = (user) => {
-    const token = Jwt.sign(
-        {
-            id: user._id,
-            email: user.email,
-            name: user.name,
-            role: user.isAdmin ? "admin" : user.isSuperAdmin ? "superadmin" : "user",
-        },
-        process.env.JWT_SECRET,
-        {
-            expiresIn: process.env.JWT_EXPIRES_IN,
-        }
-    );
-    return token;
-}

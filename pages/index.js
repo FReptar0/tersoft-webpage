@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CarruselTestimonial from '@/components/Testimonials';
@@ -54,8 +55,6 @@ export default function Index() {
             threshold: 0.5
         });
 
-        window.onload = function () { CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" }); };
-
         sections.forEach((section) => {
             observer.observe(section.ref.current);
         });
@@ -76,7 +75,16 @@ export default function Index() {
                 <meta name='author' content='GitHub: FReptar0 | Linkedin: /in/fernando-rm' />
                 <meta name='robots' content='index, follow' />
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
-                <script src="https://cdn.customgpt.ai/js/chat.js"></script>
+                {/* FIXME: En caso de ser necesario volver a descar el codigo para el chat del src de abajo y guardar en /public */}
+                {/*<Script src='https://cdn.customgpt.ai/js/chat.js' />*/}
+                <Script src='/CustomeGPT.js' />
+                <Script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.onload = function() {
+                            CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
+                        }`
+                    }}
+                />
             </Head>
             <Header />
             <section ref={aboutRef} className='mt-5 section' id='about'>

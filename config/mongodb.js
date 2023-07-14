@@ -20,7 +20,6 @@ export async function connectToDatabase() {
         const db = client.db('tersoft');
         cachedClient = client;
         cachedDb = db;
-        console.log('Conexión exitosa a la base de datos');
         return db;
     } catch (error) {
         console.log('Error al conectar a la base de datos:', error);
@@ -33,6 +32,5 @@ export async function closeConnection() {
         await cachedClient.close();
         cachedClient = null;
         cachedDb = null;
-        console.log('Conexión cerrada');
     }
 }

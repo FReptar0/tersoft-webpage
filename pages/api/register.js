@@ -45,15 +45,6 @@ export default async function register(req, res) {
 
     const response = await findUser(email);
 
-    // verificar si mando error
-    if (response.error) {
-        customResponse.status = 500;
-        customResponse.message = "Error al registrar al usuario";
-        customResponse.errors = "Error al registrar al usuario, intente más tarde";
-        customResponse.data = {};
-        return res.status(500).json(customResponse);
-    }
-
     if (response) {
         customResponse.status = 400;
         customResponse.message = "Ya existe un usuario con este correo electrónico";
