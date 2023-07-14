@@ -35,10 +35,8 @@ export default function Index() {
             { ref: contactRef, id: 'contact' }
         ];
 
-        window.onload = function () {
-            CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
-        };
-
+        window.onload = function () { CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" }); };
+        
         const handleIntersect = (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -80,14 +78,7 @@ export default function Index() {
                 <meta name='robots' content='index, follow' />
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
                 {/* FIXME: En caso de ser necesario volver a descar el codigo para el chat del src de abajo y guardar en /public */}
-                <Script src='https://cdn.customgpt.ai/js/chat.js' />
-                <Script src='/CustomeGPT.js' />
-                <Script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                        }`
-                    }}
-                />
+                <script src='https://cdn.customgpt.ai/js/chat.js'></script>
             </Head>
             <Header />
             <section ref={aboutRef} className='mt-5 section' id='about'>
