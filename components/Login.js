@@ -92,7 +92,7 @@ export default function SignUp() {
                                 <FormControl id="password" isRequired>
                                     <FormLabel>Password</FormLabel>
                                     <InputGroup>
-                                        <Input {...field} type={showPassword ? 'text' : 'password'} />
+                                        <Input {...field} type={showPassword ? 'text' : 'password'} autoComplete='on' />
                                         <InputRightElement h={'full'}>
                                             <Button
                                                 variant={'ghost'}

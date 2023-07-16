@@ -11,20 +11,6 @@ const cache = new LRUCache({
     maxAge: 1000 * 60 * 10,
 });
 
-const getBlogPostById = async (id) => {
-    try {
-        const db = await connectToDatabase();
-        const blogCollection = db.collection('blog');
-        const blogPost = await blogCollection.findOne({ _id: parseInt(id) });
-        cache.set(id, blogPost);
-        await closeConnection();
-        return blogPost;
-    } catch (error) {
-        console.log('Error al obtener el artículo del blog:', error);
-        return null;
-    }
-};
-
 const BlogPost = (props) => {
     const selectedBlogPost = props.blogPost;
 
@@ -81,6 +67,7 @@ const BlogPost = (props) => {
 export async function getServerSideProps(context) {
     const { id } = context.query;
     const cachedBlogPost = cache.get(id);
+    
     if (cachedBlogPost) {
         return {
             props: {
@@ -89,13 +76,21 @@ export async function getServerSideProps(context) {
         }
     }
 
-    const blogPost = await getBlogPostById(id);
-
-    return {
-        props: {
-            blogPost,
-        },
-    };
+    try {
+        const db = await connectToDatabase();
+        const blogCollection = db.collection('blog');
+        const blogPost = await blogCollection.findOne({ _id: parseInt(id) });
+        cache.set(id, blogPost);
+        await closeConnection();
+        return {
+            props: {
+                blogPost: blogPost,
+            },
+        }
+    } catch (error) {
+        console.log('Error al obtener el artículo del blog:', error);
+        return null;
+    }
 }
 
 export default BlogPost;

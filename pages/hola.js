@@ -22,46 +22,10 @@ export default function Index() {
     const productsRef = useRef(null);
 
     useEffect(() => {
-        const sections = [
-            { ref: aboutRef, id: 'about' },
-            { ref: infoRef, id: 'info' },
-            { ref: testimonialsRef, id: 'testimonials' },
-            { ref: productsRef, id: 'products' },
-            { ref: ctaRef, id: 'cta' },
-            { ref: clientsRef, id: 'clients' },
-            { ref: teamRef, id: 'team' },
-            { ref: contactRef, id: 'contact' }
-        ];
+
 
         window.onload = function () { CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" }); };
 
-        const handleIntersect = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    const sectionIndex = sections.findIndex((section) => section.id === sectionId);
-                    if (sectionIndex > -1) {
-                        for (let i = 0; i <= sectionIndex; i++) {
-                            sections[i].ref.current.classList.add('show');
-                        }
-                    }
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(handleIntersect, {
-            root: null,
-            rootMargin: '100px',
-            threshold: 0.5
-        });
-
-        sections.forEach((section) => {
-            observer.observe(section.ref.current);
-        });
-
-        return () => {
-            observer.disconnect();
-        };
     }, []);
 
     return (
@@ -78,28 +42,28 @@ export default function Index() {
                 <script src='https://cdn.customgpt.ai/js/chat.js'></script>
             </Head>
             <Header />
-            <section ref={aboutRef} className='mt-5 section' id='about'>
+            <section className='mt-5 section show' id='about'>
                 <CallToActionWithVideo />
             </section>
-            <section ref={infoRef} className='section mb-5' id='info'>
+            <section className='section mb-5 show' id='info'>
                 <GridList />
             </section>
-            <section ref={testimonialsRef} className='section' id='testimonials'>
+            <section className='section show' id='testimonials'>
                 <CarruselTestimonial />
             </section>
-            <section ref={productsRef} className='section p-5' id='products'>
+            <section className='section p-5 show' id='products'>
                 <TableProducts />
             </section>
-            <section ref={ctaRef} className='section' id='cta'>
+            <section className='section show' id='cta'>
                 <WaitingList />
             </section>
-            <section ref={teamRef} className='section p-3' style={styles.section} id='team'>
+            <section className='section p-3 show' style={styles.section} id='team'>
                 <Team />
             </section>
-            <section ref={clientsRef} className='section p-3' id='clients'>
+            <section className='section p-3 show' id='clients'>
                 <ClientsCard />
             </section>
-            <section ref={contactRef} className='section mt-5 mb-5' id='contact'>
+            <section className='section mt-5 mb-5 show' id='contact'>
                 <ContactForm />
             </section>
             <Footer />
