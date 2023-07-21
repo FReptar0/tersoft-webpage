@@ -33,7 +33,7 @@ export default function Index() {
             { ref: contactRef, id: 'contact' }
         ];
 
-        window.onload = function () { CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" }); };
+        CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
 
         const handleIntersect = (entries) => {
             entries.forEach((entry) => {
