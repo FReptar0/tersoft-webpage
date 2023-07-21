@@ -53,6 +53,10 @@ const PackageTier = ({ title, subtitle, options }) => {
                     bgColor={'green.400'}
                     color={'white'}
                     _hover={{ bgColor: 'green.500' }}
+                    onClick={
+                        () => {
+                            Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft/demo-sage-300' }); return false;
+                        }}
                 >
                     Solicita una demo
                 </Button>
