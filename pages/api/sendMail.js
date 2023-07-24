@@ -12,7 +12,7 @@ export default async function mailsender(req, res) {
     }
 
     const { nombre, apellido, telefono, correo, empresa, comentario, sitioWeb } = req.body;
-
+    console.log(req.body);
     if (!nombre || !apellido || !telefono || !correo || !empresa) {
         customResponse.status = 400;
         customResponse.message = "Faltan campos por llenar";

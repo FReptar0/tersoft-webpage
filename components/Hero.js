@@ -1,7 +1,5 @@
 import { Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import Router from 'next/router';
-import Head from 'next/head';
 
 export default function CallToActionWithVideo() {
     return (
