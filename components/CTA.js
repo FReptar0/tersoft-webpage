@@ -124,7 +124,7 @@ const WaitingList = () => {
                                 placeholder="example@domain.com"
                                 aria-describedby="button-addon2"
                                 name="email"
-                                id="email"
+                                id="email-wait-list"
                                 autoComplete="off"
                                 required
                                 {...formik.getFieldProps('email')}

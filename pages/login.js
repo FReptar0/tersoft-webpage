@@ -66,10 +66,10 @@ export default function AuthCard() {
                 <Stack spacing={8} mx={'auto'} minW={'sm'} maxW={'sm'} py={12} px={6}>
                     <Stack align={'center'} marginTop={'10vh'}>
                         <Heading fontSize={'4xl'} textAlign={'center'}>
-                            {isSignup ? 'Sign up' : 'Sign in'}
+                            {isSignup ? 'Regístrate' : 'Inicia sesión'}
                         </Heading>
                         <Text fontSize={'lg'} color={'black.600'}>
-                            To enjoy all of our features
+                            Para disfrutar de todos los beneficios
                         </Text>
                     </Stack>
                     <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
@@ -78,22 +78,21 @@ export default function AuthCard() {
                                 <Login />
                                 <Stack pt={6}>
                                     <Text align={'center'}>
-                                        Don't have an account?{' '}
+                                        ¿Aún no tienes una cuenta?{' '}
                                         <ChakraLink color={'blue.400'} onClick={toggleCard} cursor="pointer">
-                                            Sign up
+                                            Regístrate
                                         </ChakraLink>
                                     </Text>
                                 </Stack>
                             </>
-
                         ) : (
                             <>
                                 <SignUp />
                                 <Stack pt={6}>
                                     <Text align={'center'}>
-                                        Already a user?{' '}
+                                        ¿Ya tienes una cuenta? {' '}
                                         <ChakraLink color={'blue.400'} onClick={toggleCard} cursor="pointer">
-                                            Login
+                                            Iniciar sesión
                                         </ChakraLink>
                                     </Text>
                                 </Stack>

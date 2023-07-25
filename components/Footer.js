@@ -131,7 +131,7 @@ const Footer = () => {
                                     placeholder="example@domain.com"
                                     aria-describedby="button-addon2"
                                     name='email'
-                                    id='email'
+                                    id='email-newsletter'
                                     autoComplete='off'
                                     required
                                     {...formik.getFieldProps('email')}
@@ -139,7 +139,7 @@ const Footer = () => {
                                 <button
                                     className="btn btn-secondary"
                                     type="submit"
-                                    id="button-addon-wait-list"
+                                    id="button-addon-newsletter"
                                     aria-label='Suscribirse al boletín'
                                 >
                                     <FontAwesomeIcon icon={faPaperPlane} />

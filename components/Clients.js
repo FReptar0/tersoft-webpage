@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import Image from 'next/image';
 
 const ClientsCard = () => {
     const clientImages = [
@@ -104,7 +105,7 @@ const ClientsCard = () => {
                         )
                     }
                     renderIndicator={(clickHandler, isSelected, index, label) => (
-                        <span
+                        <li
                             onClick={clickHandler}
                             key={index}
                             style={{
@@ -116,14 +117,13 @@ const ClientsCard = () => {
                                 margin: '0 4px',
                                 cursor: 'pointer',
                             }}
-                            aria-label={`Slide ${index}`}
-                            title={`Slide ${index}`}
+                            title={`Slide dot number ${index + 1}`}
                         />
                     )}
                 >
                     {clientImages.map((client, index) => (
                         <div key={client.id} style={{ marginRight: '10px' }}>
-                            <img src={client.url} alt={client.alt} />
+                            <Image src={client.url} alt={client.alt} width={150} height={150} />
                         </div>
                     ))}
                 </Carousel>

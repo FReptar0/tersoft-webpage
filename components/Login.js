@@ -81,7 +81,7 @@ export default function SignUp() {
                         <Field name="email">
                             {({ field }) => (
                                 <FormControl id="email" isRequired>
-                                    <FormLabel>Email address</FormLabel>
+                                    <FormLabel>Correo electrónico</FormLabel>
                                     <Input {...field} type="email" />
                                     <ErrorMessage className="text-danger" name="email" component="small" color="red" />
                                 </FormControl>
@@ -90,7 +90,7 @@ export default function SignUp() {
                         <Field name="password">
                             {({ field }) => (
                                 <FormControl id="password" isRequired>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel>Contraseña</FormLabel>
                                     <InputGroup>
                                         <Input {...field} type={showPassword ? 'text' : 'password'} autoComplete='on' />
                                         <InputRightElement h={'full'}>
@@ -117,7 +117,7 @@ export default function SignUp() {
                                 }}
                                 type="submit"
                             >
-                                Sign in
+                                Iniciar sesión
                             </Button>
                         </Stack>
                     </Stack>

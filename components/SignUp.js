@@ -95,7 +95,7 @@ export default function Login() {
                             <Field name="firstName">
                                 {({ field }) => (
                                     <FormControl id="firstName" isRequired>
-                                        <FormLabel>First Name</FormLabel>
+                                        <FormLabel>Nombre: </FormLabel>
                                         <Input {...field} type="text" />
                                         <ErrorMessage className="text-danger" name="firstName" component="small" color="red" />
                                     </FormControl>
@@ -104,7 +104,7 @@ export default function Login() {
                             <Field name="lastName">
                                 {({ field }) => (
                                     <FormControl id="lastName" isRequired>
-                                        <FormLabel>Last Name</FormLabel>
+                                        <FormLabel>Apellido(s):</FormLabel>
                                         <Input {...field} type="text" />
                                         <ErrorMessage className="text-danger" name="lastName" component="small" color="red" />
                                     </FormControl>
@@ -114,7 +114,7 @@ export default function Login() {
                         <Field name="email">
                             {({ field }) => (
                                 <FormControl id="email" isRequired>
-                                    <FormLabel>Email address</FormLabel>
+                                    <FormLabel>Correo electrónico:</FormLabel>
                                     <Input {...field} type="email" />
                                     <ErrorMessage className="text-danger" name="email" component="small" color="red" />
                                 </FormControl>
@@ -123,7 +123,7 @@ export default function Login() {
                         <Field name="company">
                             {({ field }) => (
                                 <FormControl id="company" isRequired>
-                                    <FormLabel>Company name:</FormLabel>
+                                    <FormLabel>Compañía:</FormLabel>
                                     <Input {...field} type="text" />
                                     <ErrorMessage className="text-danger" name="company" component="small" color="red" />
                                 </FormControl>
@@ -132,7 +132,7 @@ export default function Login() {
                         <Field name="password">
                             {({ field }) => (
                                 <FormControl id="password" isRequired>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel>Contraseña:</FormLabel>
                                     <InputGroup>
                                         <Input {...field} type={showPassword ? 'text' : 'password'} />
                                         <InputRightElement h={'full'}>
@@ -159,7 +159,7 @@ export default function Login() {
                                 }}
                                 type="submit"
                             >
-                                Sign up
+                                Regístrate
                             </Button>
                         </Stack>
                     </Stack>
