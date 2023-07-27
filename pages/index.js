@@ -32,9 +32,9 @@ export default function Index() {
             { ref: teamRef, id: 'team' },
             { ref: contactRef, id: 'contact' }
         ];
-
+        
         CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
-
+        
         const handleIntersect = (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {

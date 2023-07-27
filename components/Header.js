@@ -5,7 +5,7 @@ import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'next/image';
 
-import Loader from './Loader'; // Asegúrate de importar correctamente el componente del Loader
+import Loader from './Loader'; 
 
 const Header = () => {
     const [showNav, setShowNav] = useState(false);
