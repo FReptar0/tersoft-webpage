@@ -12,6 +12,8 @@ import {
 } from '@chakra-ui/react';
 import { FiUser, FiLogOut, FiMenu, FiX } from 'react-icons/fi';
 import { SidebarPushable, Sidebar, Menu } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+
 
 const Dashboard = () => {
     const [visible, setVisible] = React.useState(true);
