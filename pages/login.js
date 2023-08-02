@@ -12,8 +12,8 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Router from 'next/router';
-import Login from '@/components/SignUp';
-import SignUp from '@/components/Login';
+import SignUp from '@/components/SignUp';
+import Login from '@/components/Login';
 
 
 export default function AuthCard() {
@@ -75,7 +75,7 @@ export default function AuthCard() {
                     <Box rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
                         {isSignup ? (
                             <>
-                                <Login />
+                                <SignUp />
                                 <Stack pt={6}>
                                     <Text align={'center'}>
                                         ¿Aún no tienes una cuenta?{' '}
@@ -87,7 +87,7 @@ export default function AuthCard() {
                             </>
                         ) : (
                             <>
-                                <SignUp />
+                                <Login />
                                 <Stack pt={6}>
                                     <Text align={'center'}>
                                         ¿Ya tienes una cuenta? {' '}

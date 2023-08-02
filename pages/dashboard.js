@@ -201,8 +201,6 @@ const Dashboard = () => {
                                 flex="1"
                                 overflowY="auto"
                             >
-                                {/* Agrega tus componentes y contenido aquí */}
-                                <Text>Contenido del dashboard</Text>
                             </Box>
                         </Flex>
                     </Sidebar.Pusher>

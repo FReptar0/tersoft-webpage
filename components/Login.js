@@ -21,7 +21,7 @@ const validationSchema = Yup.object().shape({
     password: Yup.string().required('Password is required'),
 });
 
-export default function SignUp() {
+export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
 
     const initialValues = {

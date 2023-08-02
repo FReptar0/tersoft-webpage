@@ -29,7 +29,7 @@ const validationSchema = Yup.object().shape({
 });
 
 
-export default function Login() {
+export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
 
     const initialValues = {
