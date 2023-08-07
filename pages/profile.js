@@ -20,36 +20,41 @@ import {
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import * as Yup from 'yup';
+import axios from 'axios';
+import Loader from '@/components/Loader';
+import Router from 'next/router';
 import Swal from 'sweetalert2';
+import Header from '@/components/Header';
 
 const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First Name is required'),
     lastName: Yup.string().required('Last Name is required'),
     email: Yup.string().matches(/\S+@\S+\.\S+/, 'Invalid email').required('Email is required'),
     company: Yup.string().required('Company name is required'),
-    password: Yup.string()
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, 'Password must contain at least 8 characters, one lowercase letter, one uppercase letter, and one digit')
-        .required('Password is required'),
+    password: Yup.string(),
+    oldPassword: Yup.string(),
 });
+
 
 export default function Profile() {
     const [showPassword, setShowPassword] = useState(false);
-    const [isClient, setIsClient] = useState(true);
-
-    const initialValues = {
-        firstName: '',
-        lastName: '',
+    const [showOldPassword, setShowOldPassword] = useState(false);
+    const [isBeingEdited, setIsBeingEdited] = useState(false);
+    const [isClient, setIsClient] = useState(false);
+    const [data, setData] = useState({
+        name: '',
+        lastname: '',
         email: '',
         company: '',
-        password: '',
-    };
+        role: '',
+    });
 
     const handleSubmit = async (values) => {
-        console.log(values);
-        const response = await fetch('/api/register', {
+        const response = await fetch('/api/updateprofile', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
             body: JSON.stringify({
                 name: values.firstName,
@@ -57,36 +62,94 @@ export default function Profile() {
                 email: values.email,
                 company: values.company,
                 password: values.password,
+                oldPassword: values.oldPassword,
             }),
         });
 
         const data = await response.json();
-        console.log(data);
+
         if (data.status === 200) {
             Swal.fire({
-                title: 'Haz creado tu cuenta exitosamente!',
-                text: 'En breve recibirás un correo de confirmación informándote que tu cuenta ha sido activada.',
+                title: 'Success!',
+                text: 'Your profile has been updated',
                 icon: 'success',
-                showConfirmButton: false,
-                timer: 5000,
-                toast: true,
-                position: 'bottom-end',
-            })
+                confirmButtonText: 'Ok',
+            }).then(() => {
+                localStorage.removeItem('token');
+                Swal.fire({
+                    title: 'Warning!',
+                    text: 'For security reasons, you will be logged out. Please log in again.',
+                    icon: 'warning',
+                    confirmButtonText: 'Ok',
+                }).then(() => {
+                    Router.push('/login');
+                });
+            });
         } else {
             Swal.fire({
-                title: 'Oops!',
-                text: `${data.message}`,
+                title: 'Error!',
+                text: data.message,
                 icon: 'error',
-                showConfirmButton: false,
-                timer: 5000,
-                toast: true,
-                position: 'bottom-end',
+                confirmButtonText: 'Ok',
             });
         }
     };
 
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        setIsClient(true);
+
+        if (!localStorage.getItem('token')) {
+            Router.push('/login');
+        }
+
+        handleAuth().catch((error) => {
+            console.log(error);
+            localStorage.removeItem('token');
+            Router.push('/login');
+        });
+
+        return () => {
+            document.body.removeChild(script);
+        }
+    }, []);
+
+
+    const handleAuth = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post('/api/tokenauth', { token: token });
+            const data = await response.data;
+
+            if (response.status === 200) {
+                const role = data.data.decoded.role;
+                // capitalize first letter of role
+                const capitalizedRole = role.charAt(0).toUpperCase() + role.slice(1);
+                setData({
+                    name: data.data.decoded.name,
+                    lastname: data.data.decoded.lastname,
+                    email: data.data.decoded.email,
+                    company: data.data.decoded.company,
+                    role: capitalizedRole,
+                });
+            } else {
+                localStorage.removeItem('token');
+                Router.push('/login');
+            }
+        } catch (error) {
+            console.log(error);
+            localStorage.removeItem('token');
+            Router.push('/login');
+        }
+    }
+
     return (
-        <React.Fragment>
+        isClient ? (<React.Fragment>
+            <Header />
             <Box>
                 <Image src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' alt="Cover Image" objectFit="cover" w="100%" h={300} />
                 <Flex align="center" fontSize="sm" color="gray.500">
@@ -116,7 +179,7 @@ export default function Profile() {
                             fontFamily="heading"
                             color="blackAlpha.900"
                         >
-                            Christopher Sandoval
+                            {data.name} {data.lastname}
                         </Text>
                     </Flex>
                 </Flex>
@@ -129,22 +192,29 @@ export default function Profile() {
                             fontFamily="heading"
                             color="blackAlpha.700"
                         >
-                            Tersoft
+                            {data.company} - {data.role}
                         </Text>
                     </Flex>
                 </Flex>
             </Box>
             <Grid templateColumns={{ base: '1fr', md: '1fr 1fr' }} gap={10} marginBottom={'20'}>
-                <Box maxW="md" maxH={'550'} ml="auto" p={6} shadow="2xl" border={'1px'} borderColor={'gray.200'} borderRadius={'base'}>
+                <Box maxW="md" maxH={'auto'} minH={'550'} ml="auto" p={6} shadow="2xl" border={'1px'} borderColor={'gray.200'} borderRadius={'base'}>
                     <VStack align="center" spacing={2} mt={4}>
                         <Heading as="h1" fontSize="2xl">
                             Información de la cuenta:
                         </Heading>
                         <Formik
-                            initialValues={initialValues}
                             validationSchema={validationSchema}
                             onSubmit={handleSubmit}
                             enableReinitialize
+                            initialValues={{
+                                firstName: data.name,
+                                lastName: data.lastname,
+                                email: data.email,
+                                company: data.company,
+                                password: '',
+                                oldPassword: '',
+                            }}
                         >
                             {() => (
                                 <Form>
@@ -154,7 +224,7 @@ export default function Profile() {
                                                 {({ field }) => (
                                                     <FormControl id="firstName" isRequired>
                                                         <FormLabel>Nombre: </FormLabel>
-                                                        <Input {...field} type="text" />
+                                                        <Input disabled={!isBeingEdited} {...field} type="text" />
                                                         <ErrorMessage className="text-danger" name="firstName" component="small" color="red" />
                                                     </FormControl>
                                                 )}
@@ -163,7 +233,7 @@ export default function Profile() {
                                                 {({ field }) => (
                                                     <FormControl id="lastName" isRequired>
                                                         <FormLabel>Apellido(s):</FormLabel>
-                                                        <Input {...field} type="text" />
+                                                        <Input disabled={!isBeingEdited} {...field} type="text" />
                                                         <ErrorMessage className="text-danger" name="lastName" component="small" color="red" />
                                                     </FormControl>
                                                 )}
@@ -173,7 +243,7 @@ export default function Profile() {
                                             {({ field }) => (
                                                 <FormControl id="email" isRequired>
                                                     <FormLabel>Correo electrónico:</FormLabel>
-                                                    <Input {...field} type="email" />
+                                                    <Input disabled={!isBeingEdited} {...field} type="email" />
                                                     <ErrorMessage className="text-danger" name="email" component="small" color="red" />
                                                 </FormControl>
                                             )}
@@ -182,17 +252,33 @@ export default function Profile() {
                                             {({ field }) => (
                                                 <FormControl id="company" isRequired>
                                                     <FormLabel>Compañía:</FormLabel>
-                                                    <Input {...field} type="text" />
+                                                    <Input disabled={!isBeingEdited} {...field} type="text" />
                                                     <ErrorMessage className="text-danger" name="company" component="small" color="red" />
+                                                </FormControl>
+                                            )}
+                                        </Field>
+                                        <Field name="oldPassword">
+                                            {({ field }) => (
+                                                <FormControl id="oldPassword">
+                                                    <FormLabel>Contraseña anterior:</FormLabel>
+                                                    <InputGroup>
+                                                        <Input disabled={!isBeingEdited} autoComplete='off' {...field} type={showOldPassword ? 'text' : 'password'} />
+                                                        <InputRightElement h={'full'}>
+                                                            <Button variant={'ghost'} onClick={() => setShowOldPassword((showOldPassword) => !showOldPassword)}>
+                                                                {showOldPassword ? <ViewOffIcon /> : <ViewIcon />}
+                                                            </Button>
+                                                        </InputRightElement>
+                                                    </InputGroup>
+                                                    <ErrorMessage className="text-danger" name="oldPassword" component="small" color="red" />
                                                 </FormControl>
                                             )}
                                         </Field>
                                         <Field name="password">
                                             {({ field }) => (
-                                                <FormControl id="password" isRequired>
-                                                    <FormLabel>Contraseña:</FormLabel>
+                                                <FormControl id="password">
+                                                    <FormLabel>Contraseña nueva:</FormLabel>
                                                     <InputGroup>
-                                                        <Input {...field} type={showPassword ? 'text' : 'password'} />
+                                                        <Input disabled={!isBeingEdited} autoComplete='off' {...field} type={showPassword ? 'text' : 'password'} />
                                                         <InputRightElement h={'full'}>
                                                             <Button variant={'ghost'} onClick={() => setShowPassword((showPassword) => !showPassword)}>
                                                                 {showPassword ? <ViewOffIcon /> : <ViewIcon />}
@@ -203,49 +289,65 @@ export default function Profile() {
                                                 </FormControl>
                                             )}
                                         </Field>
-                                        <HStack spacing={5} pt={2}>
-                                            <Button
-                                                loadingText="Submitting"
-                                                size="lg"
-                                                bg={'blue.400'}
-                                                color={'white'}
-                                                _hover={{
-                                                    bg: 'blue.500',
-                                                }}
-                                                width={{ base: '100%', md: '50%' }}
-                                                type="submit"
-                                            >
-                                                Editar
-                                            </Button>
-                                            <Button
-                                                loadingText="Submitting"
-                                                size="lg"
-                                                bg={'red.400'}
-                                                color={'white'}
-                                                _hover={{
-                                                    bg: 'red.500',
-                                                }}
-                                                width={{ base: '100%', md: '50%' }}
-                                            >
-                                                Cancelar
-                                            </Button>
-                                        </HStack>
+                                        <VStack spacing={5} pt={2}>
+                                            {isBeingEdited ? (
+                                                <>
+                                                    <Button
+                                                        loadingText="Cancelando..."
+                                                        size="lg"
+                                                        bg={'red.400'}
+                                                        color={'white'}
+                                                        _hover={{
+                                                            bg: 'red.500',
+                                                        }}
+                                                        width={{ base: '100%', md: '100%' }}
+                                                        onClick={() => setIsBeingEdited(false)}
+                                                    >
+                                                        Cancelar
+                                                    </Button>
+                                                    <Button
+                                                        loadingText="Actualizando..."
+                                                        size="lg"
+                                                        bg={'green.400'}
+                                                        color={'white'}
+                                                        _hover={{
+                                                            bg: 'green.500',
+                                                        }}
+                                                        width={{ base: '100%', md: '100%' }}
+                                                        type="submit"
+                                                    >
+                                                        Actualizar
+                                                    </Button>
+                                                </>) :
+                                                (<Button
+                                                    loadingText="Editando..."
+                                                    size="lg"
+                                                    bg={'blue.400'}
+                                                    color={'white'}
+                                                    _hover={{
+                                                        bg: 'blue.500',
+                                                    }}
+                                                    width={{ base: '100%', md: '100%' }}
+                                                    onClick={() => setIsBeingEdited(true)}
+                                                >
+                                                    Editar
+                                                </Button>)}
+                                        </VStack>
                                     </Stack>
                                 </Form>
                             )}
                         </Formik>
                     </VStack>
                 </Box>
-                <Box maxW="md" mx="0" maxH={'550'} p={6} shadow="2xl" border={'1px'} borderColor={'gray.200'} borderRadius={'base'}>
+                <Box maxW="md" mx="0" maxH={'auto'} minH={'550'} p={6} shadow="2xl" border={'1px'} borderColor={'gray.200'} borderRadius={'base'}>
                     <VStack align="center" spacing={2} mt={4}>
                         <Heading as="h1" fontSize="2xl">
                             Agenda una cita:
                         </Heading>
-                        <div class="calendly-inline-widget" data-url="https://calendly.com/tersoft" style={{ minWidth: "320px", height: "400px" }}></div>
+                        <div className="calendly-inline-widget" data-url="https://calendly.com/tersoft" style={{ minWidth: "320px", height: "70vh" }}></div>
                     </VStack>
                 </Box>
-                {/* Repetir el mismo código para el segundo formulario */}
             </Grid>
-        </React.Fragment>
+        </React.Fragment>) : (<Loader />)
     );
 }

@@ -3,53 +3,40 @@ import { generateUUID } from "@/utils/UUIDGenerator";
 import CustomResponse from "@/utils/CustomeResponse";
 
 export default async function subscriber(req, res) {
-    const customResponse = new CustomResponse();
     if (req.method !== "POST") {
-        customResponse.status = 405;
-        customResponse.message = "Method Not Allowed";
-        customResponse.errors = "Method Not Allowed";
-        customResponse.data = {};
-        return res.status(405).json(customResponse);
+        return res.status(405).json(
+            new CustomResponse(405, "Method Not Allowed", "Method Not Allowed", {})
+        );
     }
 
     const { email, type } = req.body;
 
     if (!email || !type) {
-        customResponse.status = 400;
-        customResponse.message = "Faltan campos por llenar";
-        customResponse.errors = "Faltan campos por llenar";
-        customResponse.data = {};
-        return res.status(400).json(customResponse);
+        return res.status(400).json(
+            new CustomResponse(400, "Faltan campos por llenar", "Faltan campos por llenar", {})
+        );
     }
 
     // Check if email is valid
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-        customResponse.status = 400;
-        customResponse.message = "Correo electrónico inválido";
-        customResponse.errors = "Correo electrónico inválido";
-        customResponse.data = {};
-        return res.status(400).json(customResponse);
+        return res.status(400).json(
+            new CustomResponse(400, "Correo electrónico inválido", "Correo electrónico inválido", {})
+        );
     }
 
     const subscriber = await findSubscriber(email, type);
 
     if (subscriber) {
-        customResponse.status = 400;
-        customResponse.message = "Ya existe un usuario con este correo electrónico";
-        customResponse.errors = "Ya existe un usuario con este correo electrónico";
-        customResponse.data = {};
-        return res.status(400).json(customResponse);
+        return res.status(400).json(
+            new CustomResponse(400, "Ya existe un usuario con este correo electrónico", "Ya existe un usuario con este correo electrónico", {})
+        );
     }
 
     if (type !== "waiting-list" && type !== "newsletter") {
-        customResponse.status = 400;
-        customResponse.message = "Tipo de suscripción inválido";
-        customResponse.errors = "Tipo de suscripción inválido";
-        customResponse.data = {
-            validTypes: ["waiting-list", "newsletter"]
-        };
-        return res.status(400).json(customResponse);
+        return res.status(400).json(
+            new CustomResponse(400, "Tipo de suscripción inválido", { validTypes: ["waiting-list", "newsletter"] }, "Tipo de suscripción inválido")
+        );
     }
 
     const date = new Date();
@@ -67,31 +54,19 @@ export default async function subscriber(req, res) {
     const { error } = response;
 
     if (error) {
-        customResponse.status = 500;
-        customResponse.message = "Error al insertar la suscripción";
-        customResponse.errors = "Error al insertar la suscripción";
-        customResponse.data = {
-            error: error
-        };
-        return res.status(500).json(customResponse);
+        return res.status(500).json(
+            new CustomResponse(500, "Error al insertar la suscripción", "Error al insertar la suscripción", { error: error })
+        );
     }
 
     if (response.acknowledged) {
-        customResponse.status = 200;
-        customResponse.message = "Suscripción insertada correctamente";
-        customResponse.errors = {};
-        customResponse.data = {
-            email,
-            type,
-            createdAt
-        };
-        return res.status(201).json(customResponse);
+        return res.status(201).json(
+            new CustomResponse(201, "Suscripción insertada correctamente", { email, type, createdAt }, {})
+        );
     } else {
-        customResponse.status = 500;
-        customResponse.message = "Error al guardar la suscripción";
-        customResponse.errors = "Error al guardar la suscripción";
-        customResponse.data = {};
-        return res.status(500).json(customResponse);
+        return res.status(500).json(
+            new CustomResponse(500, "Error al guardar la suscripción", "Error al guardar la suscripción", {})
+        );
     }
 
 }

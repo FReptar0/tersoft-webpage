@@ -12,6 +12,7 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
+import Router from 'next/router';
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().matches(
@@ -30,7 +31,6 @@ export default function Login() {
     };
 
     const handleSubmit = async (values) => {
-        console.log(values);
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -43,7 +43,6 @@ export default function Login() {
         });
 
         const data = await response.json();
-        console.log(data);
         if (data.status === 200) {
             Swal.fire({
                 title: 'Bienvenido!',
@@ -54,6 +53,7 @@ export default function Login() {
                 toast: true,
                 position: 'bottom-end',
             }).then(() => {
+                localStorage.setItem('token', data.data.token);
                 Router.push('/dashboard');
             });
         } else {

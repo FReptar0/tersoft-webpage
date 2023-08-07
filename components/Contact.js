@@ -44,7 +44,6 @@ const ContactForm = () => {
 
     const handleSubmit = async (values, { resetForm }) => {
         const { nombre, apellido, correo, empresa, comentario, sitioWeb } = values;
-        console.log(values);
         const data = {
             "nombre": nombre,
             "apellido": apellido,
@@ -60,7 +59,6 @@ const ContactForm = () => {
             // Store the IP address to block the access to the website
             const ip = await axios.get('https://api.ipify.org?format=json')
                 .then((response) => response.data.ip).catch((error) => {
-                    console.log(error)
                     localStorage.setItem('ip', 'isBot');
                 });
             localStorage.setItem('ip', ip);

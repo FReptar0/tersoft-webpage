@@ -2,23 +2,18 @@ import nodemailer from "nodemailer";
 import CustomResponse from "@/utils/CustomeResponse";
 
 export default async function mailsender(req, res) {
-    const customResponse = new CustomResponse();
     if (req.method !== "POST") {
-        customResponse.status = 405;
-        customResponse.message = "Method Not Allowed";
-        customResponse.errors = "Method Not Allowed";
-        customResponse.data = {};
-        return res.status(405).json(customResponse);
+        return res.status(405).json(
+            new CustomResponse(405, "Method Not Allowed", "Method Not Allowed", {})
+        );
     }
 
     const { nombre, apellido, telefono, correo, empresa, comentario, sitioWeb } = req.body;
 
     if (!nombre || !apellido || !telefono || !correo || !empresa) {
-        customResponse.status = 400;
-        customResponse.message = "Faltan campos por llenar";
-        customResponse.errors = "Faltan campos por llenar";
-        customResponse.data = {};
-        return res.status(400).json(customResponse);
+        return res.status(400).json(
+            new CustomResponse(400, "Faltan campos por llenar", "Faltan campos por llenar", {})
+        );
     }
 
     try {
@@ -52,16 +47,12 @@ Sitio web: ${sitioWeb}`
 
         await transporter.sendMail(mailOptions);
 
-        customResponse.status = 200;
-        customResponse.message = "Correo electrónico enviado";
-        customResponse.errors = null;
-        customResponse.data = {};
-        return res.status(200).json(customResponse);
+        return res.status(200).json(
+            new CustomResponse(200, "Correo electrónico enviado", {}, {})
+        );
     } catch (error) {
-        customResponse.status = 500;
-        customResponse.message = "Error al enviar el correo electrónico";
-        customResponse.errors = error;
-        customResponse.data = {};
-        return res.status(500).json(customResponse);
+        return res.status(500).json(
+            new CustomResponse(500, "Error al enviar el correo electrónico", error, {})
+        );
     }
 }

@@ -41,7 +41,6 @@ export default function SignUp() {
     };
 
     const handleSubmit = async (values) => {
-        console.log(values);
         const response = await fetch('/api/register', {
             method: 'POST',
             headers: {
@@ -57,7 +56,6 @@ export default function SignUp() {
         });
 
         const data = await response.json();
-        console.log(data);
         if (data.status === 200) {
             Swal.fire({
                 title: 'Haz creado tu cuenta exitosamente!',

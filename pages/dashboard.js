@@ -13,6 +13,8 @@ import {
 import { FiUser, FiLogOut, FiMenu, FiX, FiXCircle, FiXOctagon, FiXSquare } from 'react-icons/fi';
 import { SidebarPushable, Sidebar, Menu } from 'semantic-ui-react';
 import Loader from '@/components/Loader';
+import Router from 'next/router';
+import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 
 
@@ -32,10 +34,32 @@ const Dashboard = () => {
 
         window.addEventListener('resize', handleResize);
 
+        if (!localStorage.getItem('token'))
+            Router.push('/login');
+
+        handleAuth().catch(() => {
+            Router.push('/login');
+        });
+
         return () => {
             window.removeEventListener('resize', handleResize);
         }
     });
+
+    const handleAuth = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.post('/api/tokenauth', { token: token });
+            if (response.status === 200) {
+            } else {
+                localStorage.removeItem('token');
+                Router.push('/login');
+            }
+        } catch (error) {
+            localStorage.removeItem('token');
+            Router.push('/login');
+        }
+    }
 
     const handleResize = () => {
         if (window.innerWidth < 768)
@@ -156,13 +180,16 @@ const Dashboard = () => {
                                             (<></>)
                                         }
                                         {/* Botón de Cerrar sesión */}
-                                        <Link mb='5' onClick={() => console.log('Cerrar sesión')}>
+                                        <Link mb='5' onClick={() => {
+                                            localStorage.removeItem('token');
+                                            Router.push('/login');
+                                        }}>
                                             <Icon as={FiLogOut} boxSize="16px" />
                                             <Text fontSize="14px">Cerrar sesión</Text>
                                         </Link>
 
                                         {/* Enlace de Perfil */}
-                                        <Link href="./profile" onClick={() => console.log('Perfil')}>
+                                        <Link href="./profile">
                                             <Icon as={FiUser} boxSize="16px" />
                                             <Text fontSize="14px">Perfil</Text>
                                         </Link>

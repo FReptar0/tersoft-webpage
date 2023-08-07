@@ -35,7 +35,6 @@ export default function AuthCard() {
             const data = await response.json();
 
             if (data.status === 200) {
-                console.log(data);
                 Router.push('/dashboard');
             } else {
                 localStorage.removeItem('token');
@@ -43,9 +42,8 @@ export default function AuthCard() {
         }
 
         if (token) {
-            handleToken().catch((error) => {
+            handleToken().catch(() => {
                 localStorage.removeItem('token');
-                console.log(error);
             });
         }
     }, []);
@@ -78,9 +76,9 @@ export default function AuthCard() {
                                 <SignUp />
                                 <Stack pt={6}>
                                     <Text align={'center'}>
-                                        ¿Aún no tienes una cuenta?{' '}
+                                        ¿Ya tienes una cuenta? {' '}
                                         <ChakraLink color={'blue.400'} onClick={toggleCard} cursor="pointer">
-                                            Regístrate
+                                            Iniciar sesión
                                         </ChakraLink>
                                     </Text>
                                 </Stack>
@@ -90,9 +88,9 @@ export default function AuthCard() {
                                 <Login />
                                 <Stack pt={6}>
                                     <Text align={'center'}>
-                                        ¿Ya tienes una cuenta? {' '}
+                                        ¿Aún no tienes una cuenta?
                                         <ChakraLink color={'blue.400'} onClick={toggleCard} cursor="pointer">
-                                            Iniciar sesión
+                                        {' '}Regístrate
                                         </ChakraLink>
                                     </Text>
                                 </Stack>
