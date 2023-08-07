@@ -41,6 +41,7 @@ export default function Profile() {
     const [showOldPassword, setShowOldPassword] = useState(false);
     const [isBeingEdited, setIsBeingEdited] = useState(false);
     const [isClient, setIsClient] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState({
         name: '',
         lastname: '',
@@ -136,6 +137,7 @@ export default function Profile() {
                     company: data.data.decoded.company,
                     role: capitalizedRole,
                 });
+                setIsLoading(false);
             } else {
                 localStorage.removeItem('token');
                 Router.push('/login');
@@ -148,7 +150,7 @@ export default function Profile() {
     }
 
     return (
-        isClient ? (<React.Fragment>
+        isClient ? (isLoading ? (<Loader />) : (<React.Fragment>
             <Header />
             <Box>
                 <Image src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' alt="Cover Image" objectFit="cover" w="100%" h={300} />
@@ -348,6 +350,6 @@ export default function Profile() {
                     </VStack>
                 </Box>
             </Grid>
-        </React.Fragment>) : (<Loader />)
+        </React.Fragment>)) : (<Loader />)
     );
 }

@@ -22,6 +22,7 @@ const Dashboard = () => {
     const [visible, setVisible] = useState(true);
     const [isMobile, setIsMobile] = useState(false);
     const [isClient, setIsClient] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleClick = () => {
         setVisible(!visible);
@@ -51,6 +52,7 @@ const Dashboard = () => {
             const token = localStorage.getItem('token');
             const response = await axios.post('/api/tokenauth', { token: token });
             if (response.status === 200) {
+                setIsLoading(false);
             } else {
                 localStorage.removeItem('token');
                 Router.push('/login');
@@ -70,7 +72,7 @@ const Dashboard = () => {
 
     return (
         isClient ? (
-            <Flex w="full" h="full" overflow="hidden">
+            !isLoading ?(<Flex w="full" h="full" overflow="hidden">
                 <SidebarPushable
                     as={Box}
                     bg="gray.400" // Color del contenido del dashboard
@@ -232,7 +234,7 @@ const Dashboard = () => {
                         </Flex>
                     </Sidebar.Pusher>
                 </SidebarPushable>
-            </Flex >) : (<Loader />)
+            </Flex >) : (<Loader />)) : (<Loader />)
     );
 };
 
