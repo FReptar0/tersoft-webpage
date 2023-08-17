@@ -56,25 +56,21 @@ export default function GridList() {
                         heading={'Consultoría'}
                         icon={<Icon as={FcAssistant} w={10} h={10} />}
                         description={'El compromiso con nuestros clientes es que tengan Sage 300 funcionando eficientemente y que tanto sus colaboradores como sus clientes y proveedores formen parte de este ecosistema de eficiencia empresarial. Tersoft identificará los problemas que usted aún no conoce de su empresa y los solucionará.'}
-                        href={'#'}
                     />
                     <Card
                         heading={'Desarrollo'}
                         icon={<Icon as={DiCode} color={'orange.400'} w={'14'} h={'14'} />}
                         description={'¿Su empresa necesita de módulos hechos a la medida para cumplir con algún valor agregado que la diferencie de sus competidores? Estamos para ayudarle porque somos Developer Partner de Sage y tenemos la experiencia necesaria para que usted no se preocupe.'}
-                        href={'#'}
                     />
                     <Card
                         heading={'Soluciones y servicios Cloud'}
                         icon={<Icon as={BsFillCloudFill} color={'blue.500'} w={10} h={10} />}
                         description={'¿Sus empleados trabajan desde casa, en sus oficinas o de forma híbrida? ¡Perfecto! Nosotros somos Partner de Net at Cloud para que Sage 300 sea hospedado en la nube y esté 100% disponible en cualquier momento y lugar.'}
-                        href={'#'}
                     />
                     <Card
                         heading={'Capacitación'}
                         icon={<Icon as={FcCollaboration} w={10} h={10} />}
                         description={'Las empresas que capacitan a sus equipos son más eficientes y exitosas. Tersoft brinda capacitación continua y actualizada para la parte más importante de su compañía: sus colaboradores.'}
-                        href={'#'}
                     />
                     <Card
                         heading={'Integraciones'}
@@ -86,7 +82,6 @@ Muchos de nuestros clientes tienen sus corporativos en Canadá o Estados Unidos 
 con Sage 300. Nosotros implementamos las compañías en México para que cubran las
 necesidades fiscales, financieras y operativas del país, y puedan ser una extensión de las
 operaciones en ambos países.'}
-                        href={'#'}
                     />
                 </Flex>
             </Container>
