@@ -1,5 +1,7 @@
 import { Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 export default function CallToActionWithVideo() {
     return (
@@ -38,15 +40,8 @@ export default function CallToActionWithVideo() {
                     </Stack>
                     <Flex flex={1} justify={'center'} align={'center'} position={'relative'} w={'full'}>
                         <Blob w={'150%'} h={'150%'} position={'absolute'} top={'-20%'} left={0} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
-                        <Box position={'relative'} height={'300px'} rounded={'2xl'} boxShadow={'2xl'} width={'full'} overflow={'hidden'}>
-                            <Image
-                                alt={'Hero Image'}
-                                fit={'cover'}
-                                align={'center'}
-                                w={'100%'}
-                                h={'100%'}
-                                src={'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'}
-                            />
+                        <Box minH={'400px'} maxH={'auto'} rounded={'2xl'} boxShadow={'2xl'} width={'400px'} overflow={'hidden'}>
+                            <FormComponent />
                         </Box>
                     </Flex>
                 </Stack>
@@ -65,5 +60,91 @@ const Blob = (props) => {
                 fill="currentColor"
             />
         </Icon>
+    );
+};
+
+const FormComponent = () => {
+    const initialValues = {
+        name: '',
+        phoneNumber: '',
+        email: '',
+    };
+
+    const validationSchema = Yup.object({
+        name: Yup.string().required('Campo requerido'),
+        phoneNumber: Yup.string()
+            .required('Campo requerido')
+            .matches(/^[0-9]+$/, 'Debe ser un número')
+            .min(10, 'Debe tener 10 dígitos')
+            .max(10, 'Debe tener 10 dígitos'),
+        email: Yup.string().email('Formato de correo inválido').required('Campo requerido'),
+    });
+
+    const handleSubmit = (values) => {
+        console.log(values);
+        // Aquí puedes agregar la lógica para enviar los datos
+    };
+
+    return (
+        <Box
+            position={'relative'}
+            minH={'400px'}
+            maxH={'auto'}
+            rounded={'2xl'}
+            boxShadow={'2xl'}
+            width={'full'}
+            overflow={'hidden'}
+            padding={'20px'}
+            textAlign={'center'}
+            bg={useColorModeValue('white', 'gray.900')}
+            shadow={'xl'}
+        >
+            <Heading as={'h2'} size={'md'} marginBottom={'30px'}>
+                ¡Aplique para una implementacion gratuita!
+            </Heading>
+
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                {({ isSubmitting }) => (
+                    <Form>
+                        <div>
+                            <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
+                                Nombre completo:
+                            </Text>
+                            <Field type="text" name="name" placeholder="Nombre" className="form-control mb-3" />
+                            <ErrorMessage name="name" component="div" className="text-danger" />
+                        </div>
+                        <div>
+                            <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
+                                Número de teléfono:
+                            </Text>
+                            <Field type="text" name="phoneNumber" placeholder="Teléfono" className="form-control mb-3" />
+                            <ErrorMessage name="phoneNumber" component="div" className="text-danger" />
+                        </div>
+                        <div>
+                            <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
+                                Correo electrónico:
+                            </Text>
+                            <Field type="email" name="email" placeholder="Correo" className="form-control mb-3" />
+                            <ErrorMessage name="email" component="div" className="text-danger" />
+                        </div>
+                        <Button
+                            type="submit"
+                            rounded={'full'}
+                            size={'lg'}
+                            fontWeight={'normal'}
+                            px={6}
+                            colorScheme={'green'}
+                            bg={'green.400'}
+                            _hover={{ bg: 'green.500' }}
+                            disabled={isSubmitting}
+                            mx={'auto'}
+                            marginTop={'10px'}
+                        >
+                            ¡ Aplicar ahora !
+                        </Button>
+                    </Form>
+                )}
+            </Formik>
+        </Box>
     );
 };
