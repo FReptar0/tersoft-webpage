@@ -83,8 +83,6 @@ export default function GridList() {
     'necesidades fiscales, financieras y operativas del país, y puedan ser una extensión de las ' +
     'operaciones en ambos países.'}
 />
-
-                    />
                 </Flex>
             </Container>
         </Box>
