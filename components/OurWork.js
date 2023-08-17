@@ -1,5 +1,8 @@
-import { Box, Button, Container, Flex, Heading, Icon, Stack, Text, useColorModeValue } from '@chakra-ui/react';
-import { FcAbout, FcAssistant, FcCollaboration, FcDonate, FcManager } from 'react-icons/fc';
+import { Box, Container, Flex, Heading, Icon, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { FcAssistant, FcCollaboration, FcServices } from 'react-icons/fc';
+import { BsFillCloudFill } from 'react-icons/bs';
+import { DiCode } from "react-icons/di";
+
 
 function Card({ heading, description, icon, href }) {
     return (
@@ -29,9 +32,6 @@ function Card({ heading, description, icon, href }) {
                         {description}
                     </Text>
                 </Box>
-                <Button variant={'link'} colorScheme={'blue'} size={'sm'} href={href}>
-                    Learn more
-                </Button>
             </Stack>
         </Box>
     );
@@ -53,32 +53,32 @@ export default function GridList() {
             <Container maxW={'5xl'} mt={12}>
                 <Flex flexWrap="wrap" gridGap={6} justify="center">
                     <Card
-                        heading={'Heading'}
+                        heading={'Consultoría'}
                         icon={<Icon as={FcAssistant} w={10} h={10} />}
-                        description={'Lorem ipsum dolor sit amet catetur, adipisicing elit.'}
+                        description={'El compromiso con nuestros clientes es que tengan Sage 300 funcionando eficientemente y que tanto sus colaboradores como sus clientes y proveedores formen parte de este ecosistema de eficiencia empresarial. Tersoft identificará los problemas que usted aún no conoce de su empresa y los solucionará.'}
                         href={'#'}
                     />
                     <Card
-                        heading={'Heading'}
+                        heading={'Desarrollo'}
+                        icon={<Icon as={DiCode} color={'orange.400'} w={'14'} h={'14'} />}
+                        description={'¿Su empresa necesita de módulos hechos a la medida para cumplir con algún valor agregado que la diferencie de sus competidores? Estamos para ayudarle porque somos Developer Partner de Sage y tenemos la experiencia necesaria para que usted no se preocupe.'}
+                        href={'#'}
+                    />
+                    <Card
+                        heading={'Soluciones y servicios Cloud'}
+                        icon={<Icon as={BsFillCloudFill} color={'blue.500'} w={10} h={10} />}
+                        description={'¿Sus empleados trabajan desde casa, en sus oficinas o de forma híbrida? ¡Perfecto! Nosotros somos Partner de Net at Cloud para que Sage 300 sea hospedado en la nube y esté 100% disponible en cualquier momento y lugar.'}
+                        href={'#'}
+                    />
+                    <Card
+                        heading={'Capacitación'}
                         icon={<Icon as={FcCollaboration} w={10} h={10} />}
-                        description={'Lorem ipsum dolor sit amet catetur, adipisicing elit.'}
+                        description={'Las empresas que capacitan a sus equipos son más eficientes y exitosas. Tersoft brinda capacitación continua y actualizada para la parte más importante de su compañía: sus colaboradores.'}
                         href={'#'}
                     />
                     <Card
-                        heading={'Heading'}
-                        icon={<Icon as={FcDonate} w={10} h={10} />}
-                        description={'Lorem ipsum dolor sit amet catetur, adipisicing elit.'}
-                        href={'#'}
-                    />
-                    <Card
-                        heading={'Heading'}
-                        icon={<Icon as={FcManager} w={10} h={10} />}
-                        description={'Lorem ipsum dolor sit amet catetur, adipisicing elit.'}
-                        href={'#'}
-                    />
-                    <Card
-                        heading={'Heading'}
-                        icon={<Icon as={FcAbout} w={10} h={10} />}
+                        heading={'Integraciones'}
+                        icon={<Icon as={FcServices} w={10} h={10} />}
                         description={'Lorem ipsum dolor sit amet catetur, adipisicing elit.'}
                         href={'#'}
                     />
