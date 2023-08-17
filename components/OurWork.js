@@ -42,11 +42,11 @@ export default function GridList() {
         <Box p={4}>
             <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
                 <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'}>
-                    Short heading
+                    Nuestros servicios
                 </Heading>
                 <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis obcaecati ut cupiditate pariatur,
-                    dignissimos, placeat amet officiis.
+                    En Tersoft estamos 100% orientados a las necesidades de nuestros clientes, es por eso
+que los servicios que ofrecemos son de la más alta calidad
                 </Text>
             </Stack>
 
