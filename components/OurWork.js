@@ -79,7 +79,13 @@ export default function GridList() {
                     <Card
                         heading={'Integraciones'}
                         icon={<Icon as={FcServices} w={10} h={10} />}
-                        description={'Lorem ipsum dolor sit amet catetur, adipisicing elit.'}
+                        description={'Integramos Sage 300 con las plataformas que su empresa esté utilizando actualmente para
+potenciar las soluciones y los resultados que su empresa requiere.
+Expandimos su empresa a Mexico y Latinoamerica
+Muchos de nuestros clientes tienen sus corporativos en Canadá o Estados Unidos y operan
+con Sage 300. Nosotros implementamos las compañías en México para que cubran las
+necesidades fiscales, financieras y operativas del país, y puedan ser una extensión de las
+operaciones en ambos países.'}
                         href={'#'}
                     />
                 </Flex>
