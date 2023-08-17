@@ -4,7 +4,7 @@ import { BsFillCloudFill } from 'react-icons/bs';
 import { DiCode } from "react-icons/di";
 
 
-function Card({ heading, description, icon, href }) {
+function Card({ heading, description, icon}) {
     return (
         <Box
             maxW={{ base: 'full', md: '275px' }}
