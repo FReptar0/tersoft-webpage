@@ -22,12 +22,13 @@ const TeamMember = ({ src, name, role }) => {
                 borderRadius="lg"
                 overflow="hidden"
                 boxShadow="lg"
+                height="500px"
             >
-                <Image src={src} alt={name} width={250} height={350} />
+                <Image src={src} alt={name} width={350} height={350} />
                 <Box p="6">
                     <Stack spacing={0} align="center">
-                        <Text fontWeight={600} fontSize={'2xl'}>{name}</Text>
-                        <Text fontSize="lg" fontWeight={'bold'} color={'green.600'}>
+                        <Text fontWeight={600} fontSize={'2xl'} textAlign={'center'}>{name}</Text>
+                        <Text fontSize="lg" fontWeight={'bold'} textAlign={'center'} color={'green.600'}>
                             {role}
                         </Text>
                     </Stack>
@@ -41,46 +42,52 @@ const Team = () => {
     const teamMembers = [
         {
             id: 1,
-            name: 'John Doe',
-            role: 'CEO',
-            image:
-                'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+            name: 'José Alberto Hernández González',
+            role: 'Director General',
+            image: '/team/Alberto-Hernandez.png',
         },
         {
             id: 2,
-            name: 'Jane Smith',
-            role: 'CTO',
-            image:
-                'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+            name: 'Santiago Peláez Jimenez',
+            role: 'Líder de Proyecto Técnico',
+            image: '/team/Santiago-Jimenez.png',
         },
         {
             id: 3,
-            name: 'Mark Johnson',
-            role: 'Product Manager',
-            image:
-                'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+            name: 'Yadira Romero Bono',
+            role: 'Líder de Proyecto Funcional',
+            image: '/team/Yadira-Romero.png',
         },
         {
             id: 4,
-            name: 'John Doe',
-            role: 'CEO',
-            image:
-                'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+            name: 'Joel Vergara Sánchez',
+            role: 'Líder de Proyecto Funcional',
+            image: '/team/Joel-Vergara.png',
         },
         {
             id: 5,
-            name: 'Jane Smith',
-            role: 'CTO',
-            image:
-                'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+            name: 'Hortensia Mares López',
+            role: 'Líder de Proyecto Técnico',
+            image: '/team/Hortensia-Mares.png',
         },
         {
             id: 6,
-            name: 'Mark Johnson',
-            role: 'Product Manager',
-            image:
-                'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80',
+            name: 'Sandra Peláez Jimenez',
+            role: 'Consultora Especializada',
+            image: '/team/Sandra-Pelaez.png',
         },
+        {
+            id: 7,
+            name: 'Brenda Sarahi Ortiz López',
+            role: 'Consultora Especializada',
+            image: '/team/Brenda-Ortiz.png',
+        },
+        {
+            id: 8,
+            name: 'Manuel Álvarez',
+            role: 'Consultor Especializado',
+            image: '/team/Manuel-Alvarez.png',
+        }
         // Agrega más miembros del equipo aquí
     ];
 
@@ -88,8 +95,8 @@ const Team = () => {
         dots: true,
         infinite: true,
         speed: 1500,
-        slidesToShow: 3.66,
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 2,
         responsive: [
             {
                 breakpoint: 768,
