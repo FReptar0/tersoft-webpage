@@ -148,7 +148,7 @@ const ContactForm = () => {
                                 Contáctanos
                             </Heading>
                             <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis obcaecati ut cupiditate pariatur, dignissimos, placeat amet officiis.
+                                Inicia el camino hacia el cambio de tu empresa. Déjanos tu información para que nos pongamos en contacto a la brevedad.
                             </Text>
                         </Stack>
                         <Grid templateColumns="repeat(2, 1fr)" gap="4">

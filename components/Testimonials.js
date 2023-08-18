@@ -65,7 +65,11 @@ const TestimonialText = ({ children }) => {
 const TestimonialAvatar = ({ src, name, title }) => {
     return (
         <Flex align={'center'} mt={8} direction={'column'}>
-            <Image src={src} alt={name} width={50} height={50} className='rounded-circle mb-2' />
+            <Image src={src} alt={name} width={50} height={50} style={{
+                maxHeight: '50px',
+                minWidth: '50px',
+            }} 
+            className='rounded-circle mb-2' />
             <Stack spacing={-1} align={'center'}>
                 <Text fontWeight={600}>{name}</Text>
                 <Text fontSize={'sm'} color={useColorModeValue('gray.600', 'gray.400')}>
@@ -84,8 +88,7 @@ const CarruselTestimonial = () => {
             text:
                 'Hemos trabajado con Tersoft desde el año 2006 como nuestros consultores especializados en Sage 300, logrando automatizar significativamente nuestras operaciones hasta el grado de contar con un e-commerce completamente integrado con Sage 300 así como enviar y recibir órdenes de compra a través de un EDI. El equipo Tersoft apoya 24/7 en las operación de nuestra empresa siempre con resultados sorprendentes',
             name: 'Enrique Reyna',
-            image:
-                'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=100&q=80',
+            image: '/testimonials/enrique-reyna.jpeg',
         },
         {
             id: 2,
@@ -93,8 +96,7 @@ const CarruselTestimonial = () => {
             text:
                 'Varios ERP pueden cumplir con los requisitos que uno busca, pero pocos cuentan con un equipo humano dispuesto y comprometido a que la instalación del sistema en la operación del cliente sea exitosa. SAGE 300 y TERSOFT tienen ese compromiso y disponibilidad.',
             name: 'Adolfo Quintana',
-            image:
-                'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=100&q=80',
+            image:'/testimonials/Adolfo-quintana.jpg',
         },
         {
             id: 3,
@@ -102,8 +104,7 @@ const CarruselTestimonial = () => {
             text:
                 'Desde hace más de 9 años sostenemos una relación comercial con Tersoft, quien se ha convertido en nuestro aliado comercial, recibiendo desde entonces un excelente servicio por parte de todos sus asociados en todos y cada uno de los requerimientos relacionados a la operación y desarrollo de nuestro ERP Sage 300.',
             name: 'Edmundo Corona',
-            image:
-                'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=100&q=80',
+            image: '/testimonials/edmundo-corona.jpg',
         },
         {
             id: 4,
@@ -111,17 +112,7 @@ const CarruselTestimonial = () => {
             text:
                 'Tenemos 16 años contando con los servicios de consultoría especializada en Sage 300, siempre con compromiso, seriedad y profesionalismo.',
             name: 'Monserrat Ruíz',
-            image:
-                'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=100&q=80',
-        },
-        {
-            id: 5,
-            heading: 'Efficient Collaborating',
-            text:
-                'Desde hace 10 anos hemos trabajado con Yadira Romero y Hortensia Mares como nuestros consultores en Sage; gracias a su soporte y dedicación hemos logrado integrar nuestros procesos operativos con Sage muy fácil y eficientemente, logrando los resultados requeridos desde la implementación. Hasta la fecha, en colaboración con Tersoft podemos actualizar mediante Sage diversos procesos necesarios tanto para compras como facturación y cobranza.',
-            name: 'Araceli Pastrana',
-            image:
-                'https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=100&q=80',
+            image:'/testimonials/Monserrat-Ruiz.jpg'
         },
     ];
 

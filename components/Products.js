@@ -1,21 +1,30 @@
 import { Box, Button, Divider, Heading, Stack, Text } from '@chakra-ui/react';
+import Router from 'next/router';
+import React, { useState } from 'react';
 
 const optionsSage = {
     id: 1,
     desc: 'Para potenciar su crecimiento, es esencial una herramienta avanzada que integre departamentos y se adapte a expansiones y consolidaciones. Sage 300 es la solución a sus problemas.',
     button: {
+        id: 'sage300',
         text: 'Ver más',
         colorScheme: 'green',
+        redirect: () => {
+            Router.push('/sage');
+        },
     },
 };
 
 const optionsModulosFiscales = {
     id: 2,
     desc: 'En Tersoft hemos desarrollado todos los módulos fiscales necesarios para operar en México y algunos países de América Latina. La facturación electrónica, contabilidad electrónica, generación automática de DIOT, reportes de impuestos, flujo de caja, etc.',
-    needButton: false,
     button: {
+        id: 'modulos-fiscales',
         text: 'Ver más',
         colorScheme: 'green',
+        redirect: () => {
+            Router.push('/modulos-fiscales');
+        },
     },
 };
 
@@ -23,8 +32,12 @@ const optionsSageconnect = {
     id: 3,
     desc: 'Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar, previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.',
     button: {
+        id: 'sageconnect',
         text: 'Ver más',
         colorScheme: 'green',
+        redirect: () => {
+            Router.push('/sageconnect');
+        },
     },
 };
 
@@ -32,8 +45,12 @@ const optionsEDI = {
     id: 4,
     desc: 'Disfrute de un procesamiento de transacciones más rápido y preciso con el mejor software de intercambio electrónico de datos (EDI) del mercado.',
     button: {
+        id: 'edi',
         text: 'Ver más',
         colorScheme: 'green',
+        redirect: () => {
+            Router.push('/edi');
+        },
     },
 };
 
@@ -41,13 +58,18 @@ const optionsModulosTersoft = {
     id: 5,
     desc: 'En Tersoft, desarrollamos módulos para Sage 300, atendiendo necesidades empresariales en México: dispersión bancaria, aprobación de compras, gestión de vales de almacén y respaldos automáticos.',
     button: {
+        id: 'modulos-tersoft',
         text: 'Ver más',
         colorScheme: 'green',
+        redirect: () => {
+            Router.push('/modulos-tersoft');
+        },
     },
 };
 
 
 const PackageTier = ({ title, options }) => {
+    const [isLoading, setIsLoading] = useState(false);
     return (
         <Stack
             p={5}
@@ -90,16 +112,17 @@ const PackageTier = ({ title, options }) => {
                 alignItems={'center'}
             >
                 <Button
+                    id={options.button.id}
                     colorScheme={options.button.colorScheme}
                     variant={'solid'}
                     width={'50%'}
                     onClick={() => {
-                        document.getElementById(options.id).scrollIntoView({
-                            behavior: 'smooth',
-                        });
+                        setIsLoading(true);
+                        options.button.redirect();
                     }}
+                    isLoading={isLoading}
                 >
-                    {options.button.text}
+                    {!isLoading ? options.button.text : ''}
                 </Button>
             </Stack>
         </Stack>

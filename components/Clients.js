@@ -26,11 +26,10 @@ const ClientsCard = () => {
             <Box>
                 <Flex direction="column" align="center" justify="center" height="100%">
                     <Heading fontSize={{ base: '2xl', sm: '3xl' }} fontWeight="bold" mb={4}>
-                        Headin para clientes
+                        Nuestros clientes
                     </Heading>
                     <Text color="dark.600" fontSize={{ base: 'sm', sm: 'md' }} textAlign="center">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum quas
-                        voluptates, voluptate, quod quibusdam quia quos doloribus quae quidem
+                        Nosotros existimos gracias a nuestros clientes a quienes consideramos nuestros socios de negocios.
                     </Text>
                 </Flex>
             </Box>
