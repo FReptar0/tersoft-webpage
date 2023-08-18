@@ -4,7 +4,7 @@ import { BsFillCloudFill } from 'react-icons/bs';
 import { DiCode } from "react-icons/di";
 
 
-function Card({ heading, description, icon}) {
+function Card({ heading, description, icon }) {
     return (
         <Box
             maxW={{ base: 'full', md: '275px' }}
@@ -46,7 +46,7 @@ export default function GridList() {
                 </Heading>
                 <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }}>
                     En Tersoft estamos 100% orientados a las necesidades de nuestros clientes, es por eso
-que los servicios que ofrecemos son de la más alta calidad
+                    que los servicios que ofrecemos son de la más alta calidad
                 </Text>
             </Stack>
 
@@ -73,16 +73,10 @@ que los servicios que ofrecemos son de la más alta calidad
                         description={'Las empresas que capacitan a sus equipos son más eficientes y exitosas. Tersoft brinda capacitación continua y actualizada para la parte más importante de su compañía: sus colaboradores.'}
                     />
                     <Card
-    heading={'Integraciones'}
-    icon={<Icon as={FcServices} w={10} h={10} />}
-    description={'Integramos Sage 300 con las plataformas que su empresa esté utilizando actualmente para ' +
-    'potenciar las soluciones y los resultados que su empresa requiere. ' +
-    'Expandimos su empresa a Mexico y Latinoamerica. ' +
-    'Muchos de nuestros clientes tienen sus corporativos en Canadá o Estados Unidos y operan ' +
-    'con Sage 300. Nosotros implementamos las compañías en México para que cubran las ' +
-    'necesidades fiscales, financieras y operativas del país, y puedan ser una extensión de las ' +
-    'operaciones en ambos países.'}
-/>
+                        heading={'Integraciones'}
+                        icon={<Icon as={FcServices} w={10} h={10} />}
+                        description={'Integramos Sage 300 con sus sistemas actuales para optimizar soluciones. Facilitamos la expansión de su empresa a México y Latinoamérica, adaptando operaciones para cumplir con requisitos locales y ser una extensión operativa en Canadá y Estados Unidos.'}
+                    />
                 </Flex>
             </Container>
         </Box>

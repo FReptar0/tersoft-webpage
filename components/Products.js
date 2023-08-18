@@ -1,64 +1,105 @@
-import { Box, Button, Divider, Heading, List, ListItem, Stack, Text, useColorModeValue } from '@chakra-ui/react';
-import { FaCheckCircle } from 'react-icons/fa';
+import { Box, Button, Divider, Heading, Stack, Text } from '@chakra-ui/react';
 
-const options = [
-    { id: 1, desc: '1 lorem ipsum' },
-    { id: 2, desc: 'Lorem, ipsum dolor.' },
-    { id: 3, desc: 'Monthly Updates' },
-];
+const optionsSage = {
+    id: 1,
+    desc: 'Para potenciar su crecimiento, es esencial una herramienta avanzada que integre departamentos y se adapte a expansiones y consolidaciones. Sage 300 es la solución a sus problemas.',
+    button: {
+        text: 'Ver más',
+        colorScheme: 'green',
+    },
+};
 
-const PackageTier = ({ title, subtitle, options }) => {
+const optionsModulosFiscales = {
+    id: 2,
+    desc: 'En Tersoft hemos desarrollado todos los módulos fiscales necesarios para operar en México y algunos países de América Latina. La facturación electrónica, contabilidad electrónica, generación automática de DIOT, reportes de impuestos, flujo de caja, etc.',
+    needButton: false,
+    button: {
+        text: 'Ver más',
+        colorScheme: 'green',
+    },
+};
+
+const optionsSageconnect = {
+    id: 3,
+    desc: 'Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar, previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.',
+    button: {
+        text: 'Ver más',
+        colorScheme: 'green',
+    },
+};
+
+const optionsEDI = {
+    id: 4,
+    desc: 'Disfrute de un procesamiento de transacciones más rápido y preciso con el mejor software de intercambio electrónico de datos (EDI) del mercado.',
+    button: {
+        text: 'Ver más',
+        colorScheme: 'green',
+    },
+};
+
+const optionsModulosTersoft = {
+    id: 5,
+    desc: 'En Tersoft, desarrollamos módulos para Sage 300, atendiendo necesidades empresariales en México: dispersión bancaria, aprobación de compras, gestión de vales de almacén y respaldos automáticos.',
+    button: {
+        text: 'Ver más',
+        colorScheme: 'green',
+    },
+};
+
+
+const PackageTier = ({ title, options }) => {
     return (
         <Stack
             p={5}
-            py={3}
+            alignItems={'center'}
             justifyContent={{
-                base: 'flex-center',
+                base: 'flex-start',
                 md: 'space-around',
             }}
             direction={{
                 base: 'column',
                 md: 'row',
             }}
-            alignItems={{ md: 'center' }}
-            textAlign={'center'}
         >
             <Stack
+                width={{
+                    base: '100%',
+                    md: '40%',
+                }}
                 textAlign={'center'}
-                alignItems={'center'}
-                justifyContent={'center'}
-                flex={{ base: 1, md: 0 }}
-                maxW={'220px'}
-                minW={'220px'}
-                className='package-tier'
             >
-                <Heading>{title}</Heading>
-                <Text fontWeight={600} color={'green.500'} mb={4}>
-                    {subtitle}
+                <Heading size={'lg'}>
+                    {title}
+                </Heading>
+            </Stack>
+            <Stack
+                width={{
+                    base: '100%',
+                    md: '30%',
+                }}
+            >
+                <Text textAlign={'center'} id={options.id}>
+                    {options.desc}
                 </Text>
             </Stack>
-            <List spacing={0} textAlign="start">
-                {options.map((desc) => (
-                    <ListItem key={desc.id} display="flex" alignItems="center">
-                        <FaCheckCircle color='green' />
-                        <Text m={2} verticalAlign="middle">
-                            {desc.desc}
-                        </Text>
-                    </ListItem>
-                ))}
-            </List>
-            <Stack>
+            <Stack
+                width={{
+                    base: '100%',
+                    md: '30%',
+                }}
+                alignItems={'center'}
+            >
                 <Button
-                    size="md"
-                    bgColor={'green.400'}
-                    color={'white'}
-                    _hover={{ bgColor: 'green.500' }}
-                    onClick={
-                        () => {
-                            Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft/demo-sage-300' }); return false;
-                        }}
+                    colorScheme={options.button.colorScheme}
+                    variant={'solid'}
+                    width={'50%'}
+                    onClick={() => {
+                        document.getElementById(options.id).scrollIntoView({
+                            behavior: 'smooth',
+                        });
+                    }}
                 >
-                    Solicita una demo
+                    {options.button.text}
                 </Button>
             </Stack>
         </Stack>
@@ -99,18 +140,21 @@ const TableProducts = () => {
                         }}
                     >
                         <Text textAlign={'center'}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quod in iure vero. Facilis magnam, sed officiis commodi labore odit.
+                            Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.
                         </Text>
                     </Stack>
                 </Stack>
+
                 <Divider />
-                <PackageTier title={'Sage 300'} subtitle={'Compra definitiva'} options={options} />
+                <PackageTier title={'Sage 300'} options={optionsSage} />
                 <Divider />
-                <PackageTier title={'Sage 300 Cloud'} subtitle={'Suscripción'} options={options} />
+                <PackageTier title={'Módulos fiscales'} options={optionsModulosFiscales} />
                 <Divider />
-                <PackageTier title={'CRM'} subtitle={'Suscripción'} options={options} />
+                <PackageTier title={'Sageconnect'} options={optionsSageconnect} />
                 <Divider />
-                <PackageTier title={'Desarrollos personalizados'} subtitle={'Compra definitiva'} options={options} />
+                <PackageTier title={'EDI'} options={optionsEDI} />
+                <Divider />
+                <PackageTier title={'Módulos Tersoft'} options={optionsModulosTersoft} />
                 <Divider />
             </Stack>
         </Box>
