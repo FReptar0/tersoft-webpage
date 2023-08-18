@@ -65,7 +65,9 @@
                                     justifyContent: 'center',
                                     alignItems: 'center',
                                     height: '100%',
-                                    marginInline: '10px',
+                                    marginRight: '20px',
+                                    width: '100%',
+                                    padding: '10px',
                                 }}
                             >
                                 <Image src={client.url} alt={client.alt}
