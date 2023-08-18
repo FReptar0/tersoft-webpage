@@ -6,19 +6,19 @@
 
     const ClientsCard = () => {
         const clientImages = [
-            { id: 1, url: '/clients/Aura-Minerals.png', alt: 'Aura Minerals' },
-            { id: 2, url: '/clients/CapstoneCopper.png', alt: 'Capstone Copper' },
-            { id: 3, url: '/clients/celupal.png', alt: 'Celupal' },
-            { id: 4, url: '/clients/Dormakaba.png', alt: 'Dormakaba' },
-            { id: 5, url: '/clients/Etiquetas-CCL.png', alt: 'Etiquetas CCL' },
-            { id: 6, url: '/clients/Ferragamo.png', alt: 'Ferragamo' },
+            { id: 1, url: '/clients/Sage-300-Aura-Minerals.png', alt: 'Aura Minerals' },
+            { id: 2, url: '/clients/Sage-300-CapstoneCopper.png', alt: 'Capstone Copper' },
+            { id: 3, url: '/clients/Sage-300-celupal.png', alt: 'Celupal' },
+            { id: 4, url: '/clients/Sage-300-Dormakaba.png', alt: 'Dormakaba' },
+            { id: 5, url: '/clients/Sage-300-Etiquetas-CCL.png', alt: 'Etiquetas CCL' },
+            { id: 6, url: '/clients/Sage-300-Ferragamo.png', alt: 'Ferragamo' },
             { id: 7, url: '/clients/Grupo-Dice-Cloud.png', alt: 'Grupo Dice Cloud' },
-            { id: 8, url: '/clients/Grupo-Dice.png', alt: 'Grupo Dice' },
-            { id: 9, url: '/clients/Heca-Global.png', alt: '' },
-            { id: 10, url: '/clients/imerys.png', alt: 'imerys' },
-            { id: 11, url: '/clients/Minera-Santo-Domingo.png', alt: 'Minera Santo Domingo' },
-            { id: 12, url: '/clients/resansil.png', alt: 'Resanil' },
-            { id: 13, url: '/clients/SJ-Medical.png', alt: 'SJ-Medical' },
+            { id: 8, url: '/clients/Sage-300-Grupo-Dice.png', alt: 'Grupo Dice' },
+            { id: 9, url: '/clients/Sage-300-Heca-Global.png', alt: '' },
+            { id: 10, url: '/clients/Sage-300-imerys.png', alt: 'imerys' },
+            { id: 11, url: '/clients/Minera.png', alt: 'Minera Santo Domingo' },
+            { id: 12, url: '/clients/Sage-300-resansil.png', alt: 'Resanil' },
+            { id: 13, url: '/clients/Sage-300-SJ-Medical.png', alt: 'SJ-Medical' },
             { id: 14, url: '/clients/ssr-mining.png', alt: 'ssr-mining' },
             // Agrega más objetos de imágenes de clientes aquí
         ];
@@ -69,8 +69,8 @@
                                 }}
                             >
                                 <Image src={client.url} alt={client.alt}
-                                    width={1000}
-                                    height={1000}
+                                    width={800}
+                                    height={800}
                                 />
                             </div>
                         ))}
