@@ -44,7 +44,10 @@
                         </Text>
                     </Flex>
                 </Box>
-                <Box>
+                <Box
+                    minW={{ base: '100%', lg: '100%' }}
+                    maxW={{ base: '100%', lg: '100%' }}
+                >
                     <Carousel
                         showThumbs={false}
                         showStatus={false}
