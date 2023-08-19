@@ -51,7 +51,7 @@ export default function Index() {
 
         const observer = new IntersectionObserver(handleIntersect, {
             root: null,
-            rootMargin: '100px',
+            rootMargin: '700px',
             threshold: 0.5
         });
 

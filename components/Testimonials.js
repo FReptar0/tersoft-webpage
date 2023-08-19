@@ -53,7 +53,7 @@ const TestimonialContent = ({ children }) => {
 const TestimonialText = ({ children }) => {
     return (
         <Text
-            textAlign={'center'}
+            textAlign={'justify'}
             color={useColorModeValue('gray.600', 'gray.400')}
             fontSize={'sm'}
         >
@@ -129,7 +129,7 @@ const CarruselTestimonial = () => {
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
                     <Heading>Nuestros Clientes Opinan</Heading>
-                    <Text>No nos crea a nosotros, vea que dicen nuestros clientes</Text>
+                    <Text textAlign={'center'}>No nos crea a nosotros, vea que dicen nuestros clientes</Text>
                 </Stack>
                 <Slider {...settings}>
                     {testimonials.map((testimonial) => (
