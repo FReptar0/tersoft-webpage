@@ -8,7 +8,7 @@ export default async function mailsender(req, res) {
         );
     }
 
-    const { nombre, apellido, telefono, correo, empresa, comentario, sitioWeb } = req.body;
+    const { nombre, apellido, telefono, correo, empresa, opcion, sitioWeb } = req.body;
 
     if (!nombre || !apellido || !telefono || !correo || !empresa) {
         return res.status(400).json(
@@ -41,7 +41,7 @@ Nombre: ${nombre} ${apellido}
 Teléfono: ${telefono}
 Correo: ${correo}
 Empresa: ${empresa}
-Comentario: ${comentario}
+Opción: ${opcion}
 Sitio web: ${sitioWeb}`
         };
 

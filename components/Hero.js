@@ -29,7 +29,10 @@ export default function CallToActionWithVideo() {
                             }>
                                 Obtener más información
                             </Button>
-                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }} onClick={
+                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} 
+                            bg={'green.400'} _hover={{ bg: 'green.500' }} 
+                            zIndex={999999}
+                            onClick={
                                 () => {
                                     Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
                                 }}
@@ -39,7 +42,7 @@ export default function CallToActionWithVideo() {
                         </Stack>
                     </Stack>
                     <Flex flex={1} justify={'center'} align={'center'} position={'relative'} w={'full'}>
-                        <Blob w={'150%'} h={'150%'} position={'absolute'} top={'-20%'} left={0} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
+                        <Blob w={'150%'} h={'120%'} position={'absolute'} top={'5%'} left={0} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
                         <Box minH={'400px'} maxH={'auto'} rounded={'2xl'} boxShadow={'2xl'} width={'400px'} overflow={'hidden'}>
                             <FormComponent />
                         </Box>

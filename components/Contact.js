@@ -1,4 +1,4 @@
-import { Box, FormControl, FormLabel, Input, Textarea, Button, Grid, Container, Heading, Text, Stack } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, SelectField, Button, Grid, Container, Heading, Text, Stack } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ const validationSchema = Yup.object().shape({
     telefono: Yup.string().matches(/^[0-9]+$/, 'El teléfono no es válido'),
     correo: Yup.string().email('Correo inválido').required('Correo es requerido'),
     empresa: Yup.string().required('Empresa es requerida'),
-    comentario: Yup.string().required('El comentario es requerido'),
+    opcion: Yup.string().required('La opción es requerida').nullable(),
     sitioWeb: Yup.string(),
     edad: Yup.string(), // This field is hidden and is used to check if the user is a bot
 });
@@ -37,20 +37,20 @@ const ContactForm = () => {
         telefono: '',
         correo: '',
         empresa: '',
-        comentario: '',
+        opcion: '',
         sitioWeb: '',
         edad: '',
     };
 
     const handleSubmit = async (values, { resetForm }) => {
-        const { nombre, apellido, correo, empresa, comentario, sitioWeb } = values;
+        const { nombre, apellido, correo, empresa, opcion, sitioWeb } = values;
         const data = {
             "nombre": nombre,
             "apellido": apellido,
             "telefono": telefono,
             "correo": correo,
             "empresa": empresa,
-            "comentario": comentario ? comentario : 'No hay comentarios',
+            "opcion": opcion ? opcion : 'No hay opción',
             "sitioWeb": sitioWeb ? sitioWeb : 'No hay sitio web',
         };
 
@@ -71,7 +71,7 @@ const ContactForm = () => {
         }
 
         // check if all the fields are filled
-        if (!nombre || !apellido || !telefono || !correo || !empresa || !comentario) {
+        if (!nombre || !apellido || !telefono || !correo || !empresa || !opcion) {
             Swal.fire({
                 title: 'Error',
                 text: 'Todos los campos son requeridos',
@@ -225,15 +225,26 @@ const ContactForm = () => {
                                 )}
                             </Field>
                         </Grid>
-                        <Field name="comentario">
+                        <Field name="opcion">
                             {({ field }) => (
                                 <FormControl marginTop="4">
                                     <FormLabel>
                                         ¿Cómo podemos ayudarte?
                                         <span style={{ color: '#000' }}>*</span>
                                     </FormLabel>
-                                    <Textarea {...field} placeholder="Me gustaría saber más de ..." />
-                                    <ErrorMessage name="comentario" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
+                                    <SelectField {...field} placeholder="Selecciona una opción"
+                                        w={{ base: '100%', sm: '100%' }}
+                                        h={'10'}
+                                        border={'1px solid'}
+                                        borderRadius={'5px'}
+                                        borderColor={'gray.200'}
+                                    >
+                                        <option value="Implementación de Sage 300">Información de Sage 300</option>
+                                        <option value="Consultoría">Consultoría</option>
+                                        <option value="Cursos">Cursos</option>
+                                        <option value="Otro">Otro</option>
+                                    </SelectField>
+                                    <ErrorMessage name="opcion" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                 </FormControl>
                             )}
                         </Field>
