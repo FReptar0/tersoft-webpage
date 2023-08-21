@@ -52,7 +52,7 @@ export default function Index() {
         const observer = new IntersectionObserver(handleIntersect, {
             root: null,
             rootMargin: '700px',
-            threshold: 0.5
+            threshold: 0.4
         });
 
         sections.forEach((section) => {
