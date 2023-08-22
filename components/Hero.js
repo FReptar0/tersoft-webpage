@@ -18,9 +18,8 @@ export default function CallToActionWithVideo() {
                                 el mejor sistema ERP!
                             </Text>
                         </Heading>
-                        <Text color={'gray.500'}>
-                            Sage 300 es un software ERP completo que ayuda a las empresas a automatizar sus procesos de negocio, mejorar su eficiencia y reducir sus costos. Agende AHORA una cita y aplique para obtener la Implementación gratuita
-                        </Text>
+                        <Text color={'gray.800'} textAlign={'justify'}>
+                            Sage 300, antes conocido como Accpac, es la solución ERP integral para empresas en ascenso. Unifica contabilidad, compras, inventarios, ventas y más en un sistema centralizado, automatizando procesos y maximizando la eficiencia. En Tersoft, no solo implementamos Sage 300, sino que adaptamos y optimizamos la herramienta a tus necesidades, enfrentando desafíos y asegurando el éxito de tu negocio. ¡Aprovecha nuestra oferta especial! Agenda tu cita ahora y benefíciate de la implementación gratuita                        </Text>
                         <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
                             <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }} onClick={
                                 () => {
@@ -29,13 +28,13 @@ export default function CallToActionWithVideo() {
                             }>
                                 Obtener más información
                             </Button>
-                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} 
-                            bg={'green.400'} _hover={{ bg: 'green.500' }} 
-                            zIndex={999999}
-                            onClick={
-                                () => {
-                                    Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
-                                }}
+                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'}
+                                bg={'green.400'} _hover={{ bg: 'green.500' }}
+                                zIndex={999999}
+                                onClick={
+                                    () => {
+                                        Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
+                                    }}
                             >
                                 Agenda una cita
                             </Button>

@@ -28,7 +28,7 @@ function Card({ heading, description, icon }) {
                 </Flex>
                 <Box mt={2}>
                     <Heading size="md">{heading}</Heading>
-                    <Text mt={1} fontSize={'sm'}>
+                    <Text mt={1} fontSize={'sm'} textAlign={'justify'}>
                         {description}
                     </Text>
                 </Box>
@@ -40,13 +40,12 @@ function Card({ heading, description, icon }) {
 export default function GridList() {
     return (
         <Box p={4}>
-            <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
-                <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'}>
+            <Stack spacing={4} as={Container} maxW={'3xl'}>
+                <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} textAlign={'center'}>
                     Nuestros servicios
                 </Heading>
-                <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }}>
-                    En Tersoft estamos 100% orientados a las necesidades de nuestros clientes, es por eso
-                    que los servicios que ofrecemos son de la más alta calidad
+                <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }} textAlign={'justify'}>
+                    En Tersoft, priorizamos las necesidades de nuestros clientes, asegurándonos de que Sage 300 funcione sin problemas, fomentando un ecosistema de eficiencia empresarial. Nuestro compromiso va más allá de la mera implementación. Identificamos y abordamos los desafíos, incluso aquellos de los que quizás no esté al tanto, asegurando que su negocio prospere.
                 </Text>
             </Stack>
 

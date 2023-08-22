@@ -10,6 +10,7 @@ import TableProducts from '@/components/Products';
 import ContactForm from '@/components/Contact';
 import Team from '@/components/Team';
 import ClientsCard from '@/components/Clients';
+import FAQ from '@/components/FAQ';
 
 export default function Index() {
     const aboutRef = useRef(null);
@@ -20,6 +21,7 @@ export default function Index() {
     const teamRef = useRef(null);
     const contactRef = useRef(null);
     const productsRef = useRef(null);
+    const FAQRef = useRef(null);
 
     useEffect(() => {
         const sections = [
@@ -27,14 +29,15 @@ export default function Index() {
             { ref: infoRef, id: 'info' },
             { ref: testimonialsRef, id: 'testimonials' },
             { ref: productsRef, id: 'products' },
-            { ref: ctaRef, id: 'cta' },
+            /* { ref: ctaRef, id: 'cta' }, */
+            { ref: FAQRef, id: 'faq' },
             { ref: clientsRef, id: 'clients' },
             { ref: teamRef, id: 'team' },
             { ref: contactRef, id: 'contact' }
         ];
-        
+
         CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
-        
+
         const handleIntersect = (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -89,14 +92,17 @@ export default function Index() {
             <section ref={productsRef} className='section p-5' id='products'>
                 <TableProducts />
             </section>
-            <section ref={ctaRef} className='section' id='cta'>
+            {/* <section ref={ctaRef} className='section' id='cta'>
                 <WaitingList />
-            </section>
+            </section> */}
             <section ref={teamRef} className='section p-3' style={styles.section} id='team'>
                 <Team />
             </section>
             <section ref={clientsRef} className='section p-3' id='clients'>
                 <ClientsCard />
+            </section>
+            <section ref={FAQRef} className='mt-5' id='faq'>
+                <FAQ />
             </section>
             <section ref={contactRef} className='section mt-5 mb-5' id='contact'>
                 <ContactForm />

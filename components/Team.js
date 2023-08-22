@@ -9,10 +9,16 @@ import {
     Container,
     useColorModeValue,
     Card,
+    useMediaQuery,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 
+
 const TeamMember = ({ src, name, role }) => {
+    const [isMobile] = useMediaQuery("(max-width: 768px)");
+
+    const cardHeight = isMobile ? "520px" : "500px"; 
+
     return (
         <Flex align="center" direction="column" p={4}>
             <Card
@@ -22,12 +28,12 @@ const TeamMember = ({ src, name, role }) => {
                 borderRadius="lg"
                 overflow="hidden"
                 boxShadow="lg"
-                height="500px"
+                height={cardHeight}
             >
                 <Image src={src} alt={name} width={350} height={350} />
                 <Box p="6">
                     <Stack spacing={0} align="center">
-                        <Text fontWeight={600} fontSize={'2xl'} textAlign={'center'}>{name}</Text>
+                        <Text fontWeight={500} fontSize={'2xl'} textAlign={'center'}>{name}</Text>
                         <Text fontSize="lg" fontWeight={'bold'} textAlign={'center'} color={'green.600'}>
                             {role}
                         </Text>
@@ -37,6 +43,7 @@ const TeamMember = ({ src, name, role }) => {
         </Flex>
     );
 };
+
 
 const Team = () => {
     const teamMembers = [
@@ -109,7 +116,9 @@ const Team = () => {
     };
 
     return (
-        <Box>
+        <Box style={{
+            marginTop: '-100px',
+        }}>
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
                     <Heading>Conoce nuestro equipo</Heading>
