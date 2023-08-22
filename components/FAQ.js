@@ -59,8 +59,8 @@ const FAQ = () => {
                 <Accordion allowToggle width="100%">
                     {faqData.map((faq, index) => (
                         <AccordionItem key={index}>
-                            {({ isExpanded }) => (
-                                <>
+                            {() => (
+                                <div key={index}>
                                     <h2>
                                         <AccordionButton>
                                             <Box flex="1" textAlign="left" fontWeight="bold">
@@ -74,7 +74,7 @@ const FAQ = () => {
                                             {faq.answer}
                                         </Text>
                                     </AccordionPanel>
-                                </>
+                                </div>
                             )}
                         </AccordionItem>
                     ))}
