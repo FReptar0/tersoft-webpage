@@ -22,6 +22,7 @@ const Header = () => {
     const isBlogPage = pathname === '/blog';
     const isProfilePage = pathname === '/profile';
     const isHome = pathname === '/';
+    const isContactPage = pathname === '/contact';
 
     if (isProfilePage) {
         Router.prefetch('/dashboard');
@@ -92,16 +93,18 @@ const Header = () => {
                                 </Nav.Item>)
                                 }
                                 <Nav.Item className='mb-2'>
-                                    <Link className='m-3' aria-label='Ir al blog' href="/#" onClick={handleLinkClick}>
+                                    <Link className='m-3' aria-label='Ir al blog' href="/#" /* onClick={handleLinkClick} */>
                                         Recursos
                                     </Link>
                                 </Nav.Item>
                                 <Nav.Item className='mb-2'>
                                     <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#info">Acerca de nosotros</Link>
                                 </Nav.Item>
-                                <Nav.Item className='mb-2'>
-                                    <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#contact">Contáctanos</Link>
-                                </Nav.Item>
+                                {!isContactPage && (
+                                    <Nav.Item className='mb-2'>
+                                        <Link className='m-3' aria-label='Ir a la información de tersoft' href="/contact" onClick={handleLinkClick}>Contáctanos</Link>
+                                    </Nav.Item>
+                                )}
                             </Nav>
                         )}
                         {isProfilePage && (
