@@ -128,8 +128,8 @@ const CarruselTestimonial = () => {
         <Box bg={useColorModeValue('green.200', 'gray.700')}>
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
-                    <Heading>Nuestros Clientes Opinan</Heading>
-                    <Text textAlign={'center'}>No nos crea a nosotros, vea que dicen nuestros clientes</Text>
+                    <Heading textAlign={'center'}>Nuestros Clientes Opinan</Heading>
+                    <Text textAlign={'center'}>No nos crea a nosotros, vea lo que dicen nuestros clientes:</Text>
                 </Stack>
                 <Slider {...settings}>
                     {testimonials.map((testimonial) => (

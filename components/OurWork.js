@@ -45,7 +45,8 @@ export default function GridList() {
                     Nuestros servicios
                 </Heading>
                 <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }} textAlign={'justify'}>
-                    En Tersoft, priorizamos las necesidades de nuestros clientes, asegurándonos de que Sage 300 funcione sin problemas, fomentando un ecosistema de eficiencia empresarial. Nuestro compromiso va más allá de la mera implementación. Identificamos y abordamos los desafíos, incluso aquellos de los que quizás no esté al tanto, asegurando que su negocio prospere.
+                    En Tersoft, priorizamos las necesidades de nuestros clientes fomentando un ecosistema de eficiencia en el que nos aseguramos de que Sage 300 funcione sin problemas.
+                    Nuestro compromiso va más allá de la mera implementación, ya que también Identificamos y abordamos los desafíos de los que quizás no esté al tanto, asegurándonos de que su negocio prospere.
                 </Text>
             </Stack>
 
@@ -54,12 +55,12 @@ export default function GridList() {
                     <Card
                         heading={'Consultoría'}
                         icon={<Icon as={FcAssistant} w={10} h={10} />}
-                        description={'El compromiso con nuestros clientes es que tengan Sage 300 funcionando eficientemente y que tanto sus colaboradores como sus clientes y proveedores formen parte de este ecosistema de eficiencia empresarial. Tersoft identificará los problemas que usted aún no conoce de su empresa y los solucionará.'}
+                        description={'El compromiso con nuestros clientes es que tengan Sage 300 funcionando exitosamente y que tanto sus colaboradores como sus clientes y proveedores formen parte de este ecosistema de eficiencia empresarial. En Tersoft nos caracterizamos por una precisa identificación de problemas y su efectiva solución.'}
                     />
                     <Card
                         heading={'Desarrollo'}
                         icon={<Icon as={DiCode} color={'orange.400'} w={'14'} h={'14'} />}
-                        description={'¿Su empresa necesita de módulos hechos a la medida para cumplir con algún valor agregado que la diferencie de sus competidores? Estamos para ayudarle porque somos Developer Partner de Sage y tenemos la experiencia necesaria para que usted no se preocupe.'}
+                        description={'¿Su empresa necesita de módulos hechos a la medida para cumplir con algún valor agregado que la diferencie de sus competidores? No se preocupe, en Tersoft estamos para ayudarle porque somos Developer Partner de Sage y tenemos la experiencia necesaria para lograr sus objetivos. '}
                     />
                     <Card
                         heading={'Soluciones y servicios Cloud'}

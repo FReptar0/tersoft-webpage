@@ -19,14 +19,15 @@ export default function CallToActionWithVideo() {
                             </Text>
                         </Heading>
                         <Text color={'gray.800'} textAlign={'justify'}>
-                            Sage 300, antes conocido como Accpac, es la solución ERP integral para empresas en ascenso. Unifica contabilidad, compras, inventarios, ventas y más en un sistema centralizado, automatizando procesos y maximizando la eficiencia. En Tersoft, no solo implementamos Sage 300, sino que adaptamos y optimizamos la herramienta a tus necesidades, enfrentando desafíos y asegurando el éxito de tu negocio. ¡Aprovecha nuestra oferta especial! Agenda tu cita ahora y benefíciate de la implementación gratuita                        </Text>
+                            Sage 300 antes conocido como Accpac, es la solución ERP integral para empresas en ascenso. Unifica contabilidad, compras, inventarios, ventas y más en un sistema centralizado, automatizando procesos y maximizando la eficiencia. En Tersoft, no solo implementamos Sage 300, sino que adaptamos y optimizamos la herramienta a tus necesidades enfrentando desafíos y asegurando el éxito de tu negocio.
+                        </Text>
                         <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
                             <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }} onClick={
                                 () => {
                                     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
                                 }
                             }>
-                                Obtener más información
+                                ¡Aprovecha nuestra oferta especial! 
                             </Button>
                             <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'}
                                 bg={'green.400'} _hover={{ bg: 'green.500' }}
@@ -36,7 +37,7 @@ export default function CallToActionWithVideo() {
                                         Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
                                     }}
                             >
-                                Agenda una cita
+                                ¡Agenda una cita!
                             </Button>
                         </Stack>
                     </Stack>

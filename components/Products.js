@@ -30,7 +30,7 @@ const optionsModulosFiscales = {
 
 const optionsSageconnect = {
     id: 3,
-    desc: 'Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar, previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.',
+    desc: 'Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.',
     button: {
         id: 'sageconnect',
         text: 'Ver más',
@@ -56,7 +56,7 @@ const optionsEDI = {
 
 const optionsModulosTersoft = {
     id: 5,
-    desc: 'En Tersoft, desarrollamos módulos para Sage 300, atendiendo necesidades empresariales en México: dispersión bancaria, aprobación de compras, gestión de vales de almacén y respaldos automáticos.',
+    desc: 'En Tersoft desarrollamos módulos para Sage 300 atendiendo necesidades empresariales en México: dispersión bancaria, aprobación de compras, gestión de vales de almacén y respaldos automáticos.',
     button: {
         id: 'modulos-tersoft',
         text: 'Ver más',
@@ -163,7 +163,7 @@ const TableProducts = () => {
                         }}
                     >
                         <Text textAlign={'center'}>
-                            Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.
+                        Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.
                         </Text>
                     </Stack>
                 </Stack>
