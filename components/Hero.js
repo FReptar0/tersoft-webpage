@@ -1,4 +1,4 @@
-import { Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon } from '@chakra-ui/react';
+import { Container, Stack, Flex, Box, Heading, Text, Button, Icon } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';

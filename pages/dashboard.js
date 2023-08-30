@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Box,
     Flex,
@@ -10,7 +10,7 @@ import {
     Grid,
     GridItem,
 } from '@chakra-ui/react';
-import { FiUser, FiLogOut, FiMenu, FiX, FiXCircle, FiXOctagon, FiXSquare } from 'react-icons/fi';
+import { FiUser, FiLogOut, FiMenu, FiX, FiXCircle } from 'react-icons/fi';
 import { SidebarPushable, Sidebar, Menu } from 'semantic-ui-react';
 import Loader from '@/components/Loader';
 import Router from 'next/router';
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
     return (
         isClient ? (
-            !isLoading ?(<Flex w="full" h="full" overflow="hidden">
+            !isLoading ? (<Flex w="full" h="full" overflow="hidden">
                 <SidebarPushable
                     as={Box}
                     bg="gray.400" // Color del contenido del dashboard

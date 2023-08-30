@@ -7,7 +7,6 @@ import {
     Text,
     Stack,
     Container,
-    Avatar,
     useColorModeValue,
 } from '@chakra-ui/react';
 import 'slick-carousel/slick/slick.css';
