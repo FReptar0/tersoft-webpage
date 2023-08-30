@@ -362,7 +362,7 @@ const ERPForm = () => {
                                 </Field>
 
                                 <ReCAPTCHA
-                                    sitekey="6LeIrtgnAAAAAACAvaVRsj_KJi9vqEPs1Fzo4XPR"
+                                    sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                                     onChange={(value) => {
                                         initialValues.recaptcha = value;
                                     }}

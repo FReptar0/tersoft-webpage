@@ -3,6 +3,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ReCAPTCHA from 'react-google-recaptcha';
+import React, { useState } from 'react';
 
 export default function CallToActionWithVideo() {
     return (
@@ -68,11 +69,22 @@ const Blob = (props) => {
 };
 
 const FormComponent = () => {
+
+    const [telefono, setTelefono] = useState('');
+    const [isDisabled, setIsDisabled] = useState(true);
+
     const initialValues = {
         name: '',
         phoneNumber: '',
         email: '',
         recaptcha: '',
+    };
+
+    const handlePhone = (e) => {
+        const inputValue = e.target.value;
+        const numericValue = inputValue.replace(/[^0-9]/g, '');
+        setTelefono(numericValue);
+        initialValues.telefono = telefono;
     };
 
     const validationSchema = Yup.object({
@@ -122,8 +134,16 @@ const FormComponent = () => {
                             <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
                                 Número de teléfono:
                             </Text>
-                            <Field type="text" name="phoneNumber" placeholder="Teléfono" className="form-control mb-3" />
-                            <ErrorMessage name="phoneNumber" component="div" className="text-danger" />
+                            <Field type="tel" name="phoneNumber" placeholder="Teléfono" className="form-control mb-3"
+                                maxLength={10}
+                                minLength={10}
+                                inputMode="numeric"
+                                onChange={handlePhone}
+                                value={telefono}
+                            />
+                            {telefono.length < 10 && telefono.length > 0 && (
+                                <span style={{ color: '#EB1111', fontSize: '1rem', marginLeft: 5 }}>El teléfono no es válido</span>
+                            )}
                         </div>
                         <div>
                             <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
@@ -135,9 +155,10 @@ const FormComponent = () => {
 
                         <div>
                             <ReCAPTCHA
-                                sitekey="6LeIrtgnAAAAACwhdnuzjky7ReeBgWp2ZfzrYZL9"
+                                sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                                 onChange={(value) => {
                                     initialValues.recaptcha = value;
+                                    setIsDisabled(false);
                                 }}
                             />
                             <ErrorMessage name="recaptcha" component="div" className="text-danger" />
@@ -155,7 +176,7 @@ const FormComponent = () => {
                             disabled={isSubmitting}
                             mx={'auto'}
                             marginTop={'10px'}
-                            isDisabled={initialValues.recaptcha === ''}
+                            isDisabled={isDisabled}
                         >
                             ¡ Aplicar ahora !
                         </Button>

@@ -260,7 +260,7 @@ const ContactForm = () => {
                         </Field>
 
                         <ReCAPTCHA
-                            sitekey="6LdH2wQcAAAAAIC6RQxKlY9QJxG7y1D4a0nM4JYf"
+                            sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                             onChange={(value) => {
                                 initialValues.reCaptchaResponse = value;
                             }}
