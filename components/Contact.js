@@ -21,6 +21,8 @@ const validationSchema = Yup.object().shape({
 
 const ContactForm = () => {
     const [telefono, setTelefono] = useState("");
+    const [isDisabled, setIsDisabled] = useState(true);
+
 
     useEffect(() => {
         // Get the IP address
@@ -263,6 +265,7 @@ const ContactForm = () => {
                             sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                             onChange={(value) => {
                                 initialValues.reCaptchaResponse = value;
+                                setIsDisabled(!isDisabled);
                             }}
                         />
 
@@ -270,7 +273,7 @@ const ContactForm = () => {
 
                         <Button colorScheme="green" size="lg" mx="auto"
                             display="block" mt={4} type="submit"
-                            isDisabled={initialValues.reCaptchaResponse === ''}
+                            isDisabled={isDisabled}
                         >
                             Enviar
                         </Button>

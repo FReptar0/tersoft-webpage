@@ -158,7 +158,7 @@ const FormComponent = () => {
                                 sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                                 onChange={(value) => {
                                     initialValues.recaptcha = value;
-                                    setIsDisabled(false);
+                                    setIsDisabled(!isDisabled);
                                 }}
                             />
                             <ErrorMessage name="recaptcha" component="div" className="text-danger" />

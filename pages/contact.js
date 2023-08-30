@@ -70,6 +70,8 @@ const companyTypes = ['Somos una empresa en pleno crecimiento que usa excel o al
 const evaluatingERPsOptions = ['SAP Business One', 'Oracle Netsuite', 'Microsoft Dynamics 365 Business Central', 'Infor ERP LN', 'Epicor ERP', 'Odoo', 'Acumatica ERP', 'Otro'];
 
 const ERPForm = () => {
+    const [isDisabled, setIsDisabled] = useState(true);
+
     const handleSubmit = (values) => {
         console.log(values);
     };
@@ -365,6 +367,7 @@ const ERPForm = () => {
                                     sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                                     onChange={(value) => {
                                         initialValues.recaptcha = value;
+                                        setIsDisabled(!isDisabled);
                                     }}
                                 />
 
@@ -373,7 +376,7 @@ const ERPForm = () => {
                                     colorScheme="green"
                                     size="lg"
                                     isLoading={isSubmitting}
-                                    isDisabled={initialValues.recaptcha === ''}
+                                    isDisabled={isDisabled}
                                 >
                                     Enviar
                                 </Button>
