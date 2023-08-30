@@ -2,6 +2,7 @@ import { Container, Stack, Flex, Box, Heading, Text, Button, Image, Icon } from 
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 export default function CallToActionWithVideo() {
     return (
@@ -71,6 +72,7 @@ const FormComponent = () => {
         name: '',
         phoneNumber: '',
         email: '',
+        recaptcha: '',
     };
 
     const validationSchema = Yup.object({
@@ -81,6 +83,7 @@ const FormComponent = () => {
             .min(10, 'Debe tener 10 dígitos')
             .max(10, 'Debe tener 10 dígitos'),
         email: Yup.string().email('Formato de correo inválido').required('Campo requerido'),
+        recaptcha: Yup.string().required('Campo requerido'),
     });
 
     const handleSubmit = (values) => {
@@ -129,6 +132,17 @@ const FormComponent = () => {
                             <Field type="email" name="email" placeholder="Correo" className="form-control mb-3" />
                             <ErrorMessage name="email" component="div" className="text-danger" />
                         </div>
+
+                        <div>
+                            <ReCAPTCHA
+                                sitekey="6LeIrtgnAAAAACwhdnuzjky7ReeBgWp2ZfzrYZL9"
+                                onChange={(value) => {
+                                    initialValues.recaptcha = value;
+                                }}
+                            />
+                            <ErrorMessage name="recaptcha" component="div" className="text-danger" />
+                        </div>
+
                         <Button
                             type="submit"
                             rounded={'full'}
@@ -141,6 +155,7 @@ const FormComponent = () => {
                             disabled={isSubmitting}
                             mx={'auto'}
                             marginTop={'10px'}
+                            isDisabled={initialValues.recaptcha === ''}
                         >
                             ¡ Aplicar ahora !
                         </Button>

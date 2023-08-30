@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const validationSchema = Yup.object().shape({
     nombre: Yup.string().required('Nombre es requerido'),
@@ -14,6 +15,7 @@ const validationSchema = Yup.object().shape({
     opcion: Yup.string().required('La opción es requerida').nullable(),
     sitioWeb: Yup.string(),
     edad: Yup.string(), // This field is hidden and is used to check if the user is a bot
+    reCaptchaResponse: Yup.string().required('El captcha es requerido'),
 });
 
 
@@ -40,6 +42,7 @@ const ContactForm = () => {
         opcion: '',
         sitioWeb: '',
         edad: '',
+        reCaptchaResponse: '',
     };
 
     const handleSubmit = async (values, { resetForm }) => {
@@ -71,7 +74,7 @@ const ContactForm = () => {
         }
 
         // check if all the fields are filled
-        if (!nombre || !apellido || !telefono || !correo || !empresa || !opcion) {
+        if (!nombre || !apellido || !telefono || !correo || !empresa || !opcion || !reCaptchaResponse) {
             Swal.fire({
                 title: 'Error',
                 text: 'Todos los campos son requeridos',
@@ -227,7 +230,7 @@ const ContactForm = () => {
                         </Grid>
                         <Field name="opcion">
                             {({ field }) => (
-                                <FormControl marginTop="4">
+                                <FormControl marginTop="4" marginBottom="4">
                                     <FormLabel>
                                         ¿Cómo podemos ayudarte?
                                         <span style={{ color: '#000' }}>*</span>
@@ -255,7 +258,20 @@ const ContactForm = () => {
                                 </FormControl>
                             )}
                         </Field>
-                        <Button colorScheme="green" size="lg" mx="auto" display="block" mt={4} type="submit">
+
+                        <ReCAPTCHA
+                            sitekey="6LdH2wQcAAAAAIC6RQxKlY9QJxG7y1D4a0nM4JYf"
+                            onChange={(value) => {
+                                initialValues.reCaptchaResponse = value;
+                            }}
+                        />
+
+                        <ErrorMessage name="reCaptchaResponse" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
+
+                        <Button colorScheme="green" size="lg" mx="auto"
+                            display="block" mt={4} type="submit"
+                            isDisabled={initialValues.reCaptchaResponse === ''}
+                        >
                             Enviar
                         </Button>
                     </Box>
