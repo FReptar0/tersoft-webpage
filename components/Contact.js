@@ -91,7 +91,7 @@ const ContactForm = () => {
                 Swal.fire({
                     title: 'Correo electrónico enviado',
                     icon: 'success',
-                    text: 'Su correo electrónico ha sido enviado correctamente',
+                    text: 'Muchas gracias, su información ha sido enviada correctamente',
                     position: 'bottom-end',
                     showConfirmButton: false,
                     timer: 5000,
@@ -104,7 +104,7 @@ const ContactForm = () => {
             } else {
                 Swal.fire({
                     title: 'Error',
-                    text: 'Ocurrió un error al enviar el correo electrónico',
+                    text: 'Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde',
                     icon: 'error',
                     position: 'bottom-end',
                     showConfirmButton: false,
@@ -116,7 +116,7 @@ const ContactForm = () => {
         } catch (error) {
             Swal.fire({
                 title: 'Error',
-                text: 'Ocurrió un error al enviar el correo electrónico',
+                text: 'Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde',
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,

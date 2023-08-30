@@ -27,7 +27,7 @@ export default function CallToActionWithVideo() {
                                     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
                                 }
                             }>
-                                ¡Aprovecha nuestra oferta especial! 
+                                Quiero más información
                             </Button>
                             <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'}
                                 bg={'green.400'} _hover={{ bg: 'green.500' }}
@@ -37,7 +37,7 @@ export default function CallToActionWithVideo() {
                                         Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
                                     }}
                             >
-                                ¡Agenda una cita!
+                                ¡Agenda una cita ahora!
                             </Button>
                         </Stack>
                     </Stack>
