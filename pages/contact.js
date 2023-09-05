@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, createRef } from 'react';
 import {
     Box,
     Button,
@@ -41,7 +41,7 @@ const FormSchema = Yup.object().shape({
     companyType: Yup.string().required('Campo requerido'),
     trainingMethod: Yup.string().required('Campo requerido'),
     evaluatingERPs: Yup.array().required('Debe seleccionar al menos un ERP'),
-    recaptcha: Yup.string().required('Campo requerido'),
+    reCaptchaResponse: Yup.string().required('Campo requerido'),
 });
 
 const initialValues = {
@@ -62,7 +62,7 @@ const initialValues = {
     companyType: '',
     trainingMethod: '',
     evaluatingERPs: [],
-    recaptcha: '',
+    reCaptchaResponse: '',
 };
 
 const modulesOptions = ['Cuentas por cobrar', 'Cuentas por pagar', 'Libro Mayor', 'Ingreso de Ordenes (ventas)', 'Ordenes de compra', 'Inventarios', 'Facturacion electronica', 'Contabilidad Electronica', 'Proyectos', 'Activos Fijos', 'Dispersión automática de pagos a proveedores', 'Autorizacion de ordenes de compra'];
@@ -71,6 +71,8 @@ const evaluatingERPsOptions = ['SAP Business One', 'Oracle Netsuite', 'Microsoft
 
 const ERPForm = () => {
     const [isDisabled, setIsDisabled] = useState(true);
+    const [recaptchaResponse, setRecaptchaResponse] = useState('');
+    const reCaptchaRef = createRef();
 
     const handleSubmit = (values) => {
         console.log(values);
@@ -99,7 +101,7 @@ const ERPForm = () => {
                     </Heading>
                 </Box>
                 <Formik initialValues={initialValues} validationSchema={FormSchema} onSubmit={handleSubmit}>
-                    {({ isSubmitting }) => (
+                    {({ isSubmitting, isValid, dirty }) => (
                         <Form>
                             <Stack spacing={5} mt={8}>
                                 <Field name="email">
@@ -366,17 +368,35 @@ const ERPForm = () => {
                                 <ReCAPTCHA
                                     sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                                     onChange={(value) => {
-                                        initialValues.recaptcha = value;
+                                        initialValues.reCaptchaResponse = value;
                                         setIsDisabled(!isDisabled);
+                                        setRecaptchaResponse(value);
                                     }}
+                                    onExpired={() => {
+                                        setIsDisabled(true);
+                                        setRecaptchaResponse('');
+                                        initialValues.reCaptchaResponse = '';
+                                    }}
+                                    onError={() => {
+                                        setIsDisabled(true);
+                                        setRecaptchaResponse('');
+                                        initialValues.reCaptchaResponse = '';
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Algo salió mal',
+                                            text: 'Ocurrió un error al validar el captcha, por favor inténtelo de nuevo',
+                                        });
+                                    }}
+                                    name="reCaptchaResponse"
+                                    id='reCaptchaResponse'
+                                    ref={reCaptchaRef}
                                 />
 
                                 <Button
                                     type="submit"
                                     colorScheme="green"
                                     size="lg"
-                                    isLoading={isSubmitting}
-                                    isDisabled={isDisabled}
+                                    isDisabled={isDisabled || !isValid || !dirty}
                                 >
                                     Enviar
                                 </Button>

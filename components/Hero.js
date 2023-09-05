@@ -3,7 +3,8 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ReCAPTCHA from 'react-google-recaptcha';
-import React, { useState } from 'react';
+import React, { useState, createRef  } from 'react';
+import Swal from 'sweetalert2';
 
 export default function CallToActionWithVideo() {
     return (
@@ -72,12 +73,15 @@ const FormComponent = () => {
 
     const [telefono, setTelefono] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
+    const [reCaptchaResponse, setReCaptchaResponse] = useState('');
+
+    const reCaptchaRef = createRef();
 
     const initialValues = {
         name: '',
         phoneNumber: '',
         email: '',
-        recaptcha: '',
+        reCaptchaResponse: '',
     };
 
     const handlePhone = (e) => {
@@ -95,7 +99,7 @@ const FormComponent = () => {
             .min(10, 'Debe tener 10 dígitos')
             .max(10, 'Debe tener 10 dígitos'),
         email: Yup.string().email('Formato de correo inválido').required('Campo requerido'),
-        recaptcha: Yup.string().required('Campo requerido'),
+        reCaptchaResponse: Yup.string().required('Campo requerido'),
     });
 
     const handleSubmit = (values) => {
@@ -120,8 +124,12 @@ const FormComponent = () => {
                 ¡Aplique para una implementacion gratuita!
             </Heading>
 
-            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                {({ isSubmitting }) => (
+            <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+            >
+                {({ isSubmitting, isValid, dirty }) => (
                     <Form>
                         <div>
                             <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
@@ -157,11 +165,30 @@ const FormComponent = () => {
                             <ReCAPTCHA
                                 sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                                 onChange={(value) => {
-                                    initialValues.recaptcha = value;
+                                    initialValues.reCaptchaResponse = value;
                                     setIsDisabled(!isDisabled);
+                                    setReCaptchaResponse(value);
                                 }}
+                                onExpired={() => {
+                                    setIsDisabled(true);
+                                    setReCaptchaResponse('');
+                                    initialValues.reCaptchaResponse = '';
+                                }}
+                                onError={() => {
+                                    setIsDisabled(true);
+                                    setReCaptchaResponse('');
+                                    initialValues.reCaptchaResponse = '';
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Algo salió mal',
+                                        text: 'Ocurrió un error al validar el captcha, por favor inténtelo de nuevo',
+                                    });
+                                }}
+                                name="reCaptchaResponse"
+                                id='reCaptchaResponse'
+                                ref={reCaptchaRef}
                             />
-                            <ErrorMessage name="recaptcha" component="div" className="text-danger" />
+                            <ErrorMessage name="reCaptchaResponse" component="div" className="text-danger" />
                         </div>
 
                         <Button
@@ -173,10 +200,9 @@ const FormComponent = () => {
                             colorScheme={'green'}
                             bg={'green.400'}
                             _hover={{ bg: 'green.500' }}
-                            disabled={isSubmitting}
                             mx={'auto'}
                             marginTop={'10px'}
-                            isDisabled={isDisabled}
+                            isDisabled={isDisabled || !isValid || !dirty}
                         >
                             ¡ Aplicar ahora !
                         </Button>

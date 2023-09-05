@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const validationSchema = Yup.object().shape({
@@ -15,13 +15,15 @@ const validationSchema = Yup.object().shape({
     opcion: Yup.string().required('La opción es requerida').nullable(),
     sitioWeb: Yup.string(),
     edad: Yup.string(), // This field is hidden and is used to check if the user is a bot
-    reCaptchaResponse: Yup.string().required('El captcha es requerido'),
 });
 
 
 const ContactForm = () => {
     const [telefono, setTelefono] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
+    const [reCaptchaResponse, setReCaptchaResponse] = useState("");
+
+    const reCaptchaRef = createRef();
 
 
     useEffect(() => {
@@ -50,13 +52,15 @@ const ContactForm = () => {
     const handleSubmit = async (values, { resetForm }) => {
         const { nombre, apellido, correo, empresa, opcion, sitioWeb } = values;
         const data = {
-            "nombre": nombre,
-            "apellido": apellido,
-            "telefono": telefono,
-            "correo": correo,
-            "empresa": empresa,
-            "opcion": opcion ? opcion : 'No hay opción',
-            "sitioWeb": sitioWeb ? sitioWeb : 'No hay sitio web',
+            "name": nombre,
+            "lastname": apellido,
+            "phoneNumber": telefono,
+            "email": correo,
+            "company": empresa,
+            "option": opcion ? opcion : 'No hay opción',
+            "webSite": sitioWeb ? sitioWeb : 'No hay sitio web',
+            "reCaptchaResponse": reCaptchaResponse,
+            "uri": "/home"
         };
 
         // Check if the user is a bot
@@ -103,8 +107,12 @@ const ContactForm = () => {
                     timerProgressBar: true,
                     toast: true,
                 }).then(() => {
-                    resetForm(); // Limpia los campos del formulario
                     setTelefono("")
+                    resetForm();
+                    // desmarcar el captcha
+                    setReCaptchaResponse("");
+                    setIsDisabled(true);
+                    reCaptchaRef.current.reset();
                 });
             } else {
                 Swal.fire({
@@ -116,6 +124,13 @@ const ContactForm = () => {
                     timer: 3000,
                     timerProgressBar: true,
                     toast: true,
+                }).then(() => {
+                    setTelefono("")
+                    resetForm();
+                    // desmarcar el captcha
+                    setReCaptchaResponse("");
+                    setIsDisabled(true);
+                    reCaptchaRef.current.reset();
                 });
             }
         } catch (error) {
@@ -128,6 +143,13 @@ const ContactForm = () => {
                 timer: 3000,
                 timerProgressBar: true,
                 toast: true,
+            }).then(() => {
+                setTelefono("")
+                resetForm();
+                // desmarcar el captcha
+                setReCaptchaResponse("");
+                setIsDisabled(true);
+                reCaptchaRef.current.reset();
             });
         }
     };
@@ -145,7 +167,7 @@ const ContactForm = () => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
         >
-            {() => (
+            {({ isSubmitting, isValid, dirty }) => (
                 <Form>
                     <Box as={Container} maxW={'6xl'} margin="0 auto">
                         <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
@@ -265,15 +287,36 @@ const ContactForm = () => {
                             sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
                             onChange={(value) => {
                                 initialValues.reCaptchaResponse = value;
+                                setReCaptchaResponse(value);
                                 setIsDisabled(!isDisabled);
                             }}
+                            onExpired={() => {
+                                initialValues.reCaptchaResponse = "";
+                                setReCaptchaResponse("");
+                                setIsDisabled(true);
+                            }}
+                            onError={() => {
+                                setIsDisabled(true);
+                                setReCaptchaResponse('');
+                                initialValues.reCaptchaResponse = '';
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Algo salió mal',
+                                    text: 'Ocurrió un error al validar el captcha, por favor inténtelo de nuevo',
+                                });
+                            }}
+                            name="reCaptchaResponse"
+                            id='reCaptchaResponse'
+                            ref={reCaptchaRef}
                         />
 
-                        <ErrorMessage name="reCaptchaResponse" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
-
-                        <Button colorScheme="green" size="lg" mx="auto"
-                            display="block" mt={4} type="submit"
-                            isDisabled={isDisabled}
+                        <Button colorScheme="green"
+                            size="lg"
+                            mx="auto"
+                            display="block"
+                            mt={4}
+                            type="submit"
+                            isDisabled={isDisabled || !isValid || !dirty}
                         >
                             Enviar
                         </Button>
