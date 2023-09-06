@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import {
     Box,
@@ -12,12 +12,16 @@ import {
     useMediaQuery,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import Router from 'next/router';
+
+import TeamTextEN from '../public/langs/en/Team.json';
+import TeamTextES from '../public/langs/es/Team.json';
 
 
 const TeamMember = ({ src, name, role }) => {
     const [isMobile] = useMediaQuery("(max-width: 768px)");
 
-    const cardHeight = isMobile ? "520px" : "500px"; 
+    const cardHeight = isMobile ? "520px" : "500px";
 
     return (
         <Flex align="center" direction="column" p={4}>
@@ -46,57 +50,17 @@ const TeamMember = ({ src, name, role }) => {
 
 
 const Team = () => {
-    const teamMembers = [
-        {
-            id: 1,
-            name: 'José Alberto Hernández González',
-            role: 'Director General',
-            image: '/team/Alberto-Hernandez.png',
-        },
-        {
-            id: 2,
-            name: 'Santiago Peláez Jimenez',
-            role: 'Líder de Proyecto Técnico',
-            image: '/team/Santiago-Jimenez.png',
-        },
-        {
-            id: 3,
-            name: 'Yadira Romero Bono',
-            role: 'Líder de Proyecto Funcional',
-            image: '/team/Yadira-Romero.png',
-        },
-        {
-            id: 4,
-            name: 'Joel Vergara Sánchez',
-            role: 'Líder de Proyecto Funcional',
-            image: '/team/Joel-Vergara.png',
-        },
-        {
-            id: 5,
-            name: 'Hortensia Mares López',
-            role: 'Líder de Proyecto Técnico',
-            image: '/team/Hortensia-Mares.png',
-        },
-        {
-            id: 6,
-            name: 'Sandra Peláez Jimenez',
-            role: 'Consultora Especializada',
-            image: '/team/Sandra-Pelaez.png',
-        },
-        {
-            id: 7,
-            name: 'Brenda Sarahi Ortiz López',
-            role: 'Consultora Especializada',
-            image: '/team/Brenda-Ortiz.png',
-        },
-        {
-            id: 8,
-            name: 'Manuel Álvarez',
-            role: 'Consultor Especializado',
-            image: '/team/Manuel-Alvarez.png',
+    const [teamText, setTeamText] = useState(TeamTextES);
+
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setTeamText(TeamTextEN);
+        } else {
+            setTeamText(TeamTextES);
         }
-        // Agrega más miembros del equipo aquí
-    ];
+    }, []);
+
+    const teamMembers = teamText.members;
 
     const settings = {
         dots: true,
@@ -121,8 +85,12 @@ const Team = () => {
         }}>
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
-                    <Heading>Conoce nuestro equipo</Heading>
-                    <Text>Hemos estado trabajando con clientes de todo el mundo</Text>
+                    <Heading>
+                        {teamText.heading}
+                    </Heading>
+                    <Text>
+                        {teamText.desc}
+                    </Text>
                 </Stack>
                 <Slider {...settings}>
                     {teamMembers.map((member) => (

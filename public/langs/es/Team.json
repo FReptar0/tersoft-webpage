@@ -1,0 +1,54 @@
+{
+    "heading": "Conoce nuestro equipo",
+    "desc": "Hemos estado trabajando con clientes de todo el mundo",
+    "members": [
+        {
+            "id": 1,
+            "name": "José Alberto Hernández González",
+            "role": "Director General",
+            "image": "/team/Alberto-Hernandez.png"
+        },
+        {
+            "id": 2,
+            "name": "Santiago Peláez Jimenez",
+            "role": "Líder de Proyecto Técnico",
+            "image": "/team/Santiago-Jimenez.png"
+        },
+        {
+            "id": 3,
+            "name": "Yadira Romero Bono",
+            "role": "Líder de Proyecto Funcional",
+            "image": "/team/Yadira-Romero.png"
+        },
+        {
+            "id": 4,
+            "name": "Joel Vergara Sánchez",
+            "role": "Líder de Proyecto Funcional",
+            "image": "/team/Joel-Vergara.png"
+        },
+        {
+            "id": 5,
+            "name": "Hortensia Mares López",
+            "role": "Líder de Proyecto Técnico",
+            "image": "/team/Hortensia-Mares.png"
+        },
+        {
+            "id": 6,
+            "name": "Sandra Peláez Jimenez",
+            "role": "Consultora Especializada",
+            "image": "/team/Sandra-Pelaez.png"
+        },
+        {
+            "id": 7,
+            "name": "Brenda Sarahi Ortiz López",
+            "role": "Consultora Especializada",
+            "image": "/team/Brenda-Ortiz.png"
+        },
+        {
+            "id": 8,
+            "name": "Manuel Álvarez",
+            "role": "Consultor Especializado",
+            "image": "/team/Manuel-Alvarez.png"
+        }
+    ]
+}
