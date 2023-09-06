@@ -50,7 +50,7 @@ export default function GridList() {
         } else {
             setOurWorkText(OurWorkTextES);
         }
-    }, []);
+    }, [Router.locale]);
 
     return (
         <Box p={4}>

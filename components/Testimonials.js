@@ -92,7 +92,7 @@ const CarruselTestimonial = () => {
         } else {
             setTestimonialsText(TestimonialsTextES);
         }
-    }, []);
+    }, [Router.locale]);
 
     const testimonials = testimonialsText.testimonials;
     const settings = {
