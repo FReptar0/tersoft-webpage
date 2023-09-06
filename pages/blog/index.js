@@ -10,7 +10,7 @@ import {
     useColorModeValue,
     Container,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { connectToDatabase, closeConnection } from '@/config/mongodb';
@@ -25,6 +25,8 @@ const cache = new LRUCache({
 
 const BlogIndex = ({ blogPosts }) => {
     const router = useRouter();
+    const locale = router.locale;
+    console.log(locale);
     const [isLoading, setIsLoading] = React.useState(false);
 
     const handleCardClick = (id) => {
@@ -36,8 +38,8 @@ const BlogIndex = ({ blogPosts }) => {
         <React.Fragment>
             {isLoading && <Loader />}
 
-            {!isLoading && (<Header/>)}
-            
+            {!isLoading && (<Header />)}
+
             <Container maxW={'9xl'} mt={10} p="12">
                 <Box mt={8} ml={8}>
                     <Stack spacing={6}>
@@ -76,7 +78,23 @@ const BlogIndex = ({ blogPosts }) => {
                                             mb={6}
                                             pos={'relative'}
                                         >
-                                            <Image src={post.imageSrc} layout={'fill'} />
+                                            {
+                                                locale === 'es' ? (
+                                                    <Image
+                                                        src={post.es.imageSrc}
+                                                        layout="fill"
+                                                        objectFit="cover"
+                                                        alt={post.title}
+                                                    />
+                                                ) : (
+                                                    <Image
+                                                        src={post.en.imageSrc}
+                                                        layout="fill"
+                                                        objectFit="cover"
+                                                        alt={post.title}
+                                                    />
+                                                )
+                                            }
                                         </Box>
                                         <Stack>
                                             <Text
@@ -93,16 +111,54 @@ const BlogIndex = ({ blogPosts }) => {
                                                 fontSize={'2xl'}
                                                 fontFamily={'body'}
                                             >
-                                                {post.title}
+                                                {
+                                                    locale === 'es' ? (
+                                                        post.es.title
+                                                    ) : (
+                                                        post.en.title
+                                                    )
+                                                }
                                             </Heading>
-                                            <Text color={'gray.500'}>{post.description}</Text>
+                                            <Text color={'gray.500'}>
+                                                {
+                                                    locale === 'es' ? (
+                                                        post.es.description
+                                                    ) : (
+                                                        post.en.description
+                                                    )
+                                                }
+                                            </Text>
                                         </Stack>
                                         <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-                                            <Avatar src={post.authorAvatarSrc} alt={'Author'} />
+                                            <Avatar src={
+                                                locale === 'es' ? (
+                                                    post.es.authorAvatarSrc
+                                                ) : (
+                                                    post.en.authorAvatarSrc
+                                                )
+                                            } alt={'Author'} />
                                             <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                                                <Text fontWeight={600}>{post.author}</Text>
+                                                <Text fontWeight={600}>{
+                                                    locale === 'es' ? (
+                                                        post.es.author
+                                                    ) : (
+                                                        post.en.author
+                                                    )
+                                                }</Text>
                                                 <Text color={'gray.500'}>
-                                                    {post.date} · {post.readTime}
+                                                    {
+                                                        locale === 'es' ? (
+                                                            post.es.date
+                                                        ) : (
+                                                            post.en.date
+                                                        )
+                                                    } · {
+                                                        locale === 'es' ? (
+                                                            post.es.readTime
+                                                        ) : (
+                                                            post.en.readTime
+                                                        )
+                                                    }
                                                 </Text>
                                             </Stack>
                                         </Stack>
@@ -127,10 +183,12 @@ export async function getServerSideProps() {
             return cachedData;
         }
 
+
+
         const db = await connectToDatabase();
         const data = await db.collection('blog').find({}).toArray();
+        console.log('data', data);
         cache.set('blogPosts', data); // Almacenar en caché los resultados de la consulta
-
         await closeConnection();
         return data;
     };

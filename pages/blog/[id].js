@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { connectToDatabase, closeConnection } from '@/config/mongodb';
 import { LRUCache } from 'lru-cache';
 import NotFound from '@/pages/404';
+const { useRouter } = require('next/router');
 
 const cache = new LRUCache({
     max: 100,
@@ -12,7 +13,15 @@ const cache = new LRUCache({
 });
 
 const BlogPost = (props) => {
-    const selectedBlogPost = props.blogPost;
+    let selectedBlogPost = props.blogPost;
+    const router = useRouter();
+    console.log(selectedBlogPost);
+
+    if (router.locale === 'en') {
+        selectedBlogPost = props.blogPost.en;
+    } else {
+        selectedBlogPost = props.blogPost.es;
+    }
 
     if (!selectedBlogPost) {
         return <NotFound />;
@@ -67,7 +76,7 @@ const BlogPost = (props) => {
 export async function getServerSideProps(context) {
     const { id } = context.query;
     const cachedBlogPost = cache.get(id);
-    
+
     if (cachedBlogPost) {
         return {
             props: {

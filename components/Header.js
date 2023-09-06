@@ -107,11 +107,13 @@ const Header = () => {
                                     </Link>
                                 </Nav.Item>)
                                 }
-                                <Nav.Item className='mb-2'>
-                                    <Link className='m-3' aria-label='Ir al blog' href="/#" /* onClick={handleLinkClick} */>
-                                        {HeaderTexts.resources}
-                                    </Link>
-                                </Nav.Item>
+                                {0 !== 0 && (
+                                    <Nav.Item className='mb-2'>
+                                        <Link className='m-3' aria-label='Ir al blog' href="/#" /* onClick={handleLinkClick} */>
+                                            {HeaderTexts.resources}
+                                        </Link>
+                                    </Nav.Item>
+                                )}
                                 <Nav.Item className='mb-2'>
                                     <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#info">
                                         {HeaderTexts.about}
@@ -133,7 +135,7 @@ const Header = () => {
                                 </Nav.Item>
                             </Nav>
                         )}
-                        {!isLoginPage && !isProfilePage && (
+                        {!isLoginPage && !isProfilePage && 0 !== 0 && (
                             <Nav className="align-items-center mx-3">
                                 <Nav.Item className="fw-bold mb-2">
                                     <Link className='m-3' aria-label='Iniciar Sesión' href="/login" onClick={handleLinkClick}>
