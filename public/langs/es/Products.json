@@ -19,7 +19,7 @@
         },
         {
             "name": "Portal de Proveedores y Sage 300",
-            "desc": "Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar previniendo pagos indebnameos y asegurando el cumplimiento de compromisos por parte de proveedores.",
+            "desc": "Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.",
             "button": {
                 "text": "Saber más"
             }
