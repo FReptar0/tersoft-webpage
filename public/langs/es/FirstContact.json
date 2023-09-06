@@ -4,7 +4,7 @@
         "validationSchema": {
             "required": "Este campo es requerido",
             "invalid": "Este campo es inválido",
-            "array": "Debe seleccionar al menos una opción",
+            "array": "Debe seleccionar al menos una opción"
         },
         "alerts": {
             "success": {
@@ -21,6 +21,75 @@
                     "description": "Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde"
                 }
             }
+        },
+        "modulesOptions": [
+            "Cuentas por cobrar",
+            "Cuentas por pagar",
+            "Libro Mayor",
+            "Ingreso de Ordenes (ventas)",
+            "Ordenes de compra",
+            "Inventarios",
+            "Facturación electrónica",
+            "Contabilidad Electrónica",
+            "Proyectos",
+            "Activos Fijos",
+            "Dispersión automática de pagos a proveedores",
+            "Autorización de órdenes de compra"
+        ],
+        "companyTypes": [
+            "Somos una empresa en pleno crecimiento que usa Excel u otro software para la administración de mi negocio, pero ya no nos funciona.",
+            "Somos una empresa que se ha consolidado en nuestra industria y tenemos operaciones en varias monedas, llevamos proyectos y estamos en planes de expansión.",
+            "Nuestra empresa es multinacional, tiene oficinas en varios países y necesitamos consolidar información de varias empresas.",
+            "Otra"
+        ],
+        "evaluatingERPsOptions": [
+            "SAP Business One",
+            "Oracle Netsuite",
+            "Microsoft Dynamics 365 Business Central",
+            "Infor ERP LN",
+            "Epicor ERP",
+            "Odoo",
+            "Acumatica ERP",
+            "Otro"
+        ],
+        "fields": {
+            "mail": "Correo electrónico",
+            "name": "Nombre completo",
+            "phone": "Teléfono",
+            "charge": "Cargo en la empresa",
+            "companyName": "Nombre de la empresa",
+            "description": "¿Podría proporcionarnos una breve descripción de su negocio y la industria en la que opera?",
+            "operations": "¿¿Cuáles son las operaciones necesita mejorar?",
+            "software": "¿Utiliza actualmente algún software de gestión empresarial o ERP? Si es así, ¿cuáles son los principales desafíos a los que se enfrenta con él?",
+            "users": "¿Cuántos usuarios necesitarán acceder al sistema ERP y cuáles serán sus roles dentro del software?",
+            "modules": "Módulos del ERP que necesita implementar",
+            "timeline": "¿Tiene un cronograma o plazo específico para implementar el nuevo sistema ERP?",
+            "invoices": "¿Cuantas facturas emite aproximadamente cada mes?",
+            "improvements": "¿Como desea que le ayudemos a mejorar su empresa? Por favor anote todos los requerimientos que desee Sage 300 solucione y lleve a su empresa a un mejor status quo.",
+            "budget": "¿Tiene un presupuesto estimado para este proyecto? (Esta información nos ayudará a recomendar la solución más apropiada dentro de su presupuesto)",
+            "companyType": "Tipo de empresa",
+            "training": "¿Cuál es su método preferido para capacitar al personal en nuevo software? ¿Estaría interesado en formación presencial, sesiones virtuales o un curso en línea a su propio ritmo?",
+            "evaluatingERPs": "¿Con que otros ERP nos estan evaluando?",
+            "send": "Enviar"
+        },
+        "placeholders": {
+            "mail": "Escribe tu correo electrónico",
+            "name": "Escribe tu nombre completo",
+            "phone": "Escribe tu teléfono",
+            "charge": "Escribe tu cargo en la empresa",
+            "companyName": "Escribe el nombre de la empresa",
+            "description": "Escribe una breve descripción de tu negocio y la industria en la que opera",
+            "operations": "Escribe las operaciones que necesita mejorar",
+            "software": "Escribe el software de gestión empresarial o ERP que utiliza actualmente",
+            "users": "Escribe el número de usuarios que necesitarán acceder al sistema ERP y cuáles serán sus roles dentro del software",
+            "modules": "Selecciona los módulos del ERP que necesita implementar",
+            "timeline": "Escribe el cronograma o plazo específico para implementar el nuevo sistema ERP",
+            "invoices": "Escribe el número de facturas que emite aproximadamente cada mes",
+            "improvements": "Escribe los requerimientos que desee Sage 300 solucione y lleve a su empresa a un mejor status quo",
+            "budget": "Escribe el presupuesto estimado para este proyecto",
+            "companyType": "Selecciona el tipo de empresa",
+            "training": "Selecciona el método preferido para capacitar al personal en nuevo software",
+            "evaluatingERPs": "Selecciona los ERP con los que nos estan evaluando"
         }
     }
 }

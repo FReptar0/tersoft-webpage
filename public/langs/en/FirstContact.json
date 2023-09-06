@@ -1,0 +1,95 @@
+{
+    "heading": "Contact Form",
+    "form": {
+        "validationSchema": {
+            "required": "This field is required",
+            "invalid": "This field is invalid",
+            "array": "You must select at least one option"
+        },
+        "alerts": {
+            "success": {
+                "title": "Thank You!",
+                "description": "Your information has been successfully submitted. We will contact you shortly."
+            },
+            "error": {
+                "missingFields": {
+                    "title": "Fields Missing",
+                    "description": "Please fill in all required fields."
+                },
+                "onSend": {
+                    "title": "Something Went Wrong",
+                    "description": "We're sorry, there was an error sending your information. Please try again later."
+                }
+            }
+        },
+        "modulesOptions": [
+            "Accounts Receivable",
+            "Accounts Payable",
+            "General Ledger",
+            "Sales Orders",
+            "Purchase Orders",
+            "Inventory",
+            "Electronic Invoicing",
+            "Electronic Accounting",
+            "Projects",
+            "Fixed Assets",
+            "Automatic Payment Dispersion to Suppliers",
+            "Purchase Order Authorization"
+        ],
+        "companyTypes": [
+            "We are a growing company that uses Excel or other software for business management, but it no longer serves us.",
+            "We are an established company in our industry, operating in multiple currencies, managing projects, and planning for expansion.",
+            "Our company is multinational, with offices in various countries, and we need to consolidate information from multiple entities.",
+            "Other"
+        ],
+        "evaluatingERPsOptions": [
+            "SAP Business One",
+            "Oracle Netsuite",
+            "Microsoft Dynamics 365 Business Central",
+            "Infor ERP LN",
+            "Epicor ERP",
+            "Odoo",
+            "Acumatica ERP",
+            "Other"
+        ],
+        "fields": {
+            "mail": "Email",
+            "name": "Full Name",
+            "phone": "Phone",
+            "charge": "Position in the Company",
+            "companyName": "Company Name",
+            "description": "Could you provide a brief description of your business and the industry you operate in?",
+            "operations": "What operations do you need to improve?",
+            "software": "Are you currently using any business management software or ERP? If so, what are the main challenges you face with it?",
+            "users": "How many users will need access to the ERP system, and what will be their roles within the software?",
+            "modules": "ERP modules you need to implement",
+            "timeline": "Do you have a specific schedule or deadline for implementing the new ERP system?",
+            "invoices": "How many invoices do you approximately issue each month?",
+            "improvements": "How would you like Sage 300 to help improve your company? Please list all the requirements you want Sage 300 to address and bring your company to a better status quo.",
+            "budget": "Do you have an estimated budget for this project? (This information will help us recommend the most suitable solution within your budget)",
+            "companyType": "Company Type",
+            "training": "What is your preferred method for training personnel on new software? Would you be interested in in-person training, virtual sessions, or self-paced online courses?",
+            "evaluatingERPs": "Which other ERPs are you evaluating us against?",
+            "send": "Submit"
+        },
+        "placeholders": {
+            "mail": "Enter your email",
+            "name": "Enter your full name",
+            "phone": "Enter your phone number",
+            "charge": "Enter your position in the company",
+            "companyName": "Enter the company name",
+            "description": "Enter a brief description of your business and industry",
+            "operations": "Enter the operations you need to improve",
+            "software": "Enter the business management software or ERP you currently use",
+            "users": "Enter the number of users who will need access to the ERP system and their roles within the software",
+            "modules": "Select the ERP modules you need to implement",
+            "timeline": "Enter the schedule or specific deadline for implementing the new ERP system",
+            "invoices": "Enter the approximate number of invoices you issue each month",
+            "improvements": "Enter the requirements you want Sage 300 to address and improve your company's status quo",
+            "budget": "Enter the estimated budget for this project",
+            "companyType": "Select the company type",
+            "training": "Select the preferred method for training personnel on new software",
+            "evaluatingERPs": "Select the ERPs against which you are evaluating us"
+        }
+    }
+}

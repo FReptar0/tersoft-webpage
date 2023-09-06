@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react';
+import React, { useState, createRef, useEffect } from 'react';
 import {
     Box,
     Button,
@@ -24,54 +24,69 @@ import Footer from '@/components/Footer';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Router from 'next/router';
 
-const FormSchema = Yup.object().shape({
-    email: Yup.string().email('Formato de correo inválido').required('Campo requerido'),
-    fullName: Yup.string().required('Campo requerido'),
-    jobTitle: Yup.string().required('Campo requerido'),
-    company: Yup.string().required('Campo requerido'),
-    description: Yup.string().required('Campo requerido'),
-    operations: Yup.string().required('Campo requerido'),
-    software: Yup.string().required('Campo requerido'),
-    userCount: Yup.string().required('Campo requerido'),
-    modules: Yup.array().required('Debe seleccionar al menos un módulo'),
-    timeline: Yup.string().required('Campo requerido'),
-    invoiceCount: Yup.number().required('Campo requerido'),
-    improvements: Yup.string().required('Campo requerido'),
-    budget: Yup.string().required('Campo requerido'),
-    companyType: Yup.string().required('Campo requerido'),
-    trainingMethod: Yup.string().required('Campo requerido'),
-    evaluatingERPs: Yup.array().required('Debe seleccionar al menos un ERP'),
-});
+import FirstContactTextES from '../public/langs/es/FirstContact.json'
+import FirstContactTextEN from '../public/langs/en/FirstContact.json'
 
-const initialValues = {
-    email: '',
-    fullName: '',
-    jobTitle: '',
-    company: '',
-    description: '',
-    operations: '',
-    software: '',
-    userCount: '',
-    modules: [],
-    timeline: '',
-    invoiceCount: '',
-    improvements: '',
-    budget: '',
-    companyType: '',
-    trainingMethod: '',
-    evaluatingERPs: [],
-};
-
-const modulesOptions = ['Cuentas por cobrar', 'Cuentas por pagar', 'Libro Mayor', 'Ingreso de Ordenes (ventas)', 'Ordenes de compra', 'Inventarios', 'Facturacion electronica', 'Contabilidad Electronica', 'Proyectos', 'Activos Fijos', 'Dispersión automática de pagos a proveedores', 'Autorizacion de ordenes de compra'];
-const companyTypes = ['Somos una empresa en pleno crecimiento que usa excel o algun otro software para la administracion de mi negocio ya no nos es funciona', 'Somos una empresa que se ha consolidado en nuestra industria y tenemos operaciones en varias monedas, llevamos proyectos y estamos en planes de expansion', 'Nuestra empresa es multinacional, tiene oficinas en varios paises y necesitamos consolidar informacion de varias empresas.', 'Otra'];
-const evaluatingERPsOptions = ['SAP Business One', 'Oracle Netsuite', 'Microsoft Dynamics 365 Business Central', 'Infor ERP LN', 'Epicor ERP', 'Odoo', 'Acumatica ERP', 'Otro'];
 
 const ERPForm = () => {
     const [isDisabled, setIsDisabled] = useState(true);
     const [reCaptchaResponse, setReCaptchaResponse] = useState('');
     const [telefono, setTelefono] = useState("");
     const reCaptchaRef = createRef();
+    const [firstContactText, setFirstContactText] = useState(FirstContactTextES);
+
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setFirstContactText(FirstContactTextEN);
+        } else {
+            setFirstContactText(FirstContactTextES);
+        }
+    }, []);
+
+    const modulesOptions = firstContactText.form.modulesOptions
+    const companyTypes = firstContactText.form.companyTypes
+    const evaluatingERPsOptions = firstContactText.form.evaluatingERPsOptions
+
+
+    const initialValues = {
+        email: '',
+        fullName: '',
+        jobTitle: '',
+        company: '',
+        description: '',
+        operations: '',
+        software: '',
+        userCount: '',
+        modules: [],
+        timeline: '',
+        invoiceCount: '',
+        improvements: '',
+        budget: '',
+        companyType: '',
+        trainingMethod: '',
+        evaluatingERPs: [],
+    };
+
+    const FormSchema = Yup.object().shape({
+        email: Yup.string().email(firstContactText.form.validationSchema.invalid).required(firstContactText.form.validationSchema.required),
+        fullName: Yup.string().required(firstContactText.form.validationSchema.required),
+        jobTitle: Yup.string().required(firstContactText.form.validationSchema.required),
+        company: Yup.string().required(firstContactText.form.validationSchema.required),
+        description: Yup.string().required(firstContactText.form.validationSchema.required),
+        operations: Yup.string().required(firstContactText.form.validationSchema.required),
+        software: Yup.string().required(firstContactText.form.validationSchema.required),
+        userCount: Yup.string().required(firstContactText.form.validationSchema.required),
+        modules: Yup.array().required(firstContactText.form.validationSchema.array),
+        timeline: Yup.string().required(firstContactText.form.validationSchema.required),
+        invoiceCount: Yup.number().required(firstContactText.form.validationSchema.required),
+        improvements: Yup.string().required(firstContactText.form.validationSchema.required),
+        budget: Yup.string().required(firstContactText.form.validationSchema.required),
+        companyType: Yup.string().required(firstContactText.form.validationSchema.required),
+        trainingMethod: Yup.string().required(firstContactText.form.validationSchema.required),
+        evaluatingERPs: Yup.array().required(firstContactText.form.validationSchema.array),
+    });
 
     const handleSubmit = async (values, { resetForm }) => {
         //console.log(values)
@@ -93,9 +108,9 @@ const ERPForm = () => {
 
             if (response.status === 200) {
                 Swal.fire({
-                    title: 'Correo electrónico enviado',
+                    title: firstContactText.form.alerts.success.title,
                     icon: 'success',
-                    text: 'Muchas gracias, su información ha sido enviada correctamente',
+                    text: firstContactText.form.alerts.success.text,
                     position: 'bottom-end',
                     showConfirmButton: false,
                     timer: 5000,
@@ -110,10 +125,9 @@ const ERPForm = () => {
                     reCaptchaRef.current.reset();
                 });
             } else {
-                console.log("else");
                 Swal.fire({
-                    title: 'Error',
-                    text: 'Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde',
+                    title: firstContactText.form.alerts.error.onSend.title,
+                    text: firstContactText.form.alerts.error.onSend.text,
                     icon: 'error',
                     position: 'bottom-end',
                     showConfirmButton: false,
@@ -131,10 +145,9 @@ const ERPForm = () => {
             }
 
         } catch (error) {
-            console.log(error);
             Swal.fire({
-                title: 'Error',
-                text: 'Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde',
+                title: firstContactText.form.alerts.error.onSend.title, 
+                text: firstContactText.form.alerts.error.onSend.text,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
@@ -178,7 +191,7 @@ const ERPForm = () => {
                     }}
                 >
                     <Heading as="h1" size="xl" textAlign="center" color={useColorModeValue('black.600', 'black.300')}>
-                        Formulario de contacto
+                        {firstContactText.heading}
                     </Heading>
                 </Box>
                 <Formik initialValues={initialValues} validationSchema={FormSchema} onSubmit={handleSubmit}>
@@ -188,8 +201,10 @@ const ERPForm = () => {
                                 <Field name="email">
                                     {({ field, form }) => (
                                         <FormControl isInvalid={form.errors.email && form.touched.email}>
-                                            <FormLabel htmlFor="email">Correo</FormLabel>
-                                            <Input {...field} id="email" placeholder="Correo" />
+                                            <FormLabel htmlFor="email">
+                                                {firstContactText.form.fields.mail}
+                                            </FormLabel>
+                                            <Input {...field} id="email" placeholder={firstContactText.form.placeholders.mail} />
                                             <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -199,8 +214,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.fullName && form.touched.fullName}>
-                                            <FormLabel htmlFor="fullName">Nombre completo</FormLabel>
-                                            <Input {...field} id="fullName" placeholder="Nombre completo" />
+                                            <FormLabel htmlFor="fullName">
+                                                {firstContactText.form.fields.name}
+                                            </FormLabel>
+                                            <Input {...field} id="fullName" placeholder={firstContactText.form.placeholders.name} />
                                             <FormErrorMessage>{form.errors.fullName}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -211,10 +228,14 @@ const ERPForm = () => {
                                         <FormControl
                                             inputMode="numeric"
                                         >
-                                            <FormLabel htmlFor="phone">Teléfono</FormLabel>
-                                            <Input {...field} value={telefono} onChange={handlePhone} minLength={10} maxLength={10} placeholder="Teléfono" />
+                                            <FormLabel htmlFor="phone">
+                                                {firstContactText.form.fields.phone}
+                                            </FormLabel>
+                                            <Input {...field} value={telefono} onChange={handlePhone} minLength={10} maxLength={10} placeholder={firstContactText.form.placeholders.phone} />
                                             {telefono.length < 10 && telefono.length > 0 && (
-                                                <span style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }}>El teléfono no es válido</span>
+                                                <span style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }}>
+                                                    {firstContactText.form.validationSchema.invalid}
+                                                </span>
                                             )}
                                         </FormControl>
                                     )}
@@ -224,8 +245,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.jobTitle && form.touched.jobTitle}>
-                                            <FormLabel htmlFor="jobTitle">Cargo en la empresa</FormLabel>
-                                            <Input {...field} id="jobTitle" placeholder="Puesto" />
+                                            <FormLabel htmlFor="jobTitle">
+                                                {firstContactText.form.fields.charge}
+                                            </FormLabel>
+                                            <Input {...field} id="jobTitle" placeholder={firstContactText.form.placeholders.charge} />
                                             <FormErrorMessage>{form.errors.jobTitle}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -235,8 +258,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.company && form.touched.company}>
-                                            <FormLabel htmlFor="company">Empresa</FormLabel>
-                                            <Input {...field} id="company" placeholder="Empresa" />
+                                            <FormLabel htmlFor="company">
+                                                {firstContactText.form.fields.companyName}
+                                            </FormLabel>
+                                            <Input {...field} id="company" placeholder={firstContactText.form.placeholders.companyName} />
                                             <FormErrorMessage>{form.errors.company}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -246,8 +271,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.description && form.touched.description}>
-                                            <FormLabel htmlFor="description">¿Podría proporcionarnos una breve descripción de su negocio y la industria en la que opera?</FormLabel>
-                                            <Textarea {...field} id="description" placeholder="Descripción" />
+                                            <FormLabel htmlFor="description">
+                                                {firstContactText.form.fields.description}
+                                            </FormLabel>
+                                            <Textarea {...field} id="description" placeholder={firstContactText.form.placeholders.description} />
                                             <FormErrorMessage>{form.errors.description}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -257,8 +284,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.operations && form.touched.operations}>
-                                            <FormLabel htmlFor="operations">¿Cuáles son las operaciones necesita mejorar?</FormLabel>
-                                            <Textarea {...field} id="operations" placeholder="Operaciones" />
+                                            <FormLabel htmlFor="operations">
+                                                {firstContactText.form.fields.operations}
+                                            </FormLabel>
+                                            <Textarea {...field} id="operations" placeholder={firstContactText.form.placeholders.operations} />
                                             <FormErrorMessage>{form.errors.operations}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -268,8 +297,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.software && form.touched.software}>
-                                            <FormLabel htmlFor="software">¿Utiliza actualmente algún software de gestión empresarial o ERP? Si es así, ¿cuáles son los principales desafíos a los que se enfrenta con él?</FormLabel>
-                                            <Textarea {...field} id="software" placeholder="Software" />
+                                            <FormLabel htmlFor="software">
+                                                {firstContactText.form.fields.software}
+                                            </FormLabel>
+                                            <Textarea {...field} id="software" placeholder={firstContactText.form.placeholders.software} />
                                             <FormErrorMessage>{form.errors.software}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -279,8 +310,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.userCount && form.touched.userCount}>
-                                            <FormLabel htmlFor="userCount">¿Cuántos usuarios necesitarán acceder al sistema ERP y cuáles serán sus roles dentro del software?</FormLabel>
-                                            <Textarea {...field} id="userCount" placeholder="Usuarios" />
+                                            <FormLabel htmlFor="userCount">
+                                                {firstContactText.form.fields.users}
+                                            </FormLabel>
+                                            <Textarea {...field} id="userCount" placeholder={firstContactText.form.placeholders.users} />
                                             <FormErrorMessage>{form.errors.userCount}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -290,7 +323,9 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.modules && form.touched.modules}>
-                                            <FormLabel>Módulos del ERP que necesita implementar</FormLabel>
+                                            <FormLabel>
+                                                {firstContactText.form.fields.modules}
+                                            </FormLabel>
                                             <VStack
                                                 style={{
                                                     display: 'flex',
@@ -315,8 +350,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.timeline && form.touched.timeline}>
-                                            <FormLabel htmlFor="timeline">¿Tiene un cronograma o plazo específico para implementar el nuevo sistema ERP?</FormLabel>
-                                            <Textarea {...field} id="timeline" placeholder="Cronograma" />
+                                            <FormLabel htmlFor="timeline">
+                                                {firstContactText.form.fields.timeline}
+                                            </FormLabel>
+                                            <Textarea {...field} id="timeline" placeholder={firstContactText.form.placeholders.timeline} />
                                             <FormErrorMessage>{form.errors.timeline}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -326,8 +363,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.invoiceCount && form.touched.invoiceCount}>
-                                            <FormLabel htmlFor="invoiceCount">¿Cuantas facturas emite aproximadamente cada mes?</FormLabel>
-                                            <Input {...field} id="invoiceCount" placeholder="Facturas"
+                                            <FormLabel htmlFor="invoiceCount">
+                                                {firstContactText.form.fields.invoices}
+                                            </FormLabel>
+                                            <Input {...field} id="invoiceCount" placeholder={firstContactText.form.placeholders.invoices}
                                                 onKeyDown={(e) => {
                                                     // Regex para permitir solo numeros, backspace, delete, flechas y tab
                                                     const regex = /[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/;
@@ -347,8 +386,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.improvements && form.touched.improvements}>
-                                            <FormLabel htmlFor="improvements">¿Como desea que le ayudemos a mejorar su empresa? Por favor anote todos los requerimientos que desee Sage 300 solucione y lleve a su empresa a un mejor status quo.</FormLabel>
-                                            <Textarea {...field} id="improvements" placeholder="Mejoras" />
+                                            <FormLabel htmlFor="improvements">
+                                                {firstContactText.form.fields.improvements}
+                                            </FormLabel>
+                                            <Textarea {...field} id="improvements" placeholder={firstContactText.form.placeholders.improvements} />
                                             <FormErrorMessage>{form.errors.improvements}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -358,8 +399,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.budget && form.touched.budget}>
-                                            <FormLabel htmlFor="budget">¿Tiene un presupuesto estimado para este proyecto? (Esta información nos ayudará a recomendar la solución más apropiada dentro de su presupuesto.)</FormLabel>
-                                            <Input {...field} id="budget" placeholder="Presupuesto"
+                                            <FormLabel htmlFor="budget">
+                                                {firstContactText.form.fields.budget}
+                                            </FormLabel>
+                                            <Input {...field} id="budget" placeholder={firstContactText.form.placeholders.budget}
                                                 onKeyDown={(e) => {
                                                     // Regex para permitir solo numeros, backspace, delete, flechas y tab
                                                     const regex = /[0-9]|Backspace|Delete|ArrowLeft|ArrowRight|Tab/;
@@ -379,7 +422,9 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.companyType && form.touched.companyType}>
-                                            <FormLabel>Tipo de empresa</FormLabel>
+                                            <FormLabel>
+                                                {firstContactText.form.fields.companyType}
+                                            </FormLabel>
                                             <RadioGroup {...field} id="companyType" placeholder="Tipo de empresa"
                                                 style={{
                                                     display: 'flex',
@@ -404,8 +449,10 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.trainingMethod && form.touched.trainingMethod}>
-                                            <FormLabel>¿Cuál es su método preferido para capacitar al personal en nuevo software? ¿Estaría interesado en formación presencial, sesiones virtuales o un curso en línea a su propio ritmo?</FormLabel>
-                                            <Textarea {...field} id="trainingMethod" placeholder="Capacitación" />
+                                            <FormLabel>
+                                                {firstContactText.form.fields.training}
+                                            </FormLabel>
+                                            <Textarea {...field} id="trainingMethod" placeholder={firstContactText.form.placeholders.training} />
                                             <FormErrorMessage>{form.errors.trainingMethod}</FormErrorMessage>
                                         </FormControl>
                                     )}
@@ -415,7 +462,9 @@ const ERPForm = () => {
                                     {({ field, form }) => (
                                         <FormControl
                                             isInvalid={form.errors.evaluatingERPs && form.touched.evaluatingERPs}>
-                                            <FormLabel>¿Con que otros ERP nos estan evaluando?</FormLabel>
+                                            <FormLabel>
+                                                {firstContactText.form.fields.evaluatingERPs}
+                                            </FormLabel>
                                             <VStack
                                                 style={{
                                                     display: 'flex',
@@ -448,16 +497,6 @@ const ERPForm = () => {
                                         setReCaptchaResponse('');
                                         initialValues.reCaptchaResponse = '';
                                     }}
-                                    onError={() => {
-                                        setIsDisabled(true);
-                                        setReCaptchaResponse('');
-                                        initialValues.reCaptchaResponse = '';
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Algo salió mal',
-                                            text: 'Ocurrió un error al validar el captcha, por favor inténtelo de nuevo',
-                                        });
-                                    }}
                                     name="reCaptchaResponse"
                                     id='reCaptchaResponse'
                                     ref={reCaptchaRef}
@@ -470,7 +509,7 @@ const ERPForm = () => {
                                     isDisabled={isDisabled}
                                     isLoading={isSubmitting}
                                 >
-                                    Enviar
+                                    {firstContactText.form.fields.send}
                                 </Button>
                             </Stack>
                         </Form>

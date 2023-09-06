@@ -262,15 +262,6 @@ const FormComponent = (formTexts) => {
                                 setIsDisabled(true);
                                 setReCaptchaResponse('');
                             }}
-                            onError={() => {
-                                setIsDisabled(true);
-                                setReCaptchaResponse('');
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Algo salió mal',
-                                    text: 'Ocurrió un error al validar el captcha, por favor inténtelo de nuevo',
-                                });
-                            }}
                             name="reCaptchaResponse"
                             id='reCaptchaResponse'
                             ref={reCaptchaRef}
