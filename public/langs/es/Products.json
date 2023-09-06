@@ -1,0 +1,41 @@
+{
+    "headingFirst": "El plan perfecto para ",
+    "headingLast": " tu negocio",
+    "description": "Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.",
+    "options": [
+        {
+            "name": "Sage 300",
+            "desc": "Sage 300 ayuda a las pequeñas y medianas empresas a administrar todo su negocio en distintas geografías sin el costo o la complejnamead del software de planificación de recursos empresariales (ERP) tradicional. La solución prefernamea por decenas de miles de empresas en todo el mundo, Sage 300 conecta los aspectos más importantes de su negocio en crecimiento.",
+            "button": {
+                "text": "Descargar Brochure"
+            }
+        },
+        {
+            "name": "Módulos fiscales",
+            "desc": "En Tersoft hemos desarrollado todos los módulos fiscales necesarios para operar en México y algunos países de América Latina. La facturación electrónica, contabilnamead electrónica, generación automática de DIOT, reportes de impuestos, flujo de caja, etc.",
+            "button": {
+                "text": "Descargar Brochure"
+            }
+        },
+        {
+            "name": "Portal de Proveedores y Sage 300",
+            "desc": "Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar previniendo pagos indebnameos y asegurando el cumplimiento de compromisos por parte de proveedores.",
+            "button": {
+                "text": "Saber más"
+            }
+        },
+        {
+            "name": "Módulos Tersoft",
+            "desc": [
+                "Dispersión automática de pagos a proveedores",
+                "Aprobación electrónica de Órdenes de Compra",
+                "Gestión de Vales de Almacén",
+                "Respaldos automáticos",
+                "Y más..."
+            ],
+            "button": {
+                "text": "Saber más"
+            }
+        }
+    ]
+}

@@ -1,84 +1,10 @@
 import { Box, Button, Divider, Heading, Stack, Text } from '@chakra-ui/react';
 import Router from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const optionsSage = {
-    id: 1,
-    isJustText: true,
-    desc: 'Sage 300 ayuda a las pequeñas y medianas empresas a administrar todo su negocio en distintas geografías sin el costo o la complejidad del software de planifi­cación de recursos empresariales (ERP) tradicional. La solución preferida por decenas de miles de empresas en todo el mundo, Sage 300 conecta los aspectos más importantes de su negocio en crecimiento.',
-    button: {
-        id: 'sage300',
-        text: 'Descargar Brochure',
-        colorScheme: 'green',
-        function: () => {
-            // Download brochure 
-            window.open('/Brochure_Sage_300.pdf', '_blank');
-        },
-    },
-};
+import ProductsTextEN from '../public/langs/en/Products.json';
+import ProductsTextES from '../public/langs/es/Products.json';
 
-const optionsModulosFiscales = {
-    id: 2,
-    isJustText: true,
-    desc: 'En Tersoft hemos desarrollado todos los módulos fiscales necesarios para operar en México y algunos países de América Latina. La facturación electrónica, contabilidad electrónica, generación automática de DIOT, reportes de impuestos, flujo de caja, etc.',
-    button: {
-        id: 'modulos-fiscales',
-        text: 'Descargar Brochure',
-        colorScheme: 'green',
-        function: () => {
-            // Download brochure 
-            window.open('/Modulos_Fiscales.pdf', '_blank');
-        },
-    },
-};
-
-const optionsSageconnect = {
-    id: 3,
-    isJustText: true,
-    desc: 'Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.',
-    button: {
-        id: 'sageconnect',
-        text: 'Saber más',
-        colorScheme: 'green',
-        function: () => {
-            const element = document.getElementById('contact');
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest',
-            });
-        },
-    },
-};
-
-const optionsModulosTersoft = {
-    id: 5,
-    isJustText: false,
-    desc: (
-        <ul style={{
-            textAlign: 'left',
-        }}>
-            <li>Dispersión automática de pagos a proveedores</li>
-            <li>Aprobación electrónica de Órdenes de Compra</li>
-            <li>Gestión de Vales de Almacén</li>
-            <li>Respaldos automáticos</li>
-            <li>Y más...</li>
-        </ul>
-    ),
-    button: {
-        id: 'modulos-tersoft',
-        text: 'Saber más',
-        colorScheme: 'green',
-        function: () => {
-            const element = document.getElementById('contact');
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest',
-            });
-        },
-    },
-};
 
 
 const PackageTier = ({ title, options }) => {
@@ -114,7 +40,7 @@ const PackageTier = ({ title, options }) => {
                 }}
             >
                 {options.isJustText ? (
-                    <Text textAlign={'center'} padding={'40px'}>
+                    <Text padding={'40px'}>
                         {options.desc}
                     </Text>
                 ) : (
@@ -146,6 +72,98 @@ const PackageTier = ({ title, options }) => {
 };
 
 const TableProducts = () => {
+    const [productsText, setProductsText] = useState(ProductsTextES);
+
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setProductsText(ProductsTextEN);
+        } else {
+            setProductsText(ProductsTextES);
+        }
+    }, []);
+
+    const optionsSage = {
+        id: 1,
+        isJustText: true,
+        desc: productsText.options[0].desc,
+        button: {
+            id: 'sage300',
+            text: productsText.options[0].button.text,
+            colorScheme: 'green',
+            function: () => {
+                // Download brochure 
+                window.open('/Brochure_Sage_300.pdf', '_blank');
+            },
+        },
+    };
+
+    const optionsModulosFiscales = {
+        id: 2,
+        isJustText: true,
+        desc: productsText.options[1].desc,
+        button: {
+            id: 'modulos-fiscales',
+            text: productsText.options[1].button.text,
+            colorScheme: 'green',
+            function: () => {
+                // Download brochure 
+                window.open('/Modulos_Fiscales.pdf', '_blank');
+            },
+        },
+    };
+
+    const optionsSageconnect = {
+        id: 3,
+        isJustText: true,
+        desc: productsText.options[2].desc,
+        button: {
+            id: 'sageconnect',
+            text: productsText.options[2].button.text,
+            colorScheme: 'green',
+            function: () => {
+                const element = document.getElementById('contact');
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest',
+                });
+            },
+        },
+    };
+
+    const optionsModulosTersoft = {
+        id: 5,
+        isJustText: false,
+        desc: (
+            <ul style={{
+                textAlign: 'left',
+            }}>
+                {/* forEach */}
+                {productsText.options[3].desc.map((item, index) => {
+                    return (
+                        <li key={index}>
+                            {item}
+                        </li>
+                    );
+                })}
+            </ul>
+        ),
+        button: {
+            id: 'modulos-tersoft',
+            text: productsText.options[3].button.text,
+            colorScheme: 'green',
+            function: () => {
+                const element = document.getElementById('contact');
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest',
+                });
+            },
+        },
+    };
+
+
     return (
         <Box py={6} px={5} min={'100vh'}>
             <Stack spacing={4} width={'100%'} direction={'column'}>
@@ -169,7 +187,7 @@ const TableProducts = () => {
                         textAlign={'center'}
                     >
                         <Heading size={'lg'}>
-                            El plan perfecto para <Text color="green.600">tu negocio</Text>
+                            {productsText.headingFirst} <Text color="green.600">{productsText.headingLast}</Text>
                         </Heading>
                     </Stack>
                     <Stack
@@ -179,19 +197,19 @@ const TableProducts = () => {
                         }}
                     >
                         <Text textAlign={'center'}>
-                            Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.
+                            {productsText.description}
                         </Text>
                     </Stack>
                 </Stack>
 
                 <Divider />
-                <PackageTier title={'Sage 300'} options={optionsSage} />
+                <PackageTier title={productsText.options[0].name} options={optionsSage} />
                 <Divider />
-                <PackageTier title={'Módulos fiscales'} options={optionsModulosFiscales} />
+                <PackageTier title={productsText.options[1].name} options={optionsModulosFiscales} />
                 <Divider />
-                <PackageTier title={'Portal de Proveedores y Sage 300'} options={optionsSageconnect} />
+                <PackageTier title={productsText.options[2].name} options={optionsSageconnect} />
                 <Divider />
-                <PackageTier title={'Módulos Tersoft'} options={optionsModulosTersoft} />
+                <PackageTier title={productsText.options[3].name} options={optionsModulosTersoft} />
                 <Divider />
             </Stack>
         </Box>

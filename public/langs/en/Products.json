@@ -1,0 +1,41 @@
+{
+    "headingFirst": "The Perfect Plan for ",
+    "headingLast": " Your Business",
+    "description": "Discover Tersoft's perfect plan to empower your business. Our personalized approach drives your success through innovative and strategic technological solutions.",
+    "options": [
+        {
+            "name": "Sage 300",
+            "desc": "Sage 300 helps small and medium-sized businesses manage their entire business across different geographies without the cost or complexity of traditional Enterprise Resource Planning (ERP) software. The preferred solution for tens of thousands of businesses worldwide, Sage 300 connects the most critical aspects of your growing business.",
+            "button": {
+                "text": "Download Brochure"
+            }
+        },
+        {
+            "name": "Fiscal Modules",
+            "desc": "At Tersoft, we have developed all the fiscal modules necessary to operate in Mexico and some Latin American countries. Electronic invoicing, electronic accounting, automatic DIOT generation, tax reports, cash flow, and more.",
+            "button": {
+                "text": "Download Brochure"
+            }
+        },
+        {
+            "name": "Vendors Portal and Sage 300",
+            "desc": "We have integrated Sage 300 with PortaldeProveedores.mx to automate accounts payable, preventing improper payments and ensuring supplier commitment compliance.",
+            "button": {
+                "text": "Learn More"
+            }
+        },
+        {
+            "name": "Tersoft Modules",
+            "desc": [
+                "Automatic payment dispersion to suppliers",
+                "Electronic Purchase Order approval",
+                "Warehouse Voucher Management",
+                "Automatic backups",
+                "And more..."
+            ],
+            "button": {
+                "text": "Learn More"
+            }
+        }
+    ]
+}
