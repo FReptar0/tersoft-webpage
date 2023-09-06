@@ -84,36 +84,38 @@ export async function verifyHome(data) {
 }
 
 export async function verifyContact(data) {
-    const { email, fullName, phone, jobTitle, company, description, operations, software, userCount, modules, timeline, invoiceCount, improvements, budget, companyType, trainingMethod, evaluatingERPs } = data;
+    const { email, fullName, jobTitle, company, description, operations, software, userCount, modules, timeline, invoiceCount, improvements, budget, companyType, trainingMethod, evaluatingERPs, phoneNumber } = data;
 
-    if (!email || !fullName || !phone || !jobTitle || !company || !description || !operations || !software || !userCount || !modules || !timeline || !invoiceCount || !improvements || !budget || !companyType || !trainingMethod || !evaluatingERPs) {
+    if (!email || !fullName || !jobTitle || !company || !description || !operations || !software || !userCount || !timeline || !invoiceCount || !improvements || !budget || !companyType || !trainingMethod || !phoneNumber) {
         return new CustomResponse(400, "Faltan campos por llenar", "Faltan campos por llenar", {})
     }
 
-    const subject = "Solicitud de contacto desde la página de contacto (Primer contacto)";
+    const subject = "Solicitud de contacto desde la página de contacto - Primer Contacto";
 
-    const text = `Se ha recibido una solicitud de contacto desde la página web desde la página de contacto (Primer contacto). Los datos son los siguientes: \n
+    const text = `Se ha recibido una solicitud de contacto desde la página web desde la página de contacto, en el formulario de cotacto inicial. Los datos son los siguientes: \n
 
+    Nombre: ${fullName}
+    Teléfono: ${phoneNumber}
     Correo: ${email}
-    Nombre completo: ${fullName}
-    Teléfono: ${phone}
     Puesto: ${jobTitle}
     Empresa: ${company}
     Descripción: ${description}
     Operaciones: ${operations}
     Software: ${software}
     Cantidad de usuarios: ${userCount}
-    Módulos: ${modules}
+    Modulos: ${modules}
     Tiempo de implementación: ${timeline}
     Cantidad de facturas: ${invoiceCount}
     Mejoras: ${improvements}
     Presupuesto: ${budget}
     Tipo de empresa: ${companyType}
     Método de capacitación: ${trainingMethod}
-    ERPs Evaluados: ${evaluatingERPs}`;
+    Evaluando ERPs: ${evaluatingERPs}`;
 
     const response = await sendMail({ subject, text });
+
     return response;
+
 }
 
 export async function sendMail(data) {
