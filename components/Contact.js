@@ -113,7 +113,6 @@ const ContactForm = () => {
 
         try {
             const response = await axios.post('/api/sendMail', data);
-            console.log(response);
             if (response.status === 200) {
                 console.log("Email sent");
                 Swal.fire({
