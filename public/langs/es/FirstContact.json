@@ -1,5 +1,5 @@
 {
-    "heading": "Formulario de contacto",
+    "heading": "Formulario de primer contacto",
     "form": {
         "validationSchema": {
             "required": "Este campo es requerido",
