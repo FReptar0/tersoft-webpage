@@ -24,7 +24,6 @@ import Footer from '@/components/Footer';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Imagen from '../public/cover.avif';
 
 const FormSchema = Yup.object().shape({
     email: Yup.string().email('Formato de correo inválido').required('Campo requerido'),

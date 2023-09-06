@@ -12,7 +12,6 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
-import Router from 'next/router';
 
 import FooterTextES from '../public/langs/es/Footer.json';
 import FooterTextEN from '../public/langs/en/Footer.json';

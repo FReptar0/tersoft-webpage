@@ -1,0 +1,26 @@
+{
+    "heading": "Formulario de contacto",
+    "form": {
+        "validationSchema": {
+            "required": "Este campo es requerido",
+            "invalid": "Este campo es inválido",
+            "array": "Debe seleccionar al menos una opción",
+        },
+        "alerts": {
+            "success": {
+                "title": "¡Gracias!",
+                "description": "Tu información ha sido enviada con éxito, pronto nos pondremos en contacto contigo."
+            },
+            "error": {
+                "missingFields": {
+                    "title": "Faltan campos por llenar",
+                    "description": "Por favor, llena todos los campos requeridos."
+                },
+                "onSend": {
+                    "title": "Algo salió mal",
+                    "description": "Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde"
+                }
+            }
+        }
+    }
+}
