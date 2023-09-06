@@ -1,0 +1,30 @@
+{
+    "heading": "Our Clients Share Their Thoughts",
+    "description": "Don't just take our word for it, see what our clients are saying:",
+    "testimonials": [
+        {
+            "id": 1,
+            "text": "We have been working with Tersoft since 2006 as our specialized consultants in Sage 300, significantly automating our operations to the extent of having a fully integrated e-commerce with Sage 300 and sending and receiving purchase orders through EDI. The Tersoft team provides 24/7 support for our business operations, always with amazing results.",
+            "name": "Enrique Reyna",
+            "image": "/testimonials/enrique-reyna.jpeg"
+        },
+        {
+            "id": 2,
+            "text": "Many ERP systems can meet the requirements one is looking for, but few have a human team willing and committed to ensuring the successful installation of the system in the client's operations. SAGE 300 and TERSOFT have that commitment and availability.",
+            "name": "Adolfo Quintana",
+            "image": "/testimonials/Adolfo-quintana.jpg"
+        },
+        {
+            "id": 3,
+            "text": "For over 9 years, we have maintained a business relationship with Tersoft, who has become our business ally, receiving excellent service from all their associates in every requirement related to the operation and development of our ERP Sage 300.",
+            "name": "Edmundo Corona",
+            "image": "/testimonials/edmundo-corona.jpg"
+        },
+        {
+            "id": 4,
+            "text": "We have had 16 years of specialized consulting services in Sage 300, always with commitment, seriousness, and professionalism.",
+            "name": "Monserrat Ruíz",
+            "image": "/testimonials/Monserrat-Ruiz.jpg"
+        }
+    ]
+}

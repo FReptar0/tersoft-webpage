@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import {
     Box,
@@ -12,6 +12,10 @@ import {
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
+import Router from 'next/router';
+
+import TestimonialsTextEN from '../public/langs/en/Testimonials.json';
+import TestimonialsTextES from '../public/langs/es/Testimonials.json';
 
 const Testimonial = ({ children }) => {
     return <Box>{children}</Box>;
@@ -67,8 +71,8 @@ const TestimonialAvatar = ({ src, name, title }) => {
             <Image src={src} alt={name} width={50} height={50} style={{
                 maxHeight: '50px',
                 minWidth: '50px',
-            }} 
-            className='rounded-circle mb-2' />
+            }}
+                className='rounded-circle mb-2' />
             <Stack spacing={-1} align={'center'}>
                 <Text fontWeight={600}>{name}</Text>
                 <Text fontSize={'sm'} color={useColorModeValue('gray.600', 'gray.400')}>
@@ -80,41 +84,17 @@ const TestimonialAvatar = ({ src, name, title }) => {
 };
 
 const CarruselTestimonial = () => {
-    const testimonials = [
-        {
-            id: 1,
-            heading: 'Efficient Collaborating',
-            text:
-                'Hemos trabajado con Tersoft desde el año 2006 como nuestros consultores especializados en Sage 300, logrando automatizar significativamente nuestras operaciones hasta el grado de contar con un e-commerce completamente integrado con Sage 300 así como enviar y recibir órdenes de compra a través de un EDI. El equipo Tersoft apoya 24/7 en las operación de nuestra empresa siempre con resultados sorprendentes',
-            name: 'Enrique Reyna',
-            image: '/testimonials/enrique-reyna.jpeg',
-        },
-        {
-            id: 2,
-            heading: 'Efficient Collaborating',
-            text:
-                'Varios ERP pueden cumplir con los requisitos que uno busca, pero pocos cuentan con un equipo humano dispuesto y comprometido a que la instalación del sistema en la operación del cliente sea exitosa. SAGE 300 y TERSOFT tienen ese compromiso y disponibilidad.',
-            name: 'Adolfo Quintana',
-            image:'/testimonials/Adolfo-quintana.jpg',
-        },
-        {
-            id: 3,
-            heading: 'Efficient Collaborating',
-            text:
-                'Desde hace más de 9 años sostenemos una relación comercial con Tersoft, quien se ha convertido en nuestro aliado comercial, recibiendo desde entonces un excelente servicio por parte de todos sus asociados en todos y cada uno de los requerimientos relacionados a la operación y desarrollo de nuestro ERP Sage 300.',
-            name: 'Edmundo Corona',
-            image: '/testimonials/edmundo-corona.jpg',
-        },
-        {
-            id: 4,
-            heading: 'Efficient Collaborating',
-            text:
-                'Tenemos 16 años contando con los servicios de consultoría especializada en Sage 300, siempre con compromiso, seriedad y profesionalismo.',
-            name: 'Monserrat Ruíz',
-            image:'/testimonials/Monserrat-Ruiz.jpg'
-        },
-    ];
+    const [testimonialsText, setTestimonialsText] = useState(TestimonialsTextES);
 
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setTestimonialsText(TestimonialsTextEN);
+        } else {
+            setTestimonialsText(TestimonialsTextES);
+        }
+    }, []);
+
+    const testimonials = testimonialsText.testimonials;
     const settings = {
         dots: true,
         infinite: true,
@@ -127,8 +107,12 @@ const CarruselTestimonial = () => {
         <Box bg={useColorModeValue('green.200', 'gray.700')}>
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
-                    <Heading textAlign={'center'}>Nuestros Clientes Opinan</Heading>
-                    <Text textAlign={'center'}>No nos crea a nosotros, vea lo que dicen nuestros clientes:</Text>
+                    <Heading textAlign={'center'}>
+                        {testimonialsText.heading}
+                    </Heading>
+                    <Text textAlign={'center'}>
+                        {testimonialsText.description}
+                    </Text>
                 </Stack>
                 <Slider {...settings}>
                     {testimonials.map((testimonial) => (
