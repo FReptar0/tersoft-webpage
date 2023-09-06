@@ -1,0 +1,26 @@
+{
+    "heading": "Our Services",
+    "description": "At Tersoft, we prioritize our clients' needs by fostering an ecosystem of efficiency where we ensure Sage 300 runs smoothly. Our commitment goes beyond mere implementation; we also identify and address challenges you may not be aware of, ensuring your business thrives.",
+    "cards": [
+        {
+            "heading": "Consulting",
+            "description": "Our commitment to our clients is to have Sage 300 running successfully and to have their employees, customers, and suppliers be part of this business efficiency ecosystem. At Tersoft, we are known for precise problem identification and effective solutions."
+        },
+        {
+            "heading": "Development",
+            "description": "Does your company need custom modules to provide added value that sets you apart from your competitors? Don't worry; at Tersoft, we are here to help because we are a Developer Partner of Sage and have the necessary experience to achieve your goals."
+        },
+        {
+            "heading": "Cloud Solutions and Services",
+            "description": "Do your employees work from home, in their offices, or in a hybrid manner? Perfect! We are a Partner of Net at Cloud to host Sage 300 in the cloud, making it 100% available anytime, anywhere."
+        },
+        {
+            "heading": "Training",
+            "description": "Companies that train their teams are more efficient and successful. Tersoft provides continuous and up-to-date training for the most important part of your company: your employees."
+        },
+        {
+            "heading": "Integrations",
+            "description": "We integrate Sage 300 with your current systems to optimize solutions. We facilitate your company's expansion to Mexico and Latin America, adapting operations to meet local requirements and serve as an operational extension in Canada and the United States."
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "heading": "Nuestros servicios",
+    "description": "En Tersoft, priorizamos las necesidades de nuestros clientes fomentando un ecosistema de eficiencia en el que nos aseguramos de que Sage 300 funcione sin problemas. Nuestro compromiso va más allá de la mera implementación, ya que también Identificamos y abordamos los desafíos de los que quizás no esté al tanto, asegurándonos de que su negocio prospere.",
+    "cards": [
+        {
+            "heading": "Consultoría",
+            "description": "El compromiso con nuestros clientes es que tengan Sage 300 funcionando exitosamente y que tanto sus colaboradores como sus clientes y proveedores formen parte de este ecosistema de eficiencia empresarial. En Tersoft nos caracterizamos por una precisa identificación de problemas y su efectiva solución."
+        },
+        {
+            "heading": "Desarrollo",
+            "description": "¿Su empresa necesita de módulos hechos a la medida para cumplir con algún valor agregado que la diferencie de sus competidores? No se preocupe, en Tersoft estamos para ayudarle porque somos Developer Partner de Sage y tenemos la experiencia necesaria para lograr sus objetivos."
+        },
+        {
+            "heading": "Soluciones y servicios Cloud",
+            "description": "¿Sus empleados trabajan desde casa, en sus oficinas o de forma híbrida? ¡Perfecto! Nosotros somos Partner de Net at Cloud para que Sage 300 sea hospedado en la nube y esté 100% disponible en cualquier momento y lugar."
+        },
+        {
+            "heading": "Capacitación",
+            "description": "Las empresas que capacitan a sus equipos son más eficientes y exitosas. Tersoft brinda capacitación continua y actualizada para la parte más importante de su compañía: sus colaboradores."
+        },
+        {
+            "heading": "Integraciones",
+            "description": "Integramos Sage 300 con sus sistemas actuales para optimizar soluciones. Facilitamos la expansión de su empresa a México y Latinoamérica, adaptando operaciones para cumplir con requisitos locales y ser una extensión operativa en Canadá y Estados Unidos."
+        }
+    ]
+}

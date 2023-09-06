@@ -2,6 +2,10 @@ import { Box, Container, Flex, Heading, Icon, Stack, Text, useColorModeValue } f
 import { FcAssistant, FcCollaboration, FcServices } from 'react-icons/fc';
 import { BsFillCloudFill } from 'react-icons/bs';
 import { DiCode } from "react-icons/di";
+import React, { useEffect, useState } from 'react';
+import Router from 'next/router';
+import OurWorkTextEN from '../public/langs/en/OurWork.json';
+import OurWorkTextES from '../public/langs/es/OurWork.json';
 
 
 function Card({ heading, description, icon }) {
@@ -38,44 +42,53 @@ function Card({ heading, description, icon }) {
 }
 
 export default function GridList() {
+    const [ourWorkText, setOurWorkText] = useState(OurWorkTextES);
+
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setOurWorkText(OurWorkTextEN);
+        } else {
+            setOurWorkText(OurWorkTextES);
+        }
+    }, []);
+
     return (
         <Box p={4}>
             <Stack spacing={4} as={Container} maxW={'3xl'}>
                 <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'} textAlign={'center'}>
-                    Nuestros servicios
+                    {ourWorkText.heading}
                 </Heading>
                 <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }} textAlign={'justify'}>
-                    En Tersoft, priorizamos las necesidades de nuestros clientes fomentando un ecosistema de eficiencia en el que nos aseguramos de que Sage 300 funcione sin problemas.
-                    Nuestro compromiso va más allá de la mera implementación, ya que también Identificamos y abordamos los desafíos de los que quizás no esté al tanto, asegurándonos de que su negocio prospere.
+                    {ourWorkText.description}
                 </Text>
             </Stack>
 
             <Container maxW={'5xl'} mt={12}>
                 <Flex flexWrap="wrap" gridGap={6} justify="center">
                     <Card
-                        heading={'Consultoría'}
+                        heading={ourWorkText.cards[0].heading}
                         icon={<Icon as={FcAssistant} w={10} h={10} />}
-                        description={'El compromiso con nuestros clientes es que tengan Sage 300 funcionando exitosamente y que tanto sus colaboradores como sus clientes y proveedores formen parte de este ecosistema de eficiencia empresarial. En Tersoft nos caracterizamos por una precisa identificación de problemas y su efectiva solución.'}
+                        description={ourWorkText.cards[0].description}
                     />
                     <Card
-                        heading={'Desarrollo'}
+                        heading={ourWorkText.cards[1].heading}
                         icon={<Icon as={DiCode} color={'orange.400'} w={'14'} h={'14'} />}
-                        description={'¿Su empresa necesita de módulos hechos a la medida para cumplir con algún valor agregado que la diferencie de sus competidores? No se preocupe, en Tersoft estamos para ayudarle porque somos Developer Partner de Sage y tenemos la experiencia necesaria para lograr sus objetivos. '}
+                        description={ourWorkText.cards[1].description}
                     />
                     <Card
-                        heading={'Soluciones y servicios Cloud'}
+                        heading={ourWorkText.cards[2].heading}
                         icon={<Icon as={BsFillCloudFill} color={'blue.500'} w={10} h={10} />}
-                        description={'¿Sus empleados trabajan desde casa, en sus oficinas o de forma híbrida? ¡Perfecto! Nosotros somos Partner de Net at Cloud para que Sage 300 sea hospedado en la nube y esté 100% disponible en cualquier momento y lugar.'}
+                        description={ourWorkText.cards[2].description}
                     />
                     <Card
-                        heading={'Capacitación'}
+                        heading={ourWorkText.cards[3].heading}
                         icon={<Icon as={FcCollaboration} w={10} h={10} />}
-                        description={'Las empresas que capacitan a sus equipos son más eficientes y exitosas. Tersoft brinda capacitación continua y actualizada para la parte más importante de su compañía: sus colaboradores.'}
+                        description={ourWorkText.cards[3].description}
                     />
                     <Card
-                        heading={'Integraciones'}
+                        heading={ourWorkText.cards[4].heading}
                         icon={<Icon as={FcServices} w={10} h={10} />}
-                        description={'Integramos Sage 300 con sus sistemas actuales para optimizar soluciones. Facilitamos la expansión de su empresa a México y Latinoamérica, adaptando operaciones para cumplir con requisitos locales y ser una extensión operativa en Canadá y Estados Unidos.'}
+                        description={ourWorkText.cards[4].description}
                     />
                 </Flex>
             </Container>
