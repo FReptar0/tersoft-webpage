@@ -59,7 +59,7 @@
             "charge": "Cargo en la empresa",
             "companyName": "Nombre de la empresa",
             "description": "¿Podría proporcionarnos una breve descripción de su negocio y la industria en la que opera?",
-            "operations": "¿¿Cuáles son las operaciones necesita mejorar?",
+            "operations": "¿Cuáles son las operaciones qué necesita mejorar?",
             "software": "¿Utiliza actualmente algún software de gestión empresarial o ERP? Si es así, ¿cuáles son los principales desafíos a los que se enfrenta con él?",
             "users": "¿Cuántos usuarios necesitarán acceder al sistema ERP y cuáles serán sus roles dentro del software?",
             "modules": "Módulos del ERP que necesita implementar",
