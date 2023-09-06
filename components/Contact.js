@@ -29,12 +29,11 @@ const ContactForm = () => {
     const reCaptchaRef = createRef();
 
     const validationSchema = Yup.object().shape({
-        nombre: Yup.string().required('Nombre es requerido'),
-        apellido: Yup.string().required('Apellido es requerido'),
-        telefono: Yup.string().matches(/^[0-9]+$/, 'El teléfono no es válido'),
-        correo: Yup.string().email('Correo inválido').required('Correo es requerido'),
-        empresa: Yup.string().required('Empresa es requerida'),
-        opcion: Yup.string().required('La opción es requerida').nullable(),
+        nombre: Yup.string().required(contactText.form.validationSchema.name),
+        apellido: Yup.string().required(contactText.form.validationSchema.lastname),
+        correo: Yup.string().email(contactText.form.validationSchema.invalidEmail).required(contactText.form.validationSchema.email),
+        empresa: Yup.string().required(contactText.form.validationSchema.company),
+        opcion: Yup.string().required(contactText.form.validationSchema.option),
         sitioWeb: Yup.string(),
         edad: Yup.string(), // This field is hidden and is used to check if the user is a bot
     });
@@ -54,17 +53,17 @@ const ContactForm = () => {
     const initialValues = {
         nombre: '',
         apellido: '',
-        telefono: '',
         correo: '',
         empresa: '',
         opcion: '',
         sitioWeb: '',
         edad: '',
-        reCaptchaResponse: '',
     };
 
     const handleSubmit = async (values, { resetForm }) => {
         const { nombre, apellido, correo, empresa, opcion, sitioWeb } = values;
+        console.log(values);
+        
         const data = {
             "name": nombre,
             "lastname": apellido,
@@ -76,6 +75,8 @@ const ContactForm = () => {
             "reCaptchaResponse": reCaptchaResponse,
             "uri": "/home"
         };
+
+        console.log(data);
 
         // Check if the user is a bot
         if (values.edad) {
@@ -96,8 +97,8 @@ const ContactForm = () => {
         // check if all the fields are filled
         if (!nombre || !apellido || !telefono || !correo || !empresa || !opcion || !reCaptchaResponse) {
             Swal.fire({
-                title: contactText.alerts.error.missingFields.title,
-                text: contactText.alerts.error.missingFields.description,
+                title: contactText.form.alerts.error.missingFields.title,
+                text: contactText.form.alerts.error.missingFields.description,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
@@ -108,13 +109,17 @@ const ContactForm = () => {
             return;
         }
 
+        console.log("Sending email...");
+
         try {
             const response = await axios.post('/api/sendMail', data);
+            console.log(response);
             if (response.status === 200) {
+                console.log("Email sent");
                 Swal.fire({
-                    title: contactText.alerts.success.title,
+                    title: contactText.form.alerts.success.title,
                     icon: 'success',
-                    text: contactText.alerts.success.description,
+                    text: contactText.form.alerts.success.description,
                     position: 'bottom-end',
                     showConfirmButton: false,
                     timer: 5000,
@@ -130,8 +135,8 @@ const ContactForm = () => {
                 });
             } else {
                 Swal.fire({
-                    title: contactText.alerts.error.onSend.title,
-                    text: contactText.alerts.error.onSend.description,
+                    title: contactText.form.alerts.error.onSend.title,
+                    text: contactText.form.alerts.error.onSend.description,
                     icon: 'error',
                     position: 'bottom-end',
                     showConfirmButton: false,
@@ -149,8 +154,8 @@ const ContactForm = () => {
             }
         } catch (error) {
             Swal.fire({
-                title: contactText.alerts.error.onSend.title,
-                text: contactText.alerts.error.onSend.description,
+                title: contactText.form.alerts.error.onSend.title,
+                text: contactText.form.alerts.error.onSend.description,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
