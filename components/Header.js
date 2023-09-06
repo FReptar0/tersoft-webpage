@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Navbar, Nav } from 'react-bootstrap';
 import Link from 'next/link';
@@ -8,14 +8,27 @@ import Router from 'next/router';
 
 import Loader from './Loader';
 
+import HeaderTextsES from '../public/langs/es/Header.json';
+import HeaderTextsEN from '../public/langs/en/Header.json';
+
 const Header = () => {
     const [showNav, setShowNav] = useState(false);
     const [isLoading, setIsLoading] = useState(false); // Estado para controlar la visibilidad del Loader
+    const [HeaderTexts, setHeaderTexts] = useState(HeaderTextsES);
     const router = useRouter();
     const { pathname } = router;
     const toggleNav = () => {
         setShowNav(!showNav);
     };
+
+    useEffect(() => {
+        console.log(Router.locale);
+        if (Router.locale === 'en') {
+            setHeaderTexts(HeaderTextsEN);
+        } else {
+            setHeaderTexts(HeaderTextsES);
+        }
+    }, []);
 
 
     const isLoginPage = pathname === '/login';
@@ -84,25 +97,31 @@ const Header = () => {
                         {!isProfilePage && (
                             <Nav className="me-auto mx-5">
                                 <Nav.Item className='mb-2'>
-                                    <Link className='m-3' aria-label='Ir a nuestros productos' href="/#products">Productos</Link>
+                                    <Link className='m-3' aria-label='Ir a nuestros productos' href="/#products">
+                                        {HeaderTexts.products}
+                                    </Link>
                                 </Nav.Item>
                                 {!isBlogPage && (<Nav.Item className='mb-2'>
                                     <Link className='m-3' aria-label='Ir al blog' href="/blog" onClick={handleLinkClick}>
-                                        Blog
+                                        {HeaderTexts.blog}
                                     </Link>
                                 </Nav.Item>)
                                 }
                                 <Nav.Item className='mb-2'>
                                     <Link className='m-3' aria-label='Ir al blog' href="/#" /* onClick={handleLinkClick} */>
-                                        Recursos
+                                        {HeaderTexts.resources}
                                     </Link>
                                 </Nav.Item>
                                 <Nav.Item className='mb-2'>
-                                    <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#info">Acerca de nosotros</Link>
+                                    <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#info">
+                                        {HeaderTexts.about}
+                                    </Link>
                                 </Nav.Item>
                                 {!isContactPage && (
                                     <Nav.Item className='mb-2'>
-                                        <Link className='m-3' aria-label='Ir a la información de tersoft' href="/contact" onClick={handleLinkClick}>Contáctanos</Link>
+                                        <Link className='m-3' aria-label='Ir a la información de tersoft' href="/contact" onClick={handleLinkClick}>
+                                            {HeaderTexts.contact}
+                                        </Link>
                                     </Nav.Item>
                                 )}
                             </Nav>
@@ -118,7 +137,7 @@ const Header = () => {
                             <Nav className="align-items-center mx-3">
                                 <Nav.Item className="fw-bold mb-2">
                                     <Link className='m-3' aria-label='Iniciar Sesión' href="/login" onClick={handleLinkClick}>
-                                        Iniciar sesión
+                                        {HeaderTexts.login}
                                     </Link>
                                 </Nav.Item>
                             </Nav>
@@ -133,7 +152,7 @@ const Header = () => {
                                             Router.push('/login');
                                         }
                                     }>
-                                        Cerrar sesión
+                                        {HeaderTexts.logout}
                                     </Link>
                                 </Nav.Item>
                             </Nav>
