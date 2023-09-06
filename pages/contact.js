@@ -24,6 +24,7 @@ import Footer from '@/components/Footer';
 import ReCAPTCHA from 'react-google-recaptcha';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Imagen from '../public/cover.avif';
 
 const FormSchema = Yup.object().shape({
     email: Yup.string().email('Formato de correo inválido').required('Campo requerido'),
@@ -163,7 +164,7 @@ const ERPForm = () => {
         <React.Fragment>
             <Header />
             <Box bg="gray.100">
-                <Image src='cover.avif' alt="Cover Image" objectFit="cover" w="100%" h={300} />
+                <Image src='https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80' alt="Cover Image" objectFit="cover" w="100%" h={300} />
             </Box>
             <Container maxW={'3xl'} marginBottom={10} marginTop={-10}>
                 <Box bg="green.300"

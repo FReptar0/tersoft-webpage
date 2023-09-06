@@ -1,0 +1,46 @@
+{
+    "heading": "Frequently Asked Questions",
+    "desc": "Here you will find answers to some common questions about our services and solutions.",
+    "faq": [
+        {
+            "question": "What is an ERP system?",
+            "answer": "ERP stands for Enterprise Resource Planning. It is a type of software that integrates various business processes and functions within an organization into a unified system. This allows for optimized data flow, better decision-making, and improved operational efficiency."
+        },
+        {
+            "question": "Why do companies need an ERP system?",
+            "answer": "Companies use ERP systems to eliminate data silos, automate routine tasks, and ensure that each department can access consistent and up-to-date information. This leads to better decision-making, reduced operating costs, and increased productivity."
+        },
+        {
+            "question": "How does an ERP system differ from other business software?",
+            "answer": "While individual business software may focus on specific areas like accounting or inventory management, an ERP system encompasses a wide range of business functions. It offers an integrated approach, ensuring that all departments work with the same data and processes."
+        },
+        {
+            "question": "Is ERP system implementation a lengthy process?",
+            "answer": "The duration of ERP system implementation can vary depending on the complexity of the business, project scope, and the specific ERP solution chosen. While some implementations may take a few months, larger or more complex projects can extend over a year. Proper planning and expert guidance can expedite the process."
+        },
+        {
+            "question": "How can a company determine if it is ready for an ERP system?",
+            "answer": "Companies facing challenges with data consistency, experiencing delays in decision-making, or finding it difficult to scale their operations often benefit from an ERP system. If a company is outgrowing its current software or spending a lot of time on manual data entry and reconciliation, it may be time to consider ERP implementation."
+        },
+        {
+            "question": "What is Sage 300 and how can it benefit my business?",
+            "answer": "Sage 300, formerly known as Accpac, is a comprehensive ERP solution designed to automate and optimize business processes, from accounting and distribution to inventory and manufacturing, ensuring operational efficiency."
+        },
+        {
+            "question": "How does Tersoft differentiate from other Sage 300 service providers?",
+            "answer": "At Tersoft, we prioritize the needs of our clients, offering customized solutions, continuous training, and seamless integrations. Our commitment goes beyond mere implementation, ensuring the success of your business."
+        },
+        {
+            "question": "Is there a special offer for Sage 300 implementation?",
+            "answer": "Yes, we currently have a special offer where you can schedule a consultation and apply for a free implementation of Sage 300."
+        },
+        {
+            "question": "Can Tersoft provide customized modules for Sage 300?",
+            "answer": "Absolutely! As a Sage development partner, we offer tailor-made modules to meet your business needs."
+        },
+        {
+            "question": "How does Tersoft ensure the security of my data with Sage 300?",
+            "answer": "We prioritize data security, ensuring that Sage 300 is hosted in secure environments with regular backups and strict data protection measures."
+        }
+    ]
+}
