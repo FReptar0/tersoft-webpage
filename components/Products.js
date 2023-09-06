@@ -4,65 +4,78 @@ import React, { useState } from 'react';
 
 const optionsSage = {
     id: 1,
-    desc: 'Para potenciar su crecimiento, es esencial una herramienta avanzada que integre departamentos y se adapte a expansiones y consolidaciones. Sage 300 es la solución a sus problemas.',
+    isJustText: true,
+    desc: 'Sage 300 ayuda a las pequeñas y medianas empresas a administrar todo su negocio en distintas geografías sin el costo o la complejidad del software de planifi­cación de recursos empresariales (ERP) tradicional. La solución preferida por decenas de miles de empresas en todo el mundo, Sage 300 conecta los aspectos más importantes de su negocio en crecimiento.',
     button: {
         id: 'sage300',
-        text: 'Ver más',
+        text: 'Descargar Brochure',
         colorScheme: 'green',
-        redirect: () => {
-            Router.push('/sage');
+        function: () => {
+            // Download brochure 
+            window.open('/Brochure_Sage_300.pdf', '_blank');
         },
     },
 };
 
 const optionsModulosFiscales = {
     id: 2,
+    isJustText: true,
     desc: 'En Tersoft hemos desarrollado todos los módulos fiscales necesarios para operar en México y algunos países de América Latina. La facturación electrónica, contabilidad electrónica, generación automática de DIOT, reportes de impuestos, flujo de caja, etc.',
     button: {
         id: 'modulos-fiscales',
-        text: 'Ver más',
+        text: 'Descargar Brochure',
         colorScheme: 'green',
-        redirect: () => {
-            Router.push('/modulos-fiscales');
+        function: () => {
+            // Download brochure 
+            window.open('/Modulos_Fiscales.pdf', '_blank');
         },
     },
 };
 
 const optionsSageconnect = {
     id: 3,
+    isJustText: true,
     desc: 'Hemos integrado Sage 300 con PortaldeProveedores.mx para automatizar cuentas por pagar previniendo pagos indebidos y asegurando el cumplimiento de compromisos por parte de proveedores.',
     button: {
         id: 'sageconnect',
-        text: 'Ver más',
+        text: 'Saber más',
         colorScheme: 'green',
-        redirect: () => {
-            Router.push('/sageconnect');
-        },
-    },
-};
-
-const optionsEDI = {
-    id: 4,
-    desc: 'Disfrute de un procesamiento de transacciones más rápido y preciso con el mejor software de intercambio electrónico de datos (EDI) del mercado.',
-    button: {
-        id: 'edi',
-        text: 'Ver más',
-        colorScheme: 'green',
-        redirect: () => {
-            Router.push('/edi');
+        function: () => {
+            const element = document.getElementById('contact');
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest',
+            });
         },
     },
 };
 
 const optionsModulosTersoft = {
     id: 5,
-    desc: 'En Tersoft desarrollamos módulos para Sage 300 atendiendo necesidades empresariales en México: dispersión bancaria, aprobación de compras, gestión de vales de almacén y respaldos automáticos.',
+    isJustText: false,
+    desc: (
+        <ul style={{
+            textAlign: 'left',
+        }}>
+            <li>Dispersión automática de pagos a proveedores</li>
+            <li>Aprobación electrónica de Órdenes de Compra</li>
+            <li>Gestión de Vales de Almacén</li>
+            <li>Respaldos automáticos</li>
+            <li>Y más...</li>
+        </ul>
+    ),
     button: {
         id: 'modulos-tersoft',
-        text: 'Ver más',
+        text: 'Saber más',
         colorScheme: 'green',
-        redirect: () => {
-            Router.push('/modulos-tersoft');
+        function: () => {
+            const element = document.getElementById('contact');
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest',
+            });
         },
     },
 };
@@ -90,7 +103,7 @@ const PackageTier = ({ title, options }) => {
                 }}
                 textAlign={'center'}
             >
-                <Heading size={'lg'}>
+                <Heading size={'lg'} padding={'40px'}>
                     {title}
                 </Heading>
             </Stack>
@@ -100,9 +113,13 @@ const PackageTier = ({ title, options }) => {
                     md: '30%',
                 }}
             >
-                <Text textAlign={'center'} id={options.id}>
-                    {options.desc}
-                </Text>
+                {options.isJustText ? (
+                    <Text textAlign={'center'} padding={'40px'}>
+                        {options.desc}
+                    </Text>
+                ) : (
+                    options.desc
+                )}
             </Stack>
             <Stack
                 width={{
@@ -118,11 +135,10 @@ const PackageTier = ({ title, options }) => {
                     width={'50%'}
                     onClick={() => {
                         setIsLoading(true);
-                        options.button.redirect();
+                        options.button.function();
                     }}
-                    isLoading={isLoading}
                 >
-                    {!isLoading ? options.button.text : ''}
+                    {options.button.text}
                 </Button>
             </Stack>
         </Stack>
@@ -163,7 +179,7 @@ const TableProducts = () => {
                         }}
                     >
                         <Text textAlign={'center'}>
-                        Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.
+                            Descubre el plan perfecto de Tersoft para potenciar tu negocio. Nuestro enfoque personalizado impulsa tu éxito a través de soluciones tecnológicas innovadoras y estratégicas.
                         </Text>
                     </Stack>
                 </Stack>
@@ -173,9 +189,7 @@ const TableProducts = () => {
                 <Divider />
                 <PackageTier title={'Módulos fiscales'} options={optionsModulosFiscales} />
                 <Divider />
-                <PackageTier title={'Sageconnect'} options={optionsSageconnect} />
-                <Divider />
-                <PackageTier title={'EDI'} options={optionsEDI} />
+                <PackageTier title={'Portal de Proveedores y Sage 300'} options={optionsSageconnect} />
                 <Divider />
                 <PackageTier title={'Módulos Tersoft'} options={optionsModulosTersoft} />
                 <Divider />
