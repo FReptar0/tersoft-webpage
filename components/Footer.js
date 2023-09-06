@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faFacebook,
@@ -12,12 +12,26 @@ import Link from 'next/link';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
+import Router from 'next/router';
+
+import FooterTextES from '../public/langs/es/Footer.json';
+import FooterTextEN from '../public/langs/en/Footer.json';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
+    const [FooterText, setFooterText] = useState(FooterTextES);
+
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setFooterText(FooterTextEN);
+        } else {
+            setFooterText(FooterTextES);
+        }
+    }, [Router.locale]);
+
     const validationSchema = Yup.object().shape({
-        email: Yup.string().matches(/\S+@\S+\.\S+/, 'Correo invalido').required('Campo requerido'),
+        email: Yup.string().matches(/\S+@\S+\.\S+/, FooterText.validSchema.invalidemail).required(FooterText.validSchema.email),
     });
 
     const formik = useFormik({
@@ -45,8 +59,8 @@ const Footer = () => {
             if (responseData.status === 200) {
                 Swal.fire({
                     icon: 'success',
-                    title: '¡Felicidades!',
-                    text: 'Te has suscrito a nuestro newsletter',
+                    title: FooterText.swal.success.title,
+                    text: FooterText.swal.success.text,
                     showConfirmButton: false,
                     timer: 3000,
                     toast: true,
@@ -55,8 +69,8 @@ const Footer = () => {
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: '¡Ups!',
-                    text: 'Ha ocurrido un error, por favor intenta nuevamente',
+                    title: FooterText.swal.error.title,
+                    text: FooterText.swal.error.text,
                     showConfirmButton: false,
                     timer: 3000,
                     toast: true,
@@ -71,38 +85,58 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3 col-md-6 mb-4">
-                        <h3>Legal</h3>
+                        <h3>
+                            {FooterText.legal.heading}
+                        </h3>
                         <ul className='text-decoration-none'>
                             <li>
-                                <Link aria-label='Ir a la política de privacidad' href="/privacy">Política de privacidad</Link>
+                                <Link aria-label='Ir a la política de privacidad' href="/privacy">
+                                    {FooterText.legal.policy}
+                                </Link>
                             </li>
                             <li>
-                                <Link aria-label='Ir a los terminos y condiciones' href="/terms">Términos y condiciones</Link>
+                                <Link aria-label='Ir a los terminos y condiciones' href="/terms">
+                                    {FooterText.legal.terms}
+                                </Link>
                             </li>
                             <li>
-                                <Link aria-label='Ir a la política de uso' href="/use-policy">Política de uso</Link>
+                                <Link aria-label='Ir a la política de uso' href="/use-policy">
+                                    {FooterText.legal.usage}
+                                </Link>
                             </li>
                             <li>
-                                <Link aria-label='Ir al aviso legal' href="/legal-notice">Aviso legal</Link>
+                                <Link aria-label='Ir al aviso legal' href="/legal-notice">
+                                    {FooterText.legal.legalnotice}
+                                </Link>
                             </li>
                         </ul>
                     </div>
                     <div className="col-lg-3 col-md-6 mb-4">
-                        <h3>Compañía</h3>
+                        <h3>
+                            {FooterText.company.heading}
+                        </h3>
                         <ul className='text-decoration-none'>
                             <li>
-                                <Link aria-label='Ir a la información de Tersoft' href="#about">Sobre nosotros</Link>
+                                <Link aria-label='Ir a la información de Tersoft' href="#about">
+                                    {FooterText.company.about}
+                                </Link>
                             </li>
                             <li>
-                                <Link aria-label='Ir a conocer a nuestro equipo' href="#team">Nuestro equipo</Link>
+                                <Link aria-label='Ir a conocer a nuestro equipo' href="#team">
+                                    {FooterText.company.team}
+                                </Link>
                             </li>
                             <li>
-                                <Link aria-label='Ir a la página de carreras' href="/careers">Careers</Link>
+                                <Link aria-label='Ir a la página de carreras' href="/careers">
+                                    {FooterText.company.careers}
+                                </Link>
                             </li>
                         </ul>
                     </div>
                     <div className="col-lg-3 col-md-6 mb-4">
-                        <h3>Contáctanos</h3>
+                        <h3>
+                            {FooterText.contact.heading}
+                        </h3>
                         <ul>
                             <li className='mb-2'>
                                 <Link aria-label='Enviar correo a tersoft' href="mailto:contacto@tersoft.mx">
@@ -122,7 +156,9 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="col-lg-3 col-md-6 mb-4">
-                        <h3 className='mb-3'>Noticias:</h3>
+                        <h3 className='mb-3'>
+                            {FooterText.news.heading}
+                        </h3>
                         <form onSubmit={formik.handleSubmit}>
                             <div className="input-group mb-3">
                                 <input
@@ -156,7 +192,7 @@ const Footer = () => {
                 <div className="container">
                     <div className="row mt-3">
                         <div className="col-lg-6 col-md-6 mt-3" id='copy'>
-                            &copy; {currentYear} TERP S.A de C.V. Todos los derechos reservados.
+                            &copy; {currentYear} {FooterText.reserved}
                         </div>
                         <div className="col-lg-6 col-md-6 text-center mt-3">
                             <div className='align-items-center d-flex justify-content-end' id='social-media'>

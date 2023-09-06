@@ -1,0 +1,36 @@
+{
+    "reserved": "TERP S.A de C.V. All rights reserved.",
+    "legal": {
+        "heading": "Legal",
+        "policy": "Privacy Policy",
+        "terms": "Terms and Conditions",
+        "usage": "Usage Policy",
+        "legalnotice": "Legal Notice"
+    },
+    "company": {
+        "heading": "Company",
+        "about": "About Us",
+        "team": "Our Team",
+        "careers": "Join Us"
+    },
+    "contact": {
+        "heading": "Contact Us"
+    },
+    "news": {
+        "heading": "News"
+    },
+    "validSchema": {
+        "invalidemail": "Invalid email",
+        "email": "Email is required"
+    },
+    "swal": {
+        "success": {
+            "title": "Congratulations!",
+            "text": "You have subscribed to our newsletter."
+        },
+        "error": {
+            "title": "Error!",
+            "text": "An error occurred, please try again later."
+        }
+    }
+}
