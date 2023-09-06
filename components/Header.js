@@ -28,7 +28,7 @@ const Header = () => {
         } else {
             setHeaderTexts(HeaderTextsES);
         }
-    }, [Router.locale]);
+    }, []);
 
 
     const isLoginPage = pathname === '/login';

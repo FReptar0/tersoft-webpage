@@ -17,7 +17,7 @@ const ClientsCard = () => {
         } else {
             setClientsText(ClientsTextES);
         }
-    }, [Router.locale]);
+    }, []);
 
     const clientImages = [
         { id: 1, url: '/clients/Sage-300-Aura-Minerals.png', alt: 'Aura Minerals' },

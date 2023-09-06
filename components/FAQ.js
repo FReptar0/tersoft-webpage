@@ -17,7 +17,7 @@ const FAQ = () => {
         } else {
             setFaqText(FAQTextES);
         }
-    }, [Router.locale]);
+    }, []);
 
     const faqData = faqText.faq;
     return (

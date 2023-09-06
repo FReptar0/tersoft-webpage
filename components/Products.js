@@ -80,7 +80,7 @@ const TableProducts = () => {
         } else {
             setProductsText(ProductsTextES);
         }
-    }, [Router.locale]);
+    }, []);
 
     const optionsSage = {
         id: 1,

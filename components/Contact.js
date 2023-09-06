@@ -24,7 +24,7 @@ const ContactForm = () => {
         } else {
             setContactText(ContactTextES);
         }
-    }, [Router.locale]);
+    }, []);
 
     const reCaptchaRef = createRef();
 
