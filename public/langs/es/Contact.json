@@ -1,0 +1,60 @@
+{
+    "heading": "Contáctanos",
+    "description": "Inicia el camino hacia el cambio de tu empresa. Déjanos tu información para que nos pongamos en contacto a la brevedad.",
+    "form": {
+        "validationSchema": {
+            "name": "El nombre es requerido",
+            "lastname": "El apellido es requerido",
+            "phone": "El teléfono es requerido",
+            "invalidphone": "El teléfono es inválido",
+            "email": "El correo electrónico es requerido",
+            "invalidEmail": "El correo electrónico es inválido",
+            "company": "La empresa es requerida",
+            "option": "La opción es requerida",
+            "website": "El sitio web es requerido"
+        },
+        "alerts": {
+            "success": {
+                "title": "¡Gracias!",
+                "description": "Tu información ha sido enviada con éxito. Nos pondremos en contacto contigo a la brevedad."
+            },
+            "error": {
+                "missingFields": {
+                    "title": "Faltan campos por llenar",
+                    "description": "Por favor, llena todos los campos requeridos."
+                },
+                "onError": {
+                    "title": "Algo salió mal",
+                    "description": "Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde"
+                }
+            }
+        }
+    },
+    "fields": {
+        "labels": {
+            "name": "Nombre",
+            "lastname": "Apellido",
+            "phone": "Teléfono",
+            "email": "Correo electrónico",
+            "company": "Empresa",
+            "option": "¿Cómo podemos ayudarte?",
+            "website": "Sitio web",
+            "submit": "Enviar"
+        },
+        "placeholders": {
+            "name": "Nombre",
+            "lastname": "Apellido",
+            "phone": "Teléfono",
+            "email": "Correo electrónico",
+            "company": "Empresa",
+            "option": [
+                "Información de Sage 300",
+                "Consultoría",
+                "Cursos",
+                "Otro"
+            ],
+            "optiondefault": "Selecciona una opción",
+            "website": "Sitio web"
+        }
+    }
+}

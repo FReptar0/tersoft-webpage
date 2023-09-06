@@ -5,25 +5,39 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useState, useEffect, createRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Router from 'next/router';
 
-const validationSchema = Yup.object().shape({
-    nombre: Yup.string().required('Nombre es requerido'),
-    apellido: Yup.string().required('Apellido es requerido'),
-    telefono: Yup.string().matches(/^[0-9]+$/, 'El teléfono no es válido'),
-    correo: Yup.string().email('Correo inválido').required('Correo es requerido'),
-    empresa: Yup.string().required('Empresa es requerida'),
-    opcion: Yup.string().required('La opción es requerida').nullable(),
-    sitioWeb: Yup.string(),
-    edad: Yup.string(), // This field is hidden and is used to check if the user is a bot
-});
+import ContactTextES from '../public/langs/es/Contact.json'
+import ContactTextEN from '../public/langs/en/Contact.json'
+
 
 
 const ContactForm = () => {
     const [telefono, setTelefono] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
     const [reCaptchaResponse, setReCaptchaResponse] = useState("");
+    const [contactText, setContactText] = useState(ContactTextES);
+
+    useEffect(() => {
+        if (Router.locale === 'en') {
+            setContactText(ContactTextEN);
+        } else {
+            setContactText(ContactTextES);
+        }
+    }, []);
 
     const reCaptchaRef = createRef();
+
+    const validationSchema = Yup.object().shape({
+        nombre: Yup.string().required('Nombre es requerido'),
+        apellido: Yup.string().required('Apellido es requerido'),
+        telefono: Yup.string().matches(/^[0-9]+$/, 'El teléfono no es válido'),
+        correo: Yup.string().email('Correo inválido').required('Correo es requerido'),
+        empresa: Yup.string().required('Empresa es requerida'),
+        opcion: Yup.string().required('La opción es requerida').nullable(),
+        sitioWeb: Yup.string(),
+        edad: Yup.string(), // This field is hidden and is used to check if the user is a bot
+    });
 
 
     useEffect(() => {
@@ -82,8 +96,8 @@ const ContactForm = () => {
         // check if all the fields are filled
         if (!nombre || !apellido || !telefono || !correo || !empresa || !opcion || !reCaptchaResponse) {
             Swal.fire({
-                title: 'Error',
-                text: 'Todos los campos son requeridos',
+                title: contactText.alerts.error.missingFields.title,
+                text: contactText.alerts.error.missingFields.description,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
@@ -98,9 +112,9 @@ const ContactForm = () => {
             const response = await axios.post('/api/sendMail', data);
             if (response.status === 200) {
                 Swal.fire({
-                    title: 'Correo electrónico enviado',
+                    title: contactText.alerts.success.title,
                     icon: 'success',
-                    text: 'Muchas gracias, su información ha sido enviada correctamente',
+                    text: contactText.alerts.success.description,
                     position: 'bottom-end',
                     showConfirmButton: false,
                     timer: 5000,
@@ -116,8 +130,8 @@ const ContactForm = () => {
                 });
             } else {
                 Swal.fire({
-                    title: 'Error',
-                    text: 'Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde',
+                    title: contactText.alerts.error.onSend.title,
+                    text: contactText.alerts.error.onSend.description,
                     icon: 'error',
                     position: 'bottom-end',
                     showConfirmButton: false,
@@ -135,8 +149,8 @@ const ContactForm = () => {
             }
         } catch (error) {
             Swal.fire({
-                title: 'Error',
-                text: 'Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde',
+                title: contactText.alerts.error.onSend.title,
+                text: contactText.alerts.error.onSend.description,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
@@ -172,10 +186,10 @@ const ContactForm = () => {
                     <Box as={Container} maxW={'6xl'} margin="0 auto">
                         <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
                             <Heading fontSize={{ base: '2xl', sm: '4xl' }} fontWeight={'bold'}>
-                                Contáctanos
+                                {contactText.heading}
                             </Heading>
                             <Text color={'gray.600'} fontSize={{ base: 'sm', sm: 'lg' }}>
-                                Inicia el camino hacia el cambio de tu empresa. Déjanos tu información para que nos pongamos en contacto a la brevedad.
+                                {contactText.description}
                             </Text>
                         </Stack>
                         <Grid templateColumns="repeat(2, 1fr)" gap="4">
@@ -183,10 +197,10 @@ const ContactForm = () => {
                                 {({ field }) => (
                                     <FormControl>
                                         <FormLabel>
-                                            Nombre
+                                            {contactText.fields.labels.name}
                                             <span style={{ color: '#000' }}>*</span>
                                         </FormLabel>
-                                        <Input {...field} type="text" placeholder="Nombre" />
+                                        <Input {...field} type="text" placeholder={contactText.fields.placeholders.name} />
                                         <ErrorMessage name="nombre" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                     </FormControl>
                                 )}
@@ -195,10 +209,10 @@ const ContactForm = () => {
                                 {({ field }) => (
                                     <FormControl>
                                         <FormLabel>
-                                            Apellido
+                                            {contactText.fields.labels.lastname}
                                             <span style={{ color: '#000' }}>*</span>
                                         </FormLabel>
-                                        <Input {...field} type="text" placeholder="Apellido" />
+                                        <Input {...field} type="text" placeholder={contactText.fields.placeholders.lastname} />
                                         <ErrorMessage name="apellido" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                     </FormControl>
                                 )}
@@ -207,13 +221,15 @@ const ContactForm = () => {
                                 {({ field }) => (
                                     <FormControl>
                                         <FormLabel>
-                                            Teléfono
+                                            {contactText.fields.labels.phone}
                                             <span style={{ color: '#000' }}>*</span>
                                         </FormLabel>
-                                        <Input {...field} type="tel" value={telefono} onChange={handlePhone} minLength={10} maxLength={10} placeholder="Teléfono" />
+                                        <Input {...field} type="tel" value={telefono} onChange={handlePhone} minLength={10} maxLength={10} placeholder={contactText.fields.placeholders.phone} />
                                         <ErrorMessage name="telefono" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                         {telefono.length < 10 && telefono.length > 0 && (
-                                            <span style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }}>El teléfono no es válido</span>
+                                            <span style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }}>
+                                                {contactText.form.validationSchema.invalidphone}
+                                            </span>
                                         )}
                                     </FormControl>
                                 )}
@@ -222,10 +238,10 @@ const ContactForm = () => {
                                 {({ field }) => (
                                     <FormControl>
                                         <FormLabel>
-                                            Empresa
+                                            {contactText.fields.labels.company}
                                             <span style={{ color: '#000' }}>*</span>
                                         </FormLabel>
-                                        <Input {...field} type="text" minLength={3} placeholder="Empresa" />
+                                        <Input {...field} type="text" minLength={3} placeholder={contactText.fields.placeholders.company} />
                                         <ErrorMessage name="empresa" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                     </FormControl>
                                 )}
@@ -234,10 +250,10 @@ const ContactForm = () => {
                                 {({ field }) => (
                                     <FormControl>
                                         <FormLabel>
-                                            Correo electrónico
+                                            {contactText.fields.labels.email}
                                             <span style={{ color: '#000' }}>*</span>
                                         </FormLabel>
-                                        <Input {...field} type="email" placeholder="Correo electrónico" />
+                                        <Input {...field} type="email" placeholder={contactText.fields.placeholders.email} />
                                         <ErrorMessage name="correo" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                     </FormControl>
                                 )}
@@ -245,8 +261,10 @@ const ContactForm = () => {
                             <Field name="sitioWeb">
                                 {({ field }) => (
                                     <FormControl>
-                                        <FormLabel>Sitio web</FormLabel>
-                                        <Input {...field} type="text" placeholder="Sitio web" />
+                                        <FormLabel>
+                                            {contactText.fields.labels.website}
+                                        </FormLabel>
+                                        <Input {...field} type="text" placeholder={contactText.fields.placeholders.website} />
                                         <ErrorMessage name="sitioWeb" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                     </FormControl>
                                 )}
@@ -256,20 +274,22 @@ const ContactForm = () => {
                             {({ field }) => (
                                 <FormControl marginTop="4" marginBottom="4">
                                     <FormLabel>
-                                        ¿Cómo podemos ayudarte?
+                                        {contactText.fields.labels.option}
                                         <span style={{ color: '#000' }}>*</span>
                                     </FormLabel>
-                                    <SelectField {...field} placeholder="Selecciona una opción"
+                                    <SelectField {...field} placeholder={contactText.fields.placeholders.optiondefault}
                                         w={{ base: '100%', sm: '100%' }}
                                         h={'10'}
                                         border={'1px solid'}
                                         borderRadius={'5px'}
                                         borderColor={'gray.200'}
                                     >
-                                        <option value="Implementación de Sage 300">Información de Sage 300</option>
-                                        <option value="Consultoría">Consultoría</option>
-                                        <option value="Cursos">Cursos</option>
-                                        <option value="Otro">Otro</option>
+                                        {/* forEach */}
+                                        {
+                                            contactText.fields.placeholders.option.map((option, index) => (
+                                                <option key={index} value={option}>{option}</option>
+                                            ))
+                                        }
                                     </SelectField>
                                     <ErrorMessage name="opcion" component="span" style={{ color: '#EB1111', fontSize: '0.8rem', marginLeft: 5 }} />
                                 </FormControl>
@@ -318,7 +338,7 @@ const ContactForm = () => {
                             type="submit"
                             isDisabled={isDisabled || !isValid || !dirty}
                         >
-                            Enviar
+                            {contactText.fields.labels.submit}
                         </Button>
                     </Box>
                 </Form>

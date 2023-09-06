@@ -1,0 +1,60 @@
+{
+    "heading": "Contact Us",
+    "description": "Begin the journey to transform your company. Leave us your information, and we will get in touch with you promptly.",
+    "form": {
+        "validationSchema": {
+            "name": "Name is required",
+            "lastname": "Last name is required",
+            "phone": "Phone number is required",
+            "invalidphone": "Phone number is invalid",
+            "email": "Email address is required",
+            "invalidEmail": "Email address is invalid",
+            "company": "Company is required",
+            "option": "Option is required",
+            "website": "Website is required"
+        },
+        "alerts": {
+            "success": {
+                "title": "Thank You!",
+                "description": "Your information has been successfully submitted. We will get in touch with you promptly."
+            },
+            "error": {
+                "missingFields": {
+                    "title": "Fields Missing",
+                    "description": "Please fill in all the required fields."
+                },
+                "onError": {
+                    "title": "Something Went Wrong",
+                    "description": "We're sorry, there was an error while sending your information. Please try again later."
+                }
+            }
+        }
+    },
+    "fields": {
+        "labels": {
+            "name": "Name",
+            "lastname": "Last Name",
+            "phone": "Phone",
+            "email": "Email",
+            "company": "Company",
+            "option": "How can we assist you?",
+            "website": "Website",
+            "submit": "Submit"
+        },
+        "placeholders": {
+            "name": "Name",
+            "lastname": "Last Name",
+            "phone": "Phone",
+            "email": "Email",
+            "company": "Company",
+            "option": [
+                "Sage 300 Information",
+                "Consulting",
+                "Courses",
+                "Other"
+            ],
+            "optiondefault": "Select an option",
+            "website": "Website"
+        }
+    }
+}
