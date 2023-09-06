@@ -19,7 +19,7 @@ export default function CallToActionWithVideo() {
         } else {
             setHeroTexts(HeroTextsES);
         }
-    }, [Router.locale]);
+    }, []);
     console.log(heroTexts);
     return (
         <>

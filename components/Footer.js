@@ -27,7 +27,7 @@ const Footer = () => {
         } else {
             setFooterText(FooterTextES);
         }
-    }, [Router.locale]);
+    }, []);
 
     const validationSchema = Yup.object().shape({
         email: Yup.string().matches(/\S+@\S+\.\S+/, FooterText.validSchema.invalidemail).required(FooterText.validSchema.email),

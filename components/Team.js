@@ -58,7 +58,7 @@ const Team = () => {
         } else {
             setTeamText(TeamTextES);
         }
-    }, [Router.locale]);
+    }, []);
 
     const teamMembers = teamText.members;
 
