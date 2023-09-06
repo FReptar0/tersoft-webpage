@@ -26,7 +26,6 @@ const cache = new LRUCache({
 const BlogIndex = ({ blogPosts }) => {
     const router = useRouter();
     const locale = router.locale;
-    console.log(locale);
     const [isLoading, setIsLoading] = React.useState(false);
 
     const handleCardClick = (id) => {
@@ -78,23 +77,12 @@ const BlogIndex = ({ blogPosts }) => {
                                             mb={6}
                                             pos={'relative'}
                                         >
-                                            {
-                                                locale === 'es' ? (
-                                                    <Image
-                                                        src={post.es.imageSrc}
-                                                        layout="fill"
-                                                        objectFit="cover"
-                                                        alt={post.title}
-                                                    />
-                                                ) : (
-                                                    <Image
-                                                        src={post.en.imageSrc}
-                                                        layout="fill"
-                                                        objectFit="cover"
-                                                        alt={post.title}
-                                                    />
-                                                )
-                                            }
+                                            <Image
+                                                src={post.imageSrc}
+                                                layout="fill"
+                                                objectFit="cover"
+                                                alt={post.title}
+                                            />
                                         </Box>
                                         <Stack>
                                             <Text
@@ -131,11 +119,7 @@ const BlogIndex = ({ blogPosts }) => {
                                         </Stack>
                                         <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
                                             <Avatar src={
-                                                locale === 'es' ? (
-                                                    post.es.authorAvatarSrc
-                                                ) : (
-                                                    post.en.authorAvatarSrc
-                                                )
+                                                post.authorAvatarSrc
                                             } alt={'Author'} />
                                             <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                                                 <Text fontWeight={600}>{

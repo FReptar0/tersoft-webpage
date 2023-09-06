@@ -13,15 +13,9 @@ const cache = new LRUCache({
 });
 
 const BlogPost = (props) => {
-    let selectedBlogPost = props.blogPost;
+    const selectedBlogPost = props.blogPost;
     const router = useRouter();
-    console.log(selectedBlogPost);
-
-    if (router.locale === 'en') {
-        selectedBlogPost = props.blogPost.en;
-    } else {
-        selectedBlogPost = props.blogPost.es;
-    }
+    const locale = router.locale;
 
     if (!selectedBlogPost) {
         return <NotFound />;
@@ -36,7 +30,9 @@ const BlogPost = (props) => {
             <Box maxW="container.lg" mx="auto" p={6}>
                 <VStack align="start" spacing={2} mt={4}>
                     <Heading as="h1" fontSize="2xl">
-                        {selectedBlogPost.title}
+                        {
+                            locale === 'es' ? selectedBlogPost.es.title : selectedBlogPost.en.title
+                        }
                     </Heading>
                     <Flex align="center" fontSize="sm" color="gray.500">
                         <Avatar size="sm" src={selectedBlogPost.authorAvatarSrc} />
@@ -49,24 +45,46 @@ const BlogPost = (props) => {
                     </Text>
                 </VStack>
                 <Text fontSize="md" mt={6}>
-                    {selectedBlogPost.content}
+                    {
+                        locale === 'es' ? selectedBlogPost.es.content : selectedBlogPost.en.content
+                    }
                 </Text>
 
-                {selectedBlogPost.sections.map((section, index) => (
-                    <Box key={index} mt={6}>
-                        <Heading as="h2" fontSize="lg">
-                            {section.header}
-                        </Heading>
-                        <Text fontSize="md" mt={4}>
-                            {section.content}
-                        </Text>
-                        <Box mt={4} maxW="500px" mx="auto" borderRadius="md" overflow="hidden" boxShadow="md">
-                            {section.imageUrl && (
-                                <Image src={section.imageUrl} alt="Section Image" objectFit="cover" w="100%" h="auto" />
-                            )}
-                        </Box>
-                    </Box>
-                ))}
+                {
+                    locale === 'es' ? (
+                        selectedBlogPost.es.sections.map((section, index) => (
+                            <Box key={index} mt={6}>
+                                <Heading as="h2" fontSize="lg">
+                                    {section.header}
+                                </Heading>
+                                <Text fontSize="md" mt={4}>
+                                    {section.content}
+                                </Text>
+                                <Box mt={4} maxW="500px" mx="auto" borderRadius="md" overflow="hidden" boxShadow="md">
+                                    {section.imageUrl && (
+                                        <Image src={section.imageUrl} alt="Section Image" objectFit="cover" w="100%" h="auto" />
+                                    )}
+                                </Box>
+                            </Box>
+                        ))
+                    ) : (
+                        selectedBlogPost.en.sections.map((section, index) => (
+                            <Box key={index} mt={6}>
+                                <Heading as="h2" fontSize="lg">
+                                    {section.header}
+                                </Heading>
+                                <Text fontSize="md" mt={4}>
+                                    {section.content}
+                                </Text>
+                                <Box mt={4} maxW="500px" mx="auto" borderRadius="md" overflow="hidden" boxShadow="md">
+                                    {section.imageUrl && (
+                                        <Image src={section.imageUrl} alt="Section Image" objectFit="cover" w="100%" h="auto" />
+                                    )}
+                                </Box>
+                            </Box>
+                        ))
+                    )
+                }
             </Box>
             <Footer />
         </Box>
