@@ -1,0 +1,46 @@
+{
+    "h1": "Sage 300",
+    "h1Underline": "el mejor sistema ERP!",
+    "description": "Sage 300 antes conocido como Accpac, es la solución ERP integral para empresas en ascenso. Unifica contabilidad, compras, inventarios, ventas y más en un sistema centralizado, automatizando procesos y maximizando la eficiencia. En Tersoft, no solo implementamos Sage 300, sino que adaptamos y optimizamos la herramienta a tus necesidades enfrentando desafíos y asegurando el éxito de tu negocio.",
+    "firstCTA": "Quiero más información",
+    "secondCTA": "¡Agendar una cita ahora!",
+    "form": {
+        "validationSchema": {
+            "name": "Campo requerido",
+            "email": "Campo requerido",
+            "emailInvalid": "Correo electrónico inválido",
+            "phone": "Campo requerido",
+            "phoneInvalid": "Número de teléfono inválido"
+        },
+        "alerts": {
+            "success": {
+                "title": "¡Gracias!",
+                "description": "Tu información ha sido enviada con éxito, pronto nos pondremos en contacto contigo."
+            },
+            "error": {
+                "missingFields": {
+                    "title": "Faltan campos por llenar",
+                    "description": "Por favor, llena todos los campos requeridos."
+                },
+                "onSend": {
+                    "title": "Algo salió mal",
+                    "description": "Lo sentimos, ha ocurrido un error al enviar su información, inténtelo más tarde"
+                }
+            }
+        },
+        "fields": {
+            "labels": {
+                "name": "Nombre completo",
+                "email": "Correo electrónico",
+                "phone": "Número de teléfono",
+                "send": "¡Aplicar ahora!"
+            },
+            "placeholders": {
+                "name": "Nombre completo",
+                "email": "Correo electrónico",
+                "phone": "Teléfono"
+            }
+        },
+        "heading": "¡Aplique para una implementacion gratuita!"
+    }
+}

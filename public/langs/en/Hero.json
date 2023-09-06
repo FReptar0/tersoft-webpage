@@ -1,0 +1,46 @@
+{
+    "h1": "Sage 300",
+    "h1Underline": "the best ERP system!",
+    "description": "Sage 300, formerly known as Accpac, is the comprehensive ERP solution for growing businesses. It unifies accounting, purchasing, inventory, sales, and more into a centralized system, automating processes and maximizing efficiency. At Tersoft, we not only implement Sage 300 but also adapt and optimize the tool to your needs, facing challenges and ensuring the success of your business.",
+    "firstCTA": "I want more information",
+    "secondCTA": "Schedule an appointment now!",
+    "form": {
+        "validationSchema": {
+            "name": "Required field",
+            "email": "Required field",
+            "emailInvalid": "Invalid email address",
+            "phone": "Required field",
+            "phoneInvalid": "Invalid phone number"
+        },
+        "alerts": {
+            "success": {
+                "title": "Thank you!",
+                "description": "Your information has been successfully sent, we will contact you soon."
+            },
+            "error": {
+                "missingFields": {
+                    "title": "Fields are missing",
+                    "description": "Please fill out all required fields."
+                },
+                "onSend": {
+                    "title": "Something went wrong",
+                    "description": "Sorry, there was an error sending your information, please try again later."
+                }
+            }
+        },
+        "fields": {
+            "labels": {
+                "name": "Full name",
+                "email": "Email address",
+                "phone": "Phone number",
+                "send": "Apply now!"
+            },
+            "placeholders": {
+                "name": "Full name",
+                "email": "Email address",
+                "phone": "Phone"
+            }
+        },
+        "heading": "Apply for a free implementation!"
+    }
+}
