@@ -106,7 +106,7 @@ export async function getServerSideProps(context) {
     try {
         const db = await connectToDatabase();
         const blogCollection = db.collection('blog');
-        const blogPost = await blogCollection.findOne({ _id: parseInt(id) });
+        const blogPost = await blogCollection.findOne({ _id: id });
         cache.set(id, blogPost);
         await closeConnection();
         return {
