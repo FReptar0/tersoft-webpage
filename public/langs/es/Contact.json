@@ -48,10 +48,9 @@
             "email": "Correo electrónico",
             "company": "Empresa",
             "option": [
-                "Información de Sage 300",
-                "Consultoría",
-                "Cursos",
-                "Otro"
+                "Quiero información sobre Sage 300",
+                "Quiero información sobre sus servicios de consultoría",
+                "Quiero información sobre sus servicios de capacitación"
             ],
             "optiondefault": "Selecciona una opción",
             "website": "Sitio web"

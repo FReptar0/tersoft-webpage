@@ -1,14 +1,14 @@
 {
     "heading": "Contact Us",
-    "description": "Begin the journey to transform your company. Leave us your information, and we will get in touch with you promptly.",
+    "description": "Begin the path to change your company. Leave us your information, and we will get in touch with you shortly.",
     "form": {
         "validationSchema": {
             "name": "Name is required",
             "lastname": "Last name is required",
             "phone": "Phone number is required",
             "invalidphone": "Phone number is invalid",
-            "email": "Email address is required",
-            "invalidEmail": "Email address is invalid",
+            "email": "Email is required",
+            "invalidEmail": "Email is invalid",
             "company": "Company is required",
             "option": "Option is required",
             "website": "Website is required"
@@ -16,16 +16,16 @@
         "alerts": {
             "success": {
                 "title": "Thank You!",
-                "description": "Your information has been successfully submitted. We will get in touch with you promptly."
+                "description": "Your information has been successfully sent. We will contact you shortly."
             },
             "error": {
                 "missingFields": {
                     "title": "Fields Missing",
-                    "description": "Please fill in all the required fields."
+                    "description": "Please fill in all required fields."
                 },
                 "onError": {
                     "title": "Something Went Wrong",
-                    "description": "We're sorry, there was an error while sending your information. Please try again later."
+                    "description": "We're sorry, there was an error sending your information. Please try again later."
                 }
             }
         }
@@ -48,10 +48,9 @@
             "email": "Email",
             "company": "Company",
             "option": [
-                "Sage 300 Information",
-                "Consulting",
-                "Courses",
-                "Other"
+                "I want information about Sage 300",
+                "I want information about your consulting services",
+                "I want information about your training services"
             ],
             "optiondefault": "Select an option",
             "website": "Website"
