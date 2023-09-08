@@ -3,7 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     i18n: {
         locales: ['en', 'es'],
-        defaultLocale: 'es',
+        defaultLocale: 'en',
     },
     images: {
         domains: ['images.unsplash.com','via.placeholder.com'],
