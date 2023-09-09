@@ -171,7 +171,6 @@ export async function getServerSideProps() {
 
         const db = await connectToDatabase();
         const data = await db.collection('blog').find({}).toArray();
-        console.log('data', data);
         cache.set('blogPosts', data); // Almacenar en caché los resultados de la consulta
         await closeConnection();
         return data;
