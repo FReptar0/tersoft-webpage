@@ -34,6 +34,7 @@ const Header = () => {
     const isBlogPage = pathname === '/blog';
     const isProfilePage = pathname === '/profile';
     const isHome = pathname === '/';
+    const isContactPage = pathname === '/contact';
 
     if (isProfilePage) {
         Router.prefetch('/dashboard');
@@ -117,11 +118,13 @@ const Header = () => {
                                         {HeaderTexts.about}
                                     </Link>
                                 </Nav.Item>
+                                {!isContactPage && (
                                     <Nav.Item className='mb-2'>
                                         <Link className='m-3' aria-label='Ir a la información de tersoft' href="/#contact">
                                             {HeaderTexts.contact}
                                         </Link>
                                     </Nav.Item>
+                                )}
                             </Nav>
                         )}
                         {isProfilePage && (

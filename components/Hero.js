@@ -13,7 +13,6 @@ import Router from 'next/router';
 export default function CallToActionWithVideo() {
     const [heroTexts, setHeroTexts] = useState(HeroTextsES);
     useEffect(() => {
-        console.log(Router.locale);
         if (Router.locale === 'en') {
             setHeroTexts(HeroTextsEN);
         } else {
@@ -57,8 +56,8 @@ export default function CallToActionWithVideo() {
                             </Button>
                         </Stack>
                     </Stack>
-                    <Flex flex={1} justify={'center'} align={'center'} position={'relative'} w={'full'}>
-                        <Blob w={'150%'} h={'150%'} position={'absolute'} top={'1%'} left={0} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
+                    <Flex flex={1} justify={'center'} align={'center'} position={'relative'} w={'full'} marginTop={'40px'}>
+                        <Blob w={'150%'} h={'150%'} position={'absolute'} left={-10} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
                         <Box
                             position={'relative'}
                             height={'300px'}
