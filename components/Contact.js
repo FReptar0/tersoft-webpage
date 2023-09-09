@@ -62,7 +62,6 @@ const ContactForm = () => {
 
     const handleSubmit = async (values, { resetForm }) => {
         const { nombre, apellido, correo, empresa, opcion, sitioWeb } = values;
-        console.log(values);
         
         const data = {
             "name": nombre,
@@ -76,7 +75,6 @@ const ContactForm = () => {
             "uri": "/home"
         };
 
-        console.log(data);
 
         // Check if the user is a bot
         if (values.edad) {
@@ -109,12 +107,10 @@ const ContactForm = () => {
             return;
         }
 
-        console.log("Sending email...");
 
         try {
             const response = await axios.post('/api/sendMail', data);
             if (response.status === 200) {
-                console.log("Email sent");
                 Swal.fire({
                     title: contactText.form.alerts.success.title,
                     icon: 'success',

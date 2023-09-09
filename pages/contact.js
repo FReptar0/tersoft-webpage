@@ -101,7 +101,6 @@ const ERPForm = () => {
             uri: '/contact'
         };
 
-        console.log(data);
 
         try {
             const response = await axios.post('/api/sendMail', data);
