@@ -58,7 +58,10 @@ const PackageTier = ({ title, options }) => {
                     id={options.button.id}
                     colorScheme={options.button.colorScheme}
                     variant={'solid'}
-                    width={'50%'}
+                    width={{
+                        base: '100%',
+                        md: '80%',
+                    }}
                     onClick={() => {
                         setIsLoading(true);
                         options.button.function();

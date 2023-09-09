@@ -1,4 +1,4 @@
-import { Container, Stack, Flex, Box, Heading, Text, Button, Icon } from '@chakra-ui/react';
+import { Container, Stack, Flex, Box, Heading, Text, Button, Icon, Image } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -20,7 +20,6 @@ export default function CallToActionWithVideo() {
             setHeroTexts(HeroTextsES);
         }
     }, []);
-    console.log(heroTexts);
     return (
         <>
             <Container maxW={'7xl'}>
@@ -59,9 +58,24 @@ export default function CallToActionWithVideo() {
                         </Stack>
                     </Stack>
                     <Flex flex={1} justify={'center'} align={'center'} position={'relative'} w={'full'}>
-                        <Blob w={'150%'} h={'120%'} position={'absolute'} top={'5%'} left={0} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
-                        <Box minH={'400px'} maxH={'auto'} rounded={'2xl'} boxShadow={'2xl'} width={'400px'} overflow={'hidden'}>
-                            <FormComponent texts={heroTexts.form} />
+                        <Blob w={'150%'} h={'150%'} position={'absolute'} top={'1%'} left={0} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
+                        <Box
+                            position={'relative'}
+                            height={'300px'}
+                            rounded={'2xl'}
+                            boxShadow={'2xl'}
+                            width={'full'}
+                            overflow={'hidden'}>
+                            <Image
+                                alt={'Hero Image'}
+                                fit={'cover'}
+                                align={'center'}
+                                w={'100%'}
+                                h={'100%'}
+                                src={
+                                    'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
+                                }
+                            />
                         </Box>
                     </Flex>
                 </Stack>
