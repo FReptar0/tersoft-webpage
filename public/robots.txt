@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /login/
+Disallow: /langs/
+Disallow: /team/
+Disallow: /clients/
+Disallow: /testimonials/
+Disallow: /*.pdf$
+Sitemap: https://www.tersoft.mx/sitemap.xml
