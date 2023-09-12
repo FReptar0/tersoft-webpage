@@ -2,17 +2,17 @@ import { Box, Heading, Text, Button, Flex } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 
-import NotFoundTextES from '../public/langs/es/404.json';
-import NotFoundTextEN from '../public/langs/en/404.json';
+import NoContentES from '../public/langs/es/204.json';
+import NoContentEN from '../public/langs/en/204.json';
 
-export default function NotFound() {
-    const [notFoundText, setNotFoundText] = useState(NotFoundTextES);
+export default function NoContent() {
+    const [notFoundText, setNotFoundText] = useState(NoContentES);
 
     useEffect(() => {
         if (Router.locale === 'en') {
-            setNotFoundText(NotFoundTextEN);
+            setNotFoundText(NoContentEN);
         } else {
-            setNotFoundText(NotFoundTextES);
+            setNotFoundText(NoContentES);
         }
     }, []);
 
