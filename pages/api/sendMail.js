@@ -34,31 +34,11 @@ export default async function mailsender(req, res) {
     const HashTable = {
         "/home": verifyHome(req.body),
         "/contact": verifyContact(req.body),
-        "/hero": verifyHero(req.body),
     }
 
     const verify = await HashTable[uri];
     return res.status(verify.status).json(verify);
 
-}
-
-export async function verifyHero(data) {
-    const { name, phoneNumber, email } = data;
-    if (!name || !phoneNumber || !email) {
-        return new CustomResponse(400, "Faltan campos por llenar", "Faltan campos por llenar", {}
-        );
-    }
-
-    const subject = "Solicitud de contacto desde la página de inicio - Hero";
-
-    const text = `Se ha recibido una solicitud de contacto desde la página web desde la página de inicio, en el formulario de cotacto inicial. Los datos son los siguientes: \n
-
-    Nombre: ${name}
-    Teléfono: ${phoneNumber}
-    Correo: ${email}`;
-
-    const response = await sendMail({ subject, text });
-    return response;
 }
 
 export async function verifyHome(data) {
