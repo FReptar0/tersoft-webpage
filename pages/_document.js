@@ -8,6 +8,32 @@ export default function Document() {
         <Html>
             <Head>
                 <link href='https://assets.calendly.com/assets/external/widget.css' rel='stylesheet' />
+                <script async src="https://www.googletagmanager.com/gtag/js?id=AW-987040395"></script>
+                {/* 
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+
+                    gtag('config', 'AW-987040395');
+                </script>
+                <script>
+                    gtag('event', 'conversion', {'send_to': 'AW-987040395/Vsf2COSfgeEYEIuV1NYD'});
+                </script>
+                 */}
+                <Script dangerouslySetInnerHTML={
+                    {
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+
+                            gtag('config', 'AW-987040395');
+                            gtag('event', 'conversion', {'send_to': 'AW-987040395/Vsf2COSfgeEYEIuV1NYD'});
+                        `
+                    }
+                } />
+
             </Head>
             <body>
                 <ColorModeScript initialColorMode={theme.config.initialColorMode} />

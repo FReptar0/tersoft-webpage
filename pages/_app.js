@@ -21,6 +21,10 @@ const MyApp = ({ Component, pageProps }) => {
                 <meta name='author' content='GitHub: FReptar0 | Linkedin: /in/fernando-rm' />
                 <meta name='robots' content='index, follow' />
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
+                <meta name='theme-color' content='#000000' />
+                {/* manifest */}
+                <link rel='manifest' href='/manifest.json' />
+                <meta name="theme-color" content="#317EFB"/>
             </Head>
             <ChakraProvider>
                 <Component {...pageProps} />
