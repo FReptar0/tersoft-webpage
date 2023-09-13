@@ -38,7 +38,8 @@ export default function Document() {
                 <Script src='https://assets.calendly.com/assets/external/widget.js' type='text/javascript' strategy='lazyOnload' />
                 <noscript>
                     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBPR6TZF"
-                        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+                        height="0" width="0" style={{ display: 'none', visibility: 'hidden' }}>
+                    </iframe>
                 </noscript>
             </body>
         </Html>
