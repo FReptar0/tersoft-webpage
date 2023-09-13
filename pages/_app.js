@@ -8,8 +8,15 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Analytics } from '@vercel/analytics/react';
 import { ChakraProvider } from '@chakra-ui/react';
 import Head from 'next/head';
+import TagManager from 'react-gtm-module';
+import { useEffect } from 'react';
 
 const MyApp = ({ Component, pageProps }) => {
+
+    useEffect(() => {
+        TagManager.initialize({ gtmId: 'GTM-PBPR6TZF' });
+    }, []);
+
     return (
         <>
             <Head>
@@ -24,7 +31,7 @@ const MyApp = ({ Component, pageProps }) => {
                 <meta name='theme-color' content='#000000' />
                 {/* manifest */}
                 <link rel='manifest' href='/manifest.json' />
-                <meta name="theme-color" content="#317EFB"/>
+                <meta name="theme-color" content="#317EFB" />
             </Head>
             <ChakraProvider>
                 <Component {...pageProps} />
