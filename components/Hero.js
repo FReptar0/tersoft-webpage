@@ -5,7 +5,7 @@ import HeroTextsEN from '../public/langs/en/Hero.json';
 import HeroTextsES from '../public/langs/es/Hero.json';
 import Router from 'next/router';
 
-export default function CallToActionWithVideo() {
+export default function Hero() {
     const [heroTexts, setHeroTexts] = useState(HeroTextsES);
     useEffect(() => {
         if (Router.locale === 'en') {
@@ -41,7 +41,6 @@ export default function CallToActionWithVideo() {
                             </Button>
                             <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'}
                                 bg={'green.400'} _hover={{ bg: 'green.500' }}
-                                zIndex={999999}
                                 onClick={
                                     () => {
                                         Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
