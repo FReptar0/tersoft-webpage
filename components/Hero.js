@@ -1,11 +1,6 @@
 import { Container, Stack, Flex, Box, Heading, Text, Button, Icon, Image } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import ReCAPTCHA from 'react-google-recaptcha';
 import React, { useState, createRef, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import axios from 'axios';
 import HeroTextsEN from '../public/langs/en/Hero.json';
 import HeroTextsES from '../public/langs/es/Hero.json';
 import Router from 'next/router';
