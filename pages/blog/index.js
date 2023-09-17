@@ -10,7 +10,7 @@ import {
     useColorModeValue,
     Container,
 } from '@chakra-ui/react';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { connectToDatabase, closeConnection } from '@/config/mongodb';

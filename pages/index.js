@@ -1,70 +1,23 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import CarruselTestimonial from '@/components/Testimonials';
-import CallToActionWithVideo from '@/components/Hero';
-import GridList from '@/components/OurWork';
-import WaitingList from '@/components/CTA';
-import TableProducts from '@/components/Products';
-import ContactForm from '@/components/Contact';
-import Team from '@/components/Team';
-import ClientsCard from '@/components/Clients';
-import FAQ from '@/components/FAQ';
+import dynamic from 'next/dynamic';
+
+const Header = dynamic(() => import('@/components/Header'), { ssr: false });
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
+const CarruselTestimonial = dynamic(() => import('@/components/Testimonials'), { ssr: false });
+const Hero = dynamic(() => import('@/components/Hero'), { ssr: false });
+const GridList = dynamic(() => import('@/components/OurWork'), { ssr: false });
+//const WaitingList = dynamic(() => import('@/components/CTA'), { ssr: false });
+const TableProducts = dynamic(() => import('@/components/Products'), { ssr: false });
+const ContactForm = dynamic(() => import('@/components/Contact'), { ssr: false });
+const Team = dynamic(() => import('@/components/Team'), { ssr: false });
+const ClientsCard = dynamic(() => import('@/components/Clients'), { ssr: false });
+const FAQ = dynamic(() => import('@/components/FAQ'), { ssr: false });
 
 export default function Index() {
-    const aboutRef = useRef(null);
-    const infoRef = useRef(null);
-    const testimonialsRef = useRef(null);
-    const ctaRef = useRef(null);
-    const clientsRef = useRef(null);
-    const teamRef = useRef(null);
-    const contactRef = useRef(null);
-    const productsRef = useRef(null);
-    const FAQRef = useRef(null);
 
     useEffect(() => {
-        const sections = [
-            { ref: aboutRef, id: 'about' },
-            { ref: infoRef, id: 'info' },
-            { ref: testimonialsRef, id: 'testimonials' },
-            { ref: productsRef, id: 'products' },
-            /* { ref: ctaRef, id: 'cta' }, */
-            { ref: FAQRef, id: 'faq' },
-            { ref: clientsRef, id: 'clients' },
-            { ref: teamRef, id: 'team' },
-            { ref: contactRef, id: 'contact' }
-        ];
-
         CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
-
-        const handleIntersect = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const sectionId = entry.target.id;
-                    const sectionIndex = sections.findIndex((section) => section.id === sectionId);
-                    if (sectionIndex > -1) {
-                        for (let i = 0; i <= sectionIndex; i++) {
-                            sections[i].ref.current.classList.add('show');
-                        }
-                    }
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(handleIntersect, {
-            root: null,
-            rootMargin: '700px',
-            threshold: 0.4
-        });
-
-        sections.forEach((section) => {
-            observer.observe(section.ref.current);
-        });
-
-        return () => {
-            observer.disconnect();
-        };
     }, []);
 
     return (
@@ -80,31 +33,31 @@ export default function Index() {
                 <meta httpEquiv='cache-control' content='max-age=31536000' />
             </Head>
             <Header />
-            <section ref={aboutRef} className='mt-5 section' id='about'>
-                <CallToActionWithVideo />
+            <section className='mt-5' id='about'>
+                <Hero />
             </section>
-            <section ref={infoRef} className='section mb-5' id='info'>
+            <section className='mb-5' id='info'>
                 <GridList />
             </section>
-            <section ref={testimonialsRef} className='section' id='testimonials'>
+            <section id='testimonials'>
                 <CarruselTestimonial />
             </section>
-            <section ref={productsRef} className='section p-5' id='products'>
+            <section className='p-5' id='products'>
                 <TableProducts />
             </section>
-            {/* <section ref={ctaRef} className='section' id='cta'>
+            {/* <section id='cta'>
                 <WaitingList />
             </section> */}
-            <section ref={teamRef} className='section p-3' style={styles.section} id='team'>
+            <section className='p-3' style={styles.section} id='team'>
                 <Team />
             </section>
-            <section ref={clientsRef} className='section p-3' id='clients'>
+            <section className='p-3' id='clients'>
                 <ClientsCard />
             </section>
-            <section ref={FAQRef} className='mt-5' id='faq'>
+            <section className='mt-5' id='faq'>
                 <FAQ />
             </section>
-            <section ref={contactRef} className='section mt-5 mb-5' id='contact'>
+            <section className='mt-5 mb-5' id='contact'>
                 <ContactForm />
             </section>
             <Footer />
