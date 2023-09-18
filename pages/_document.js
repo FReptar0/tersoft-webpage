@@ -13,7 +13,11 @@ export default function Document() {
                 <ColorModeScript initialColorMode={theme.config.initialColorMode} />
                 <Main />
                 <NextScript />
-                <Script src='https://cdn.customgpt.ai/js/chat.js' type='text/javascript' strategy='beforeInteractive' />
+                <Script
+                defer
+                data-domain="customgpt.ai"
+                async
+                src='https://cdn.customgpt.ai/js/chat.js' type='text/javascript' strategy='beforeInteractive' />
                 <Script src='https://assets.calendly.com/assets/external/widget.js' type='text/javascript' strategy='lazyOnload' />
             </body>
         </Html>
