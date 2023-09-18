@@ -4,8 +4,10 @@ import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useState, useEffect, createRef } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
 import Router from 'next/router';
+import dynamic from 'next/dynamic';
+
+const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), { ssr: true });
 
 import ContactTextES from '../public/langs/es/Contact.json'
 import ContactTextEN from '../public/langs/en/Contact.json'
