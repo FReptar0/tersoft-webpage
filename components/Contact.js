@@ -12,8 +12,6 @@ const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), { ssr: true })
 import ContactTextES from '../public/langs/es/Contact.json'
 import ContactTextEN from '../public/langs/en/Contact.json'
 
-
-
 const ContactForm = () => {
     const [telefono, setTelefono] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
