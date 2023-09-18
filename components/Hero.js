@@ -1,9 +1,10 @@
-import { Container, Stack, Flex, Box, Heading, Text, Button, Icon, Image } from '@chakra-ui/react';
+import { Container, Stack, Flex, Box, Heading, Text, Button, Icon } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import React, { useState, createRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroTextsEN from '../public/langs/en/Hero.json';
 import HeroTextsES from '../public/langs/es/Hero.json';
 import Router from 'next/router';
+import Image from 'next/image';
 
 export default function Hero() {
     const [heroTexts, setHeroTexts] = useState(HeroTextsES);
@@ -54,17 +55,15 @@ export default function Hero() {
                         <Blob w={'150%'} h={'150%'} position={'absolute'} left={-10} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
                         <Box
                             position={'relative'}
-                            height={'300px'}
                             rounded={'2xl'}
                             boxShadow={'2xl'}
                             width={'full'}
                             overflow={'hidden'}>
                             <Image
                                 alt={'Hero Image'}
-                                fit={'cover'}
-                                align={'center'}
-                                w={'100%'}
-                                h={'100%'}
+                                width={800}
+                                height={533}
+                                layout={'responsive'}
                                 src={
                                     'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
                                 }

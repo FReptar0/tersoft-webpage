@@ -95,7 +95,11 @@ const TableProducts = () => {
             colorScheme: 'green',
             function: () => {
                 // Download brochure 
-                window.open('/Brochure_Sage_300.pdf', '_blank');
+                if(Router.locale === 'en'){
+                    window.open('/files/en/Brochure_Sage_300.pdf', '_blank');
+                }else{
+                    window.open('/files/es/Brochure_Sage_300.pdf', '_blank');
+                }
             },
         },
     };
@@ -110,7 +114,7 @@ const TableProducts = () => {
             colorScheme: 'green',
             function: () => {
                 // Download brochure 
-                window.open('/Modulos_Fiscales.pdf', '_blank');
+                window.open('/files/Modulos_Fiscales.pdf', '_blank');
             },
         },
     };
