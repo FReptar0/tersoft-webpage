@@ -16,6 +16,7 @@ import Loader from '@/components/Loader';
 import Router from 'next/router';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
+import NoContent from './204';
 
 
 const Dashboard = () => {
@@ -69,6 +70,10 @@ const Dashboard = () => {
         else
             setIsMobile(false);
     };
+
+    // TODO: Cambiar el contenido de NoContent por el contenido del dashboard cuando esté lista esa parte
+
+    return (<NoContent />)
 
     return (
         isClient ? (

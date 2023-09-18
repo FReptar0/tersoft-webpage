@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import Router from 'next/router';
 import SignUp from '@/components/SignUp';
 import Login from '@/components/Login';
+import NoContent from './204';
 
 
 export default function AuthCard() {
@@ -51,6 +52,8 @@ export default function AuthCard() {
     const toggleCard = () => {
         setIsSignup(!isSignup);
     };
+
+    return (<NoContent />)
 
     return (
         <React.Fragment>
@@ -90,7 +93,7 @@ export default function AuthCard() {
                                     <Text align={'center'}>
                                         ¿Aún no tienes una cuenta?
                                         <ChakraLink color={'blue.400'} onClick={toggleCard} cursor="pointer">
-                                        {' '}Regístrate
+                                            {' '}Regístrate
                                         </ChakraLink>
                                     </Text>
                                 </Stack>
