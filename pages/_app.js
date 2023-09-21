@@ -5,7 +5,6 @@ import '@chakra-ui/react'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Analytics } from '@vercel/analytics/react';
 import { ChakraProvider } from '@chakra-ui/react';
 import Head from 'next/head';
 import TagManager from 'react-gtm-module';
@@ -35,7 +34,6 @@ const MyApp = ({ Component, pageProps }) => {
             </Head>
             <ChakraProvider>
                 <Component {...pageProps} />
-                <Analytics />
             </ChakraProvider>
         </>
     );
