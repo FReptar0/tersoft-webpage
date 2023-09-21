@@ -9,7 +9,7 @@ export default async function mailsender(req, res) {
         );
     }
 
-    const { uri, reCaptchaResponse } = req.body;
+    const { uri, reCaptchaResponse, reCaptchaResponsev3 } = req.body;
 
     if (!uri) {
         return res.status(400).json(
@@ -23,7 +23,43 @@ export default async function mailsender(req, res) {
         );
     }
 
-    const verifyCaptcha = await axios.get(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${reCaptchaResponse}`);
+    if (!reCaptchaResponsev3) {
+        return res.status(400).json(
+            new CustomResponse(400, "Faltan campos por llenar", "Faltan campos por llenar", {})
+        );
+    }
+
+    const verifyCaptchaV3 = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY_V3}&response=${reCaptchaResponsev3}`)
+        .catch(() => {
+            return res.status(400).json(
+                new CustomResponse(400, "Error en el captcha", "Error en el captcha", {})
+            );
+        });
+
+    if (!verifyCaptchaV3.data.success) {
+        return res.status(400).json(
+            new CustomResponse(400, "Error en el captcha", "Error en el captcha", {})
+        );
+    } else if (verifyCaptchaV3.data.score < 0.7) {
+        return res.status(400).json(
+            new CustomResponse(400, "Error en el captcha - Score", "Error en el captcha - Score", {})
+        );
+    } else if (verifyCaptchaV3.data.action !== "submit") {
+        return res.status(400).json(
+            new CustomResponse(400, "Error en el captcha - Action", "Error en el captcha - Action", {})
+        );
+    } else if (verifyCaptchaV3.data.challenge_ts < (Date.now() / 1000) - 120) {
+        return res.status(400).json(
+            new CustomResponse(400, "Error en el captcha - Challenge", "Error en el captcha - Challenge", {})
+        );
+    }
+
+    const verifyCaptcha = await axios.get(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${reCaptchaResponse}`)
+        .catch(() => {
+            return res.status(400).json(
+                new CustomResponse(400, "Error en el captcha", "Error en el captcha", {})
+            );
+        })
 
     if (!verifyCaptcha.data.success) {
         return res.status(400).json(

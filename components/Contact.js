@@ -3,11 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { useState, useEffect, createRef } from 'react';
+import { useState, useEffect, createRef, useRef } from 'react';
 import Router from 'next/router';
-import dynamic from 'next/dynamic';
-
-const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), { ssr: true });
+import ReCAPTCHA from 'react-google-recaptcha';
 
 import ContactTextES from '../public/langs/es/Contact.json'
 import ContactTextEN from '../public/langs/en/Contact.json'
@@ -16,6 +14,7 @@ const ContactForm = () => {
     const [telefono, setTelefono] = useState("");
     const [isDisabled, setIsDisabled] = useState(true);
     const [reCaptchaResponse, setReCaptchaResponse] = useState("");
+    const [reCaptchaResponsev3, setReCaptchaResponsev3] = useState("");
     const [contactText, setContactText] = useState(ContactTextES);
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const ContactForm = () => {
         }
     }, []);
 
-    const reCaptchaRef = createRef();
+    const reCaptchaRef = useRef();
 
     const validationSchema = Yup.object().shape({
         nombre: Yup.string().required(contactText.form.validationSchema.name),
@@ -62,6 +61,13 @@ const ContactForm = () => {
 
     const handleSubmit = async (values, { resetForm }) => {
         const { nombre, apellido, correo, empresa, opcion, sitioWeb } = values;
+
+        grecaptcha.ready(() => {
+            grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V3, { action: 'submit' }).then((token) => {
+                setReCaptchaResponsev3(token);
+                console.log(token);
+            });
+        });
         
         const data = {
             "name": nombre,
@@ -72,8 +78,11 @@ const ContactForm = () => {
             "option": opcion ? opcion : 'No hay opción',
             "webSite": sitioWeb ? sitioWeb : 'No hay sitio web',
             "reCaptchaResponse": reCaptchaResponse,
+            "reCaptchaResponsev3": reCaptchaResponsev3,
             "uri": "/home"
         };
+
+        console.log(data);
 
 
         // Check if the user is a bot

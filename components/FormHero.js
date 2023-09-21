@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react';
+import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -11,8 +11,6 @@ const FormComponent = (formTexts) => {
     const [telefono, setTelefono] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
     const [reCaptchaResponse, setReCaptchaResponse] = useState('');
-
-    const reCaptchaRef = createRef();
 
     const initialValues = {
         name: '',
@@ -75,7 +73,6 @@ const FormComponent = (formTexts) => {
                     // desmarcar el captcha
                     setReCaptchaResponse("");
                     setIsDisabled(true);
-                    reCaptchaRef.current.reset();
                 });
             } else {
                 Swal.fire({
@@ -93,7 +90,6 @@ const FormComponent = (formTexts) => {
                     // desmarcar el captcha
                     setReCaptchaResponse("");
                     setIsDisabled(true);
-                    reCaptchaRef.current.reset();
                 });
             }
 
@@ -113,7 +109,6 @@ const FormComponent = (formTexts) => {
                 // desmarcar el captcha
                 setReCaptchaResponse("");
                 setIsDisabled(true);
-                reCaptchaRef.current.reset();
             });
         }
     };
@@ -187,7 +182,6 @@ const FormComponent = (formTexts) => {
                             }}
                             name="reCaptchaResponse"
                             id='reCaptchaResponse'
-                            ref={reCaptchaRef}
                         />
 
                         <Button
