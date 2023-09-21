@@ -24,7 +24,6 @@ export default function Index() {
             // esperar a que se cargue el chat
             setTimeout(() => {
                 const imagen = document.getElementById('chatBubbleImageId')
-                const iframe = document.getElementById('cgptcb-chat-iframe')
                 
                 if(imagen) {
                     imagen.alt = 'IA Chatbot Tersoft';
