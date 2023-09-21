@@ -17,7 +17,16 @@ const FAQ = dynamic(() => import('@/components/FAQ'), { ssr: false });
 export default function Index() {
 
     useEffect(() => {
-        CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" });
+        CustomGPT.init({ p_id: "3145", p_key: "a092741ecfdcb02c2cedf2fc43a560ab" }).then(() => {
+            console.log('CustomGPT loaded');
+            const chat = document.getElementById('cgptcb-chat-circle')
+            chat.style.marginBottom = '70px';
+            // agregar alt al logo de chat
+            const logo = document.getElementById('chatBubbleImageId')
+            logo.alt = 'IA Tersoft Chatbot'
+        }).catch((err) => {
+            console.log(err);
+        });
     }, []);
 
     return (

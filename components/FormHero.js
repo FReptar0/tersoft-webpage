@@ -176,7 +176,7 @@ const FormComponent = (formTexts) => {
                         </div>
 
                         <ReCAPTCHA
-                            sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
+                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                             onChange={(value) => {
                                 setIsDisabled(!isDisabled);
                                 setReCaptchaResponse(value);

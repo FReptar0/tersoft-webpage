@@ -485,7 +485,7 @@ const ERPForm = () => {
                                 </Field>
 
                                 <ReCAPTCHA
-                                    sitekey="6LcF7egnAAAAAAATcdv4rJ4ge3DeEgA3Zt7nY-zj"
+                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                                     onChange={(value) => {
                                         initialValues.reCaptchaResponse = value;
                                         setIsDisabled(!isDisabled);
