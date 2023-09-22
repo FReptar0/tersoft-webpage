@@ -112,7 +112,7 @@ const BlogIndex = ({ blogPosts }) => {
                                                 }
                                             </Heading>
                                         </Stack>
-                                        <Text color={'gray.500'}>
+                                        <Text color={'gray.500'} className='blogpost-description'>
                                             {
                                                 locale === 'es' ? (
                                                     post.es.description
