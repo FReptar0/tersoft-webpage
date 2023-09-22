@@ -41,7 +41,7 @@ const BlogPost = (props) => {
                         </Text>
                     </Flex>
                     <Text fontSize="sm" color="gray.500">
-                        {selectedBlogPost.date} • {selectedBlogPost.readTime}
+                        {locale === 'es' ? selectedBlogPost.es.date : selectedBlogPost.en.date} • {selectedBlogPost.readTime}
                     </Text>
                 </VStack>
                 <Text fontSize="md" mt={6}>

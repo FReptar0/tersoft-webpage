@@ -9,6 +9,8 @@ import {
     Avatar,
     useColorModeValue,
     Container,
+    Grid,
+    GridItem,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import Header from '@/components/Header';
@@ -21,7 +23,6 @@ const cache = new LRUCache({
     max: 100,
     maxAge: 1000 * 60 * 10,
 });
-
 
 const BlogIndex = ({ blogPosts }) => {
     const router = useRouter();
@@ -37,10 +38,10 @@ const BlogIndex = ({ blogPosts }) => {
         <React.Fragment>
             {isLoading && <Loader />}
 
-            {!isLoading && (<Header />)}
+            {!isLoading && <Header />}
 
             <Container maxW={'9xl'} mt={10} p="12">
-                <Box mt={8} ml={8}>
+                <Box mt={8} ml={8} maxH={'100%'} maxW={'100%'}>
                     <Stack spacing={6}>
                         <Center>
                             <Box
@@ -53,13 +54,14 @@ const BlogIndex = ({ blogPosts }) => {
                                 gridGap={6}
                                 justifyContent="center"
                                 alignItems="center"
-                                px={4} // Agregado: Padding horizontal
-                                py={8} // Agregado: Padding vertical
+                                px={4}
+                                py={8}
                             >
                                 {blogPosts.map((post) => (
                                     <Box
                                         key={post._id}
                                         maxW={'445px'}
+                                        h={'full'}
                                         w={'full'}
                                         bg={useColorModeValue('white', 'gray.900')}
                                         boxShadow={'2xl'}
@@ -68,6 +70,8 @@ const BlogIndex = ({ blogPosts }) => {
                                         overflow={'hidden'}
                                         cursor="pointer"
                                         onClick={() => handleCardClick(post._id)}
+                                        display="grid"
+                                        gridTemplateRows="auto auto auto" // Cambio en la estructura de la cuadrícula
                                     >
                                         <Box
                                             h={'210px'}
@@ -107,45 +111,33 @@ const BlogIndex = ({ blogPosts }) => {
                                                     )
                                                 }
                                             </Heading>
-                                            <Text color={'gray.500'}>
-                                                {
-                                                    locale === 'es' ? (
-                                                        post.es.description
-                                                    ) : (
-                                                        post.en.description
-                                                    )
-                                                }
-                                            </Text>
                                         </Stack>
-                                        <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-                                            <Avatar src={
-                                                post.authorAvatarSrc
-                                            } alt={'Author'} />
-                                            <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                                                <Text fontWeight={600}>{
-                                                    locale === 'es' ? (
-                                                        post.es.author
-                                                    ) : (
-                                                        post.en.author
-                                                    )
-                                                }</Text>
-                                                <Text color={'gray.500'}>
-                                                    {
-                                                        locale === 'es' ? (
-                                                            post.es.date
-                                                        ) : (
-                                                            post.en.date
-                                                        )
-                                                    } · {
-                                                        locale === 'es' ? (
-                                                            post.es.readTime
-                                                        ) : (
-                                                            post.en.readTime
-                                                        )
-                                                    }
-                                                </Text>
-                                            </Stack>
-                                        </Stack>
+                                        <Text color={'gray.500'}>
+                                            {
+                                                locale === 'es' ? (
+                                                    post.es.description
+                                                ) : (
+                                                    post.en.description
+                                                )
+                                            }
+                                        </Text>
+                                        <Grid
+                                            templateRows="auto 1fr"
+                                            gap={2}
+                                            alignItems="end"
+                                        >
+                                            <GridItem>
+                                                <Avatar src={post.authorAvatarSrc} alt={'Author'} />
+                                            </GridItem>
+                                            <GridItem>
+                                                <Stack direction={'column'} spacing={0} fontSize={'sm'}>
+                                                    <Text fontWeight={600}>{post.author}</Text>
+                                                    <Text color={'gray.500'}>
+                                                        {locale === 'es' ? post.es.date : post.en.date} · {post.readTime}
+                                                    </Text>
+                                                </Stack>
+                                            </GridItem>
+                                        </Grid>
                                     </Box>
                                 ))}
                             </Box>
@@ -167,11 +159,9 @@ export async function getServerSideProps() {
             return cachedData;
         }
 
-
-
         const db = await connectToDatabase();
         const data = await db.collection('blog').find({}).toArray();
-        cache.set('blogPosts', data); // Almacenar en caché los resultados de la consulta
+        cache.set('blogPosts', data);
         await closeConnection();
         return data;
     };
