@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -7,10 +7,12 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { Box, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 
 const FormComponent = (formTexts) => {
-    console.log(formTexts);
     const [telefono, setTelefono] = useState('');
     const [isDisabled, setIsDisabled] = useState(true);
     const [reCaptchaResponse, setReCaptchaResponse] = useState('');
+    const [reCaptchaResponsev3, setReCaptchaResponsev3] = useState('');
+
+    const reCaptchaRef = useRef();
 
     const initialValues = {
         name: '',
@@ -26,24 +28,16 @@ const FormComponent = (formTexts) => {
 
     const validationSchema = Yup.object({
         name: Yup.string().required(),
-        email: Yup.string().email(formTexts.texts.validationSchema.emailInvalid).required(formTexts.texts.validationSchema.email),
+        email: Yup.string().email(formTexts.formTexts.validationSchema.emailInvalid).required(formTexts.formTexts.validationSchema.email),
     });
 
     const handleSubmit = async (values, { resetForm }) => {
         const { name, email } = values;
 
-        const data = {
-            name,
-            email,
-            "phoneNumber": telefono,
-            reCaptchaResponse,
-            "uri": "/hero"
-        };
-
         if (!name || !email || !telefono) {
             Swal.fire({
-                title: formTexts.texts.alerts.error.missingFields.title,
-                text: formTexts.texts.alerts.error.missingFields.description,
+                title: formTexts.formTexts.alerts.error.missingFields.title,
+                text: formTexts.formTexts.alerts.error.missingFields.description,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
@@ -51,17 +45,38 @@ const FormComponent = (formTexts) => {
                 timerProgressBar: true,
                 toast: true,
             });
+
+            reCaptchaRef.current.reset();
+
             return;
         }
+
+        grecaptcha.ready(() => {
+            grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY_V3, { action: 'submit' }).then((token) => {
+                setReCaptchaResponsev3(token);
+                console.log(token);
+            });
+        });
+
+        const data = {
+            "name": name,
+            "email": email,
+            "phoneNumber": telefono,
+            "reCaptchaResponse": reCaptchaResponse,
+            "reCaptchaResponsev3": reCaptchaResponsev3,
+            "uri": "/hero"
+        };
+
+        console.log(data);
 
         try {
             const response = await axios.post('/api/sendMail', data);
 
             if (response.status === 200) {
                 Swal.fire({
-                    title: formTexts.texts.alerts.success.title,
+                    title: formTexts.formTexts.alerts.success.title,
                     icon: 'success',
-                    text: formTexts.texts.alerts.success.description,
+                    text: formTexts.formTexts.alerts.success.description,
                     position: 'bottom-end',
                     showConfirmButton: false,
                     timer: 5000,
@@ -73,11 +88,12 @@ const FormComponent = (formTexts) => {
                     // desmarcar el captcha
                     setReCaptchaResponse("");
                     setIsDisabled(true);
+                    reCaptchaRef.current.reset();
                 });
             } else {
                 Swal.fire({
-                    title: formTexts.texts.alerts.error.onSend.title,
-                    text: formTexts.texts.alerts.error.onSend.description,
+                    title: formTexts.formTexts.alerts.error.onSend.title,
+                    text: formTexts.formTexts.alerts.error.onSend.description,
                     icon: 'error',
                     position: 'bottom-end',
                     showConfirmButton: false,
@@ -90,13 +106,15 @@ const FormComponent = (formTexts) => {
                     // desmarcar el captcha
                     setReCaptchaResponse("");
                     setIsDisabled(true);
+                    reCaptchaRef.current.reset();
                 });
             }
 
         } catch (error) {
+            console.log(error);
             Swal.fire({
-                title: formTexts.texts.alerts.error.onSend.title,
-                text: formTexts.texts.alerts.error.onSend.description,
+                title: formTexts.formTexts.alerts.error.onSend.title,
+                text: formTexts.formTexts.alerts.error.onSend.description,
                 icon: 'error',
                 position: 'bottom-end',
                 showConfirmButton: false,
@@ -109,6 +127,7 @@ const FormComponent = (formTexts) => {
                 // desmarcar el captcha
                 setReCaptchaResponse("");
                 setIsDisabled(true);
+                reCaptchaRef.current.reset();
             });
         }
     };
@@ -128,7 +147,7 @@ const FormComponent = (formTexts) => {
             shadow={'xl'}
         >
             <Heading as={'h2'} size={'md'} marginBottom={'30px'}>
-                {formTexts.texts.heading}
+                {formTexts.formTexts.heading}
             </Heading>
 
             <Formik
@@ -140,16 +159,16 @@ const FormComponent = (formTexts) => {
                     <Form>
                         <div>
                             <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
-                                {formTexts.texts.fields.labels.name}
+                                {formTexts.formTexts.fields.labels.name}
                             </Text>
-                            <Field type="text" name="name" placeholder={formTexts.texts.fields.placeholders.name} className="form-control mb-3" />
+                            <Field type="text" name="name" placeholder={formTexts.formTexts.fields.placeholders.name} className="form-control mb-3" />
                             <ErrorMessage name="name" component="div" className="text-danger" />
                         </div>
                         <div>
                             <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
-                                {formTexts.texts.fields.labels.phone}
+                                {formTexts.formTexts.fields.labels.phone}
                             </Text>
-                            <Field type="tel" name="phoneNumber" placeholder={formTexts.texts.fields.placeholders.phone} className="form-control mb-3"
+                            <Field type="tel" name="phoneNumber" placeholder={formTexts.formTexts.fields.placeholders.phone} className="form-control mb-3"
                                 maxLength={10}
                                 minLength={10}
                                 inputMode="numeric"
@@ -158,15 +177,15 @@ const FormComponent = (formTexts) => {
                             />
                             {telefono.length < 10 && telefono.length > 0 && (
                                 <span style={{ color: '#EB1111', fontSize: '1rem', marginLeft: 5 }}>
-                                    {formTexts.texts.validationSchema.phoneInvalid}
+                                    {formTexts.formTexts.validationSchema.phoneInvalid}
                                 </span>
                             )}
                         </div>
                         <div>
                             <Text as={'h3'} fontSize="md" textAlign="left" padding={'1'} marginBottom={'-0.1px'}>
-                                {formTexts.texts.fields.labels.email}
+                                {formTexts.formTexts.fields.labels.email}
                             </Text>
-                            <Field type="email" name="email" placeholder={formTexts.texts.fields.placeholders.email} className="form-control mb-3" />
+                            <Field type="email" name="email" placeholder={formTexts.formTexts.fields.placeholders.email} className="form-control mb-3" />
                             <ErrorMessage name="email" component="div" className="text-danger" />
                         </div>
 
@@ -180,6 +199,7 @@ const FormComponent = (formTexts) => {
                                 setIsDisabled(true);
                                 setReCaptchaResponse('');
                             }}
+                            ref={reCaptchaRef}
                             name="reCaptchaResponse"
                             id='reCaptchaResponse'
                         />
@@ -195,10 +215,10 @@ const FormComponent = (formTexts) => {
                             _hover={{ bg: 'green.500' }}
                             mx={'auto'}
                             marginTop={'10px'}
-                            isDisabled={isDisabled}
+                            isDisabled={isDisabled || !isValid || !dirty}
                             isLoading={isSubmitting}
                         >
-                            {formTexts.texts.fields.labels.send}
+                            {formTexts.formTexts.fields.labels.send}
                         </Button>
                     </Form>
                 )}

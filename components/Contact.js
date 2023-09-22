@@ -82,9 +82,6 @@ const ContactForm = () => {
             "uri": "/home"
         };
 
-        console.log(data);
-
-
         // Check if the user is a bot
         if (values.edad) {
             // Store the IP address to block the access to the website
@@ -97,6 +94,8 @@ const ContactForm = () => {
             // cookie.set('ip', ip, { expires: 1 });
             // block the access to the website by changing the location to the 404 page and send an email to the admin
             window.location.href = '/404';
+            
+            grecaptcha.reset();
 
             return;
         }
@@ -136,6 +135,7 @@ const ContactForm = () => {
                     setReCaptchaResponse("");
                     setIsDisabled(true);
                     reCaptchaRef.current.reset();
+                    grecaptcha.reset();
                 });
             } else {
                 Swal.fire({
@@ -173,6 +173,7 @@ const ContactForm = () => {
                 setReCaptchaResponse("");
                 setIsDisabled(true);
                 reCaptchaRef.current.reset();
+                greCaptcha.reset();
             });
         }
     };
@@ -335,7 +336,7 @@ const ContactForm = () => {
                             display="block"
                             mt={4}
                             type="submit"
-                            isDisabled={isDisabled || !isValid || !dirty}
+                            isDisabled={isDisabled || !isValid || !dirty || isSubmitting || reCaptchaResponse === ""}
                         >
                             {contactText.fields.labels.submit}
                         </Button>
