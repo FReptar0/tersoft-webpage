@@ -8,7 +8,7 @@ const CarruselTestimonial = dynamic(() => import('@/components/Testimonials'), {
 const Hero = dynamic(() => import('@/components/Hero'), { ssr: false });
 const GridList = dynamic(() => import('@/components/OurWork'), { ssr: false });
 //const WaitingList = dynamic(() => import('@/components/CTA'), { ssr: false });
-const TableProducts = dynamic(() => import('@/components/Products'), { ssr: false });
+const ProductsCards = dynamic(() => import('@/components/Products'), { ssr: false });
 const ContactForm = dynamic(() => import('@/components/Contact'), { ssr: false });
 const Team = dynamic(() => import('@/components/Team'), { ssr: false });
 const ClientsCard = dynamic(() => import('@/components/Clients'), { ssr: false });
@@ -59,8 +59,8 @@ export default function Index() {
             <section id='testimonials'>
                 <CarruselTestimonial />
             </section>
-            <section className='p-5' id='products'>
-                <TableProducts />
+            <section className='p-5 mb-5' id='products'>
+                <ProductsCards />
             </section>
             {/* <section id='cta'>
                 <WaitingList />
