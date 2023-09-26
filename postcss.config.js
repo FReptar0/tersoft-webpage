@@ -20,6 +20,7 @@ module.exports = {
                     './pages/**/*.{js,jsx,ts,tsx}',
                     './components/**/*.{js,jsx,ts,tsx}'
                 ],
+                CSS: ['./styles/global.css'],
                 defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
                 safelist: [
                     "body",
