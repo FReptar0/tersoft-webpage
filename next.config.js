@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: true,
+    openAnalyzer: false,
+})
+
 const nextConfig = {
     reactStrictMode: true,
     i18n: {
@@ -10,4 +15,4 @@ const nextConfig = {
     },
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)
