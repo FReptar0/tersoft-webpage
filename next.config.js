@@ -13,6 +13,9 @@ const nextConfig = {
     images: {
         domains: ['images.unsplash.com', 'via.placeholder.com', 'hs-22735219.f.hubspotfree.net'],
     },
+    experimental: {
+        optimizeCss: true
+    },
 }
 
 module.exports = withBundleAnalyzer(nextConfig)

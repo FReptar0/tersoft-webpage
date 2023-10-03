@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import HeroTextsEN from '../public/langs/en/Hero.json';
 import HeroTextsES from '../public/langs/es/Hero.json';
 import Router from 'next/router';
-import Image from 'next/image';
+//import Image from 'next/image';
 import FormComponent from './FormHero';
 
 export default function Hero() {
@@ -60,15 +60,6 @@ export default function Hero() {
                             overflow={'hidden'}
                             boxShadow={'2xl'}
                             >
-                            {/* <Image
-                                alt={'Hero Image'}
-                                width={800}
-                                height={533}
-                                layout={'responsive'}
-                                src={
-                                    'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                                }
-                            /> */}
                             <FormComponent formTexts={heroTexts.form} />
                         </Box>
                     </Flex>
