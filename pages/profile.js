@@ -16,7 +16,7 @@ import {
     Image,
     Flex,
     Avatar,
-    Grid,  // Agregamos el componente Grid de Chakra UI
+    Grid,
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import * as Yup from 'yup';
