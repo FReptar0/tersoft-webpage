@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /en/
+Allow: /es/
 
 Disallow: /login/
 Disallow: /langs/
