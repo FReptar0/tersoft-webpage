@@ -14,6 +14,7 @@ const MyApp = ({ Component, pageProps }) => {
 
     useEffect(() => {
         TagManager.initialize({ gtmId: 'GTM-PBPR6TZF' });
+        TagManager.initialize({ gtmId: 'G-EMBWLZ8LS7' })
     }, []);
 
     return (
