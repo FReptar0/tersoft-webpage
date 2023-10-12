@@ -15,7 +15,6 @@ const nextConfig = {
     },
     experimental: {
         optimizeCss: true,
-        urlImports: ['https://www.google.com/recaptcha/api.js?render=6Lc3Fj8oAAAAAFhNhIjvo8JN0ApWM1RU46NtSUJB'],
     },
 }
 
