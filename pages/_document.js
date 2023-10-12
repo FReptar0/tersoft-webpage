@@ -16,7 +16,7 @@ export default function Document() {
                 <Script
                     src='https://cdn.customgpt.ai/js/chat.js' type='text/javascript' strategy='beforeInteractive' />
                 <Script src='https://assets.calendly.com/assets/external/widget.js' type='text/javascript' strategy='lazyOnload' />
-                <Script src='https://www.google.com/recaptcha/api.js?render=6Lc3Fj8oAAAAAFhNhIjvo8JN0ApWM1RU46NtSUJB' strategy='beforeInteractive' />
+                <Script src='/recaptcha.js' type='text/javascript' strategy='lazyOnload' />
             </body>
         </Html>
     )
