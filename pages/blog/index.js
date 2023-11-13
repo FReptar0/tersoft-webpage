@@ -90,7 +90,7 @@ const BlogIndex = ({ blogPosts }) => {
                                         </Box>
                                         <Stack>
                                             <Text
-                                                color={'green.500'}
+                                                color={'blue.500'}
                                                 textTransform={'uppercase'}
                                                 fontWeight={800}
                                                 fontSize={'sm'}

@@ -104,7 +104,7 @@ const CarruselTestimonial = () => {
     };
 
     return (
-        <Box bg={useColorModeValue('green.200', 'gray.700')}>
+        <Box bg={useColorModeValue('blue.200', 'gray.700')}>
             <Container maxW={'7xl'} py={16}>
                 <Stack spacing={0} align={'center'}>
                     <Heading textAlign={'center'}>

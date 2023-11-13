@@ -88,7 +88,7 @@ const WaitingList = () => {
         <Card
             as={Container}
             maxW="6xl"
-            bg="green.500"
+            bg="blue.500"
             color="white"
             p={20}
             borderRadius="md"

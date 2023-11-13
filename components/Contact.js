@@ -330,7 +330,7 @@ const ContactForm = () => {
                             ref={reCaptchaRef}
                         />
 
-                        <Button colorScheme="green"
+                        <Button colorScheme="blue"
                             size="lg"
                             mx="auto"
                             display="block"

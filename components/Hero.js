@@ -22,11 +22,11 @@ export default function Hero() {
                 <Stack align={'center'} spacing={{ base: 8, md: 10 }} py={{ base: 20, md: 28 }} direction={{ base: 'column', md: 'row' }}>
                     <Stack flex={1} spacing={{ base: 5, md: 10 }}>
                         <Heading as={'h1'} lineHeight={1.1} fontWeight={600} fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}>
-                            <Text as={'span'} position={'relative'} _after={{ content: "''", width: 'full', height: '30%', position: 'absolute', bottom: 1, left: 0, bg: 'green.400', zIndex: -1 }}>
+                            <Text as={'span'} position={'relative'} _after={{ content: "''", width: 'full', height: '30%', position: 'absolute', bottom: 1, left: 0, bg: 'blue.400', zIndex: -1 }}>
                                 {heroTexts.h1}
                             </Text>
                             <br />
-                            <Text as={'span'} color={'green.400'}>
+                            <Text as={'span'} color={'blue.400'}>
                                 {heroTexts.h1Underline}
                             </Text>
                         </Heading>
@@ -34,15 +34,15 @@ export default function Hero() {
                             {heroTexts.description}
                         </Text>
                         <Stack spacing={{ base: 4, sm: 6 }} direction={{ base: 'column', sm: 'row' }}>
-                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'} bg={'green.400'} _hover={{ bg: 'green.500' }} onClick={
+                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'blue'} bg={'blue.400'} _hover={{ bg: 'blue.500' }} onClick={
                                 () => {
                                     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
                                 }
                             }>
                                 {heroTexts.firstCTA}
                             </Button>
-                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'green'}
-                                bg={'green.400'} _hover={{ bg: 'green.500' }}
+                            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6} colorScheme={'blue'}
+                                bg={'blue.400'} _hover={{ bg: 'blue.500' }}
                                 onClick={
                                     () => {
                                         Calendly.initPopupWidget({ url: 'https://calendly.com/tersoft' }); return false;
@@ -53,7 +53,7 @@ export default function Hero() {
                         </Stack>
                     </Stack>
                     <Flex flex={1} justify={'center'} align={'center'} position={'relative'} w={'full'} marginTop={'40px'}>
-                        <Blob w={'150%'} h={'150%'} position={'absolute'} left={-10} zIndex={-1} color={useColorModeValue('green.200', 'green.400')} />
+                        <Blob w={'150%'} h={'150%'} position={'absolute'} left={-10} zIndex={-1} color={useColorModeValue('blue.200', 'blue.400')} />
                         <Box
                             position={'relative'}
                             rounded={'2xl'}

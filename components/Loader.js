@@ -8,7 +8,7 @@ export default function NotFound() {
                     thickness='4px'
                     speed='0.65s'
                     emptyColor='blue.200'
-                    color='green.500'
+                    color='blue.500'
                     size='xl'
                 />
             </Box>

@@ -38,7 +38,7 @@ const TeamMember = ({ src, name, role }) => {
                 <Box p="6">
                     <Stack spacing={0} align="center">
                         <Text fontWeight={500} fontSize={'2xl'} textAlign={'center'}>{name}</Text>
-                        <Text fontSize="lg" fontWeight={'bold'} textAlign={'center'} color={'green.600'}>
+                        <Text fontSize="lg" fontWeight={'bold'} textAlign={'center'} color={'blue.600'}>
                             {role}
                         </Text>
                     </Stack>

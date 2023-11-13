@@ -310,10 +310,10 @@ export default function Profile() {
                                                     <Button
                                                         loadingText="Actualizando..."
                                                         size="lg"
-                                                        bg={'green.400'}
+                                                        bg={'blue.400'}
                                                         color={'white'}
                                                         _hover={{
-                                                            bg: 'green.500',
+                                                            bg: 'blue.500',
                                                         }}
                                                         width={{ base: '100%', md: '100%' }}
                                                         type="submit"

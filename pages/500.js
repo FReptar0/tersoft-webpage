@@ -23,7 +23,7 @@ export default function NotFound() {
                     display="inline-block"
                     as="h2"
                     size="2xl"
-                    bgGradient="linear(to-r, green.400, green.600)"
+                    bgGradient="linear(to-r, blue.400, blue.600)"
                     backgroundClip="text"
                 >
                     {serverErrorText.heading}
@@ -36,8 +36,8 @@ export default function NotFound() {
                 </Text>
 
                 <Button
-                    colorScheme="green"
-                    bgGradient="linear(to-r, green.400, green.500, green.600)"
+                    colorScheme="blue"
+                    bgGradient="linear(to-r, blue.400, blue.500, blue.600)"
                     color="white"
                     variant="solid"
                     onClick={() => window.location.reload()}
