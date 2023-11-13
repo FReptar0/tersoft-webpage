@@ -61,8 +61,8 @@ const Header = () => {
                             <Navbar.Brand>
                                 <Image
                                     src="/logo.png"
-                                    width={100}
-                                    height={40}
+                                    width={60}
+                                    height={60}
                                     className="d-inline-block align-top"
                                     alt="Tersoft"
                                     priority

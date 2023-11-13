@@ -44,7 +44,7 @@ function Card({ heading, description, button }) {
                 <Button
                     id={button.id}
                     w={'full'}
-                    bg={useColorModeValue('#48BB78', 'green.400')}
+                    bg={useColorModeValue('blue.400')}
                     color={'white'}
                     rounded={'md'}
                     _hover={{
@@ -159,7 +159,7 @@ export default function ProductsCards() {
                     textAlign={'center'}
                 >
                     <Heading size={'2xl'}>
-                        {productsText.headingFirst} <Text color="green.600">{productsText.headingLast}</Text>
+                        {productsText.headingFirst} <Text color="blue.600">{productsText.headingLast}</Text>
                     </Heading>
                 </Stack>
 

@@ -210,9 +210,9 @@ const FormComponent = (formTexts) => {
                             size={'lg'}
                             fontWeight={'normal'}
                             px={6}
-                            colorScheme={'green'}
-                            bg={'green.400'}
-                            _hover={{ bg: 'green.500' }}
+                            colorScheme={'blue'}
+                            bg={'blue.400'}
+                            _hover={{ bg: 'blue.500' }}
                             mx={'auto'}
                             marginTop={'10px'}
                             isDisabled={isDisabled || !isValid || !dirty}
