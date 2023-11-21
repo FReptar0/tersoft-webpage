@@ -1,0 +1,56 @@
+{
+    "heading": "PRIVACY NOTICE",
+    "intro": [
+        "To the Users (as defined below), we inform you that the following Privacy Notice applies to you simply by using or accessing any of the pages, web and mobile applications, software, and applications in general, that make up the Www.tersoft.mx Portal (hereinafter and jointly, the \"Portal\"), so we will understand that you accept and agree to comply with it. If you do not agree with the Privacy Notice and/or the Terms and Conditions at your disposal, you must refrain from accessing or using the Portal.",
+        "The User, understood as the person who uses or accesses, through computer equipment and/or any communication or device, the Portal (hereinafter the “User”), fully accepts and without reservation all the provisions included in this Privacy Notice."
+    ],
+    "responsible": {
+        "title": "RESPONSIBLE FOR THE PROCESSING OF YOUR PERSONAL DATA",
+        "content": "For Terp sa de cv (hereinafter the “Company”), the security of Users is our priority, so we protect their personal data through the use, application, and maintenance of high technical, physical, and administrative security measures.",
+        "additionalInfo": "As a User, you have the opportunity to choose from a wide range of products and services through our Portal, knowing that your personal data will be protected and treated confidentially. We inform you that the ENTITY responsible for collecting and processing and/or using the personal data that the User provides through the Portal is the Company, as well as its subsidiaries, associates, controlling companies, and affiliates.",
+        "address": "ADDRESS OF THE RESPONSIBLE. For the purposes of this privacy notice, the Company individually indicates its address, located at Av Cuauhtemoc 722 int 110, Narvarte Poniente, Benito Juarez, Mexico City, C.P. 03020."
+    },
+    "personalData": {
+        "title": "PERSONAL DATA THAT MAY BE COLLECTED",
+        "content": "The personal data that the Company may collect from the User when using the Portal and/or contracting our services and products are as follows:",
+        "dataList": [
+            "Name",
+            "Email",
+            "Phone",
+            "Address"
+        ]
+    },
+    "processingPurposes": {
+        "title": "PURPOSES OF PROCESSING YOUR PERSONAL DATA",
+        "content": "The personal data collected by the Company will be used to address the following purposes:",
+        "mainPurposes": [
+            "a) Sending information, promotions, and offers",
+            "b) To integrate files, databases, and systems necessary to carry out the corresponding operations and services; (ii) To claim the delivery of prizes and/or promotions; (iii) To carry out internal analysis;",
+            "c) Additionally, your personal data may be used for the following secondary purposes: (i) Marketing, advertising, and commercial prospecting; (ii) To offer you, as appropriate, other products and services of the Company or any of its affiliates, subsidiaries, controlling companies, associates, commissioners, or companies; (iii) To send promotions of other goods, services, and/or products; (iv) To perform statistical analyses, generate information models and/or current and predictive behavior profiles, and (v) To participate in surveys, drawings, and promotions."
+        ]
+    },
+    "limitationOptions": {
+        "title": "OPTIONS AND MEANS TO LIMIT THE USE OR DISCLOSURE OF DATA",
+        "content": "The Company has implemented administrative, technical, and physical security measures to protect your personal data, which we also require to be complied with by the service providers we hire. You may limit the use or disclosure of your personal data by sending an email to contacto@tersoft.mx, indicating in the body of the email your full name and the data you do not want to be disclosed. If your request is accepted, you will be registered on the exclusion list."
+    },
+    "rights": {
+        "title": "MEANS TO EXERCISE THE RIGHTS OF ACCESS, RECTIFICATION, CANCELLATION, OR OPPOSITION (ARCO RIGHTS)",
+        "content": "You can send an email to contacto@tersoft.mx at any time to exercise your Access, Rectification, Cancellation, or Opposition Rights (ARCO Rights). To exercise ARCO Rights, you (or your legal representative) must submit the request, identifying yourself with the following documentation:",
+        "documentsList": [
+            "- User's or owner's name.",
+            "- User's or owner's address or another means to communicate the response to your request.",
+            "- Documents proving your identity (IFE/INE or passport) and, where appropriate, documents proving the legal representation of the applicant.",
+            "- A description of the information/data about which you are trying to exercise your ARCO rights and the rights you would like to exercise."
+        ],
+        "additionalInfo": "If one or more of the documents mentioned above are not included, and/or the documents have errors or omissions, the Company will notify you within 3 business days after receiving the request and will ask you for the missing documents and/or relevant corrections; you will have 5 business days from that notification to provide the updated information, otherwise, the request will be deemed not submitted."
+    },
+    "dataTransfer": {
+        "title": "TRANSFER OF PERSONAL DATA",
+        "content": "The Company may disclose your personal data to third parties who, by virtue of the services and products offered, need to know them to fully comply with them. Likewise, the Company may disclose your information to the competent authorities in accordance with applicable law; any transfer of your personal data without consent will be made in accordance with Article 37 of the LFPDPPP."
+    },
+    "webBeacons": {
+        "title": "WEB BEACONS",
+        "content": "The Company may or may not use tracking technologies such as web beacons, similar to cookies, to collect data about your visits to the Portal; these are small electronic images embedded in web content or email messages, which are not normally visible to Users and allow us to generate almost personalized content to offer you a better experience when using our Portal. If you do not agree with any of the conditions set forth herein, the User can always change their browser settings."
+    },
+    "modifications": "MODIFICATIONS TO THE PRIVACY NOTICE. This privacy notice may undergo modifications, changes, or updates derived, among other things, from new legal requirements; the Company's own needs, the products or services we offer; our privacy practices; changes in our business model, or other causes. Any modification to this privacy notice will be notified through any of the following means: a written notice sent to your address; by the email you provide; a message to your mobile phone; a message disclosed through the Portal or any electronic means you use to enter into transactions; or in widely circulated newspapers at the Company's registered office."
+}
