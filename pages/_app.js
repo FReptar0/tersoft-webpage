@@ -31,6 +31,7 @@ const MyApp = ({ Component, pageProps }) => {
                 <meta name='theme-color' content='#000000' />
                 <link rel='manifest' href='/manifest.json' />
                 <meta name="theme-color" content="#317EFB" />
+                <link rel="icon" href="/favicon.ico" />
             </Head>
             <ChakraProvider>
                 <Component {...pageProps} />
