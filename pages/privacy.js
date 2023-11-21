@@ -31,7 +31,7 @@ const PrivacyScreen = () => {
                 borderRadius="lg"
                 shadow="xl"
                 mx="auto"
-                my={64}
+                my={'52'}
             >
                 <Box>
                     <Flex direction="column" align="center" justify="center" height="100%">
