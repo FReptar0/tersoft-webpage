@@ -95,21 +95,6 @@ const Footer = () => {
                                     {FooterText.legal.policy}
                                 </Link>
                             </li>
-                            <li>
-                                <Link aria-label='Ir a los terminos y condiciones' href="/terms">
-                                    {FooterText.legal.terms}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link aria-label='Ir a la política de uso' href="/use-policy">
-                                    {FooterText.legal.usage}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link aria-label='Ir al aviso legal' href="/legal-notice">
-                                    {FooterText.legal.legalnotice}
-                                </Link>
-                            </li>
                         </ul>
                     </div>
                     <div className="col-lg-3 col-md-6 mb-4">
