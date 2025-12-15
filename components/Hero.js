@@ -1,5 +1,4 @@
-import { Container, Stack, Flex, Box, Heading, Text, Button, Icon } from '@chakra-ui/react';
-import { useColorModeValue } from '@chakra-ui/color-mode';
+import { Container, Stack, Flex, Box, Heading, Text, Button, Icon, useColorModeValue } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
 import HeroTextsEN from '../public/langs/en/Hero.json';
 import HeroTextsES from '../public/langs/es/Hero.json';
